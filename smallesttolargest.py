@@ -9,7 +9,6 @@ def gen_list(size):
     return list
 
 def sort_list(list):
-    list = gen_list(20)
     n = len(list)
     swapped = False
     for i in range(n-1):
@@ -20,5 +19,6 @@ def sort_list(list):
         if not swapped:
             return
 
+list = gen_list(20)
 sort_list(list)
 print(list)
