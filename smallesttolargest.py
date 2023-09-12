@@ -16,9 +16,10 @@ def sort_list(list):
             if list[j] > list[j + 1]:
                 swapped = True
                 list[j], list[j + 1] = list[j + 1], list[j]
+                print(list)
         if not swapped:
             return
 
-list = gen_list(20)
+print('sorting...')
+list = gen_list(32)
 sort_list(list)
-print(list)
