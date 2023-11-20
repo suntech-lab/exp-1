@@ -1,6 +1,6 @@
 # ask the user to input a number and then round it to two decimal places
 n = float(input('enter your decimal number: '))
-print(round(n, 2))
+print(f'this is the number after it has been rounded: {round(n, 2)}')
 
 # ask the user to input a number and then show its absolute value
 n2 = int(input('enter your integer: '))
