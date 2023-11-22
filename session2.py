@@ -1,4 +1,3 @@
-# import math
 import math
 
 x = str(input('functions (limited) or arithmetic operations: '))
