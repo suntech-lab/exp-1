@@ -13,7 +13,7 @@ print(f'your tip for this meal is ${tip:.2f}, your tax for this meal is ${tax:.2
 
 # sum of first n positive integers
 
-num = int(input('which number do you want: '))
+num = int(input('which number do you want the nth triangle of?: '))
 
 def triangle(num):
     num = (num * (num + 1))/2
