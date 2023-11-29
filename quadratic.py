@@ -2,19 +2,20 @@ import cmath
 
 a = float(input('enter a: '))
 
-if a == 0:
-    print('a may not be zero')
+while a == 0:
+    print('A may not be zero. Try again.')
+    a = float(input('enter a: '))
 
 b = float(input('enter b: '))
 c = float(input('enter c: '))
 
-print(a,'* x^2', '+', b,'* x', '+', c)
+print('Standard Quadratic Form:', a,'* x^2', '+', b,'* x', '+', c)
 
-# i couldnt find a way of using/evaluating plus minus in python without downloading something
 def quadratic_solver(a, b, c):
 
-    d = (b**2) - (4*a*c)
+    d = b**2 - 4*a*c
 
+    # i couldnt find a way of using/evaluating plus minus in python without downloading something
     root1 = (-b-cmath.sqrt(d))/(2*a)
     root2 = (-b+cmath.sqrt(d))/(2*a)
 
@@ -24,4 +25,4 @@ def quadratic_solver(a, b, c):
     
     return root1, root2
 
-print(quadratic_solver(a, b, c))
+print('Root(s):', quadratic_solver(a, b, c))
