@@ -8,7 +8,7 @@ while a == 0:
 b = float(input('enter b: '))
 c = float(input('enter c: '))
 
-print('Standard Quadratic Form:', a,'* x^2', '+', b,'* x', '+', c)
+print(f'Standard Quadratic Form: {a}x^2 + {b}x + {c}')
 
 def quadratic_solver(a, b, c):
     d = b**2 - 4*a*c
