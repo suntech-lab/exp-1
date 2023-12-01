@@ -20,4 +20,8 @@ def invest(amount, rate, years):
         amount = amount * (1 + rate)
         print(f'year {year}: ${amount:,.2f}')
 
+amount = float(input('enter the principle amount'))
+rate = float(input('input the annual rate of return as a decimal: '))
+years = int(input('enter the number of years: '))
 
+invest(amount, rate, years)

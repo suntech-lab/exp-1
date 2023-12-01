@@ -18,4 +18,4 @@ def quadratic_solver(a, b, c):
         return root1
     return root1, root2
 
-print('Root(s):', quadratic_solver(a, b, c))
+print(f'Root(s): {quadratic_solver(a, b, c)}')
