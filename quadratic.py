@@ -3,7 +3,7 @@ import cmath
 
 a = float(input('enter a: '))
 while a == 0:
-    print('A may not be zero. Try again.')
+    print('A may not be zero. This is not a quadratic formula. Try again.')
     a = float(input('enter a: '))
 
 b = float(input('enter b: '))
