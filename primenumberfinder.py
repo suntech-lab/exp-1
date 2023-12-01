@@ -1,3 +1,6 @@
+print('1')
+print('2')
+
 n = 3
 while n < 100000:
     x = 2
@@ -8,3 +11,5 @@ while n < 100000:
     else:
         print(n)
     n += 1
+    if n > 100:
+        break
