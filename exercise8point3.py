@@ -1,3 +1,5 @@
+# exercise 8.3
+
 # prompts the user
 word = str(input('enter your word: '))
 

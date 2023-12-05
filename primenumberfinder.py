@@ -1,15 +1,15 @@
-print('1')
-print('2')
+import math
 
-n = 3
-while n < 100000:
-    x = 2
-    while x < n:
-        if n % x == 0:
-            break
-        x += 1
-    else:
-        print(n)
-    n += 1
-    if n > 100:
-        break
+def prime_number_generator():
+    prime_number = 3
+    while True:
+        isprime = True
+        for x in range(2, int(math.sqrt(prime_number) + 1)):
+            if prime_number % x == 0: 
+                isprime = False
+                break 
+        if isprime:
+            print(prime_number)
+        prime_number += 1
+
+prime_number_generator()
