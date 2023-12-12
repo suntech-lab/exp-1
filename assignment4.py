@@ -6,30 +6,107 @@ def evaluate(a):
         return
     return result
 
-def add(num1, num2):
-    evaluate
+def validate_input(x):
+    try:
+        n = eval(x)
+    except Exception as error:
+        print(error)
+        return
+    return n
+
+def add():
+    print('enter an integer, float, or expression')
+    num1 = input()
+    num1 = validate_input(num1)
+    if not num1:
+        return
+    print('enter your second integer, float, or expression')
+    num2 = input()
+    num2 = validate_input(num2)
+    if not num2:
+        return
     print(f'{num1} + {num2} = {num1 + num2}')
 
-def sub(num1, num2):
+def sub():
+    print('enter an integer, float, or expression')
+    num1 = input()
+    num1 = validate_input(num1)
+    if not num1:
+        return
+    print('enter your second integer, float, or expression')
+    num2 = input()
+    num2 = validate_input(num2)
+    if not num2:
+        return
     print(f'{num1} - {num2} = {num1 - num2}')
 
-def multiply(num1, num2):
+def multiply():
+    print('enter an integer, float, or expression')
+    num1 = input()
+    num1 = validate_input(num1)
+    if not num1:
+        return
+    print('enter your second integer, float, or expression')
+    num2 = input()
+    num2 = validate_input(num2)
+    if not num2:
+        return
     print(f'{num1} * {num2} = {num1 * num2}')
 
-def divide(num1, num2):
+def divide():
+    print('enter an integer, float, or expression')
+    num1 = input()
+    num1 = validate_input(num1)
+    if not num1:
+        return
+    print('enter your second integer, float, or expression')
+    num2 = input()
+    num2 = validate_input(num2)
+    if not num2:
+        return
     print(f'{num1} / {num2} = {num1 / num2}')
 
-def mod(num1, num2):
+def mod():
+    print('enter an integer, float, or expression')
+    num1 = input()
+    num1 = validate_input(num1)
+    if not num1:
+        return
+    print('enter your second integer, float, or expression')
+    num2 = input()
+    num2 = validate_input(num2)
+    if not num2:
+        return
     print(f'{num1} % {num2} = {num1 % num2}')
 
-def gcd(num1, num2):
+def gcd():
+    print('enter an integer, float, or expression')
+    num1 = input()
+    num1 = validate_input(num1)
+    if not num1:
+        return
+    print('enter your second integer, float, or expression')
+    num2 = input()
+    num2 = validate_input(num2)
+    if not num2:
+        return
     og_num1 = num1
     og_num2 = num2
     while num2 != 0:
         num1, num2 = num2, num1 % num2
     print(f'the gcd of {og_num1} and {og_num2} = {num1}')
 
-def lcm(num1, num2):
+def lcm():
+    print('enter an integer, float, or expression')
+    num1 = input()
+    num1 = validate_input(num1)
+    if not num1:
+        return
+    print('enter your second integer, float, or expression')
+    num2 = input()
+    num2 = validate_input(num2)
+    if not num2:
+        return
     og_num1 = num1
     og_num2 = num2
     while num2 != 0:
@@ -37,41 +114,94 @@ def lcm(num1, num2):
     solution = (og_num1 * og_num2) // num1
     print(f"The lcm of {og_num1} and {og_num2} is: {solution}")
 
-def power(num1, num2):
-    if str.isnumeric(num1 ** num2) == True:
-        print(f'{num1} ** {num2} = {float(num1) ** float(num2)}')
+def power():
+    print('enter an integer, float, or expression')
+    num1 = input()
+    num1 = validate_input(num1)
+    if not num1:
+        return
+    print('enter your second integer, float, or expression')
+    num2 = input()
+    num2 = validate_input(num2)
+    if not num2:
+        return
+    if type(num1 ** num2) == complex:
+        print('complex number, not available')
     else:
-        print('sorry, this results in a complex number.')
+        print(f'{num1} ** {num2} = {num1 ** num2}')
 
-def factorial(num1):
+def factorial():
+    print('enter an integer, float, or expression')
+    num1 = input()
+    num1 = validate_input(num1)
+    if not num1:
+        return
     if num1 == 0 or num1 == 1:
         return 1
+    elif num1 < 0:
+        print('complex number, not available.')
     else:
         result = 1
         for i in range(2, num1 + 1):
             result *= i
         print(f'the factorial of {num1} = {result}')
 
-def sqrt(num1):
-    print(f'the square root of {num1} = {eval(num1) ** (1/2)}')
+def sqrt():
+    print('enter an integer, float, or expression')
+    num1 = input()
+    num1 = validate_input(num1)
+    if not num1:
+        return
+    if num1 < 0:
+        print('complex number, not available.')
+    else:
+        print(f'the square root of {num1} = {num1 ** (1/2)}')
 
+operation_schema = [
+    {'operation': '1', 'description': 'addition', 'func': add},
+    {'operation': '2', 'description': 'subtraction', 'func': sub},
+    {'operation': '3', 'description': 'multiplication', 'func': multiply},
+    {'operation': '4', 'description': 'division', 'func': divide},
+    {'operation': '5', 'description': 'MOD', 'func': mod},
+    {'operation': '6', 'description': 'GCD', 'func': gcd},
+    {'operation': '7', 'description': 'LCM', 'func': lcm},
+    {'operation': '8', 'description': 'exponents', 'func': power},
+    {'operation': '9', 'description': 'factorial', 'func': factorial},
+    {'operation': '10', 'description': 'square root', 'func': sqrt},
+]
 
+for op in operation_schema:
+    print(f"enter {op['operation']} for {op['description']}")
 
-operation = int(input('''
-1 for addition
-2 for subtration
-3 for multiplication
-4 for division
-5 for MOD
-6 for GCD
-7 for LCM
-8 for exponents
-9 for factorial
-10 for square root
+user_op_choice = input()
+for op in operation_schema:
+    if user_op_choice == str(op['operation']):
+        op['func']()
+        break
+else:
+    print('invalid input, please rerun the code and put in a valid input.')
+
+"""
+while True:
+    try:
+        operation = int(input('''
+enter 1 for addition
+enter 2 for subtration
+enter 3 for multiplication
+enter 4 for division
+enter 5 for MOD
+enter 6 for GCD
+enter 7 for LCM
+enter 8 for exponents
+enter 9 for factorial
+enter 10 for square root
 : '''))
-while 1 > operation < 11 or operation != type(int):
-    print('rerun the code, next time, choose one of the actual options please.')
-    break
+    except Exception as e:
+        print('try again')
+    if operation == type(int) and operation >= 1 and operation <= 10:
+        break
+
+
 if operation == 1:
     num1 = (input('enter your number: '))
     result = evaluate(num1)
@@ -190,3 +320,4 @@ if operation == 10:
             sqrt(num1)
     else:
         print('input cannot be evaluated')
+"""
