@@ -238,6 +238,11 @@ def factorial():
     # if the inputted number is less than 0, it is a negative, and the result is complex
     elif num1 < 0:
         print('complex number, not available.')
+        return
+
+    # prevent factorial for decimal numbers
+    elif type(num1) == float:
+        print('factorial does not exist for decimal numbers')
 
     # if it is larger than 0, proceed with calculating the factorial
     else:
