@@ -1,3 +1,4 @@
+
 # calculates the inputted expression, prints error if it cannot
 def validate_input(x):
 
@@ -286,26 +287,30 @@ operation_schema = [
     {'operation': '7', 'description': 'LCM', 'func': lcm},
     {'operation': '8', 'description': 'exponents', 'func': power},
     {'operation': '9', 'description': 'factorial', 'func': factorial},
-    {'operation': '10', 'description': 'square root', 'func': sqrt},
+    {'operation': '10', 'description': 'square root', 'func': sqrt}
 ]
 
-# print it, but dont print the function
-for op in operation_schema:
-    print(f"enter {op['operation']} for {op['description']}")
+# start the calculator
+def start():
 
+    # print it, but dont print the function
+    for op in operation_schema:
+        print(f"enter {op['operation']} for {op['description']}")
 
-# the user chooses an operation
-user_op_choice = input()
+    # the user chooses an operation
+    user_op_choice = input('please enter here:')
 
-# find the operation that is dictated with the number/option that the user chooses
-for op in operation_schema:
-    if user_op_choice == str(op['operation']):
-        op['func']()
-        break
+    # find the operation that is dictated with the number/option that the user chooses
+    for op in operation_schema:
+        if user_op_choice == str(op['operation']):
+            op['func']()
+            break
 
-# if they dont enter a valid choice, tell them to re-enter the choice
-else:
-    print('invalid input, please rerun the code and put in a valid input.')
+    # if they dont enter a valid choice, tell them to re-enter the choice
+    else:
+        print('invalid input, please rerun the code and put in a valid input.')
+
+start()
 
 """
 while True:
