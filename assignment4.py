@@ -1,4 +1,3 @@
-
 # calculates the inputted expression, prints error if it cannot
 def validate_input(x):
 
@@ -297,7 +296,7 @@ def start():
         print(f"enter {op['operation']} for {op['description']}")
 
     # the user chooses an operation from the schema
-    user_op_choice = input('please enter here:')
+    user_op_choice = input('\nplease enter here: ')
 
     # find the operation that is associated with the number/option that the user chooses
     for op in operation_schema:
@@ -317,17 +316,17 @@ def stop():
 
 # asks the user if it should start/continue or stop
 start_schema = [
-    {'option': 'yes', 'purpose': 'start/continue', 'function': start},
-    {'option': 'no', 'purpose': 'stop', 'function': stop}
+    {'option': 'yes', 'purpose': 'start/continue the calculator', 'function': start},
+    {'option': 'no', 'purpose': 'stop the calculator', 'function': stop}
 ]
 
 # first thing that the user sees
 def menu():
 
     for opt in start_schema:
-        print(f"\nenter {opt['option']} to {opt['purpose']}")
+        print(f"\nenter '{opt['option']}' to {opt['purpose']}")
 
-    user_option_choice = input('\nplease enter here:')
+    user_option_choice = input('\nplease enter here: ')
 
     for opt in start_schema:
         if user_option_choice == str(opt['option']):
