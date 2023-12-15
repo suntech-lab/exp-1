@@ -232,8 +232,7 @@ def factorial():
     if not num1:
         return
     
-    # base case for 0 and 1
-    if num1 == 0 or num1 == 1:
+    if num1 == 0 or num1 == 1: # base case for 0 and 1
         return 1
     
     # if the inputted number is less than 0, it is a negative, and the result is complex
@@ -293,16 +292,18 @@ operation_schema = [
 # start the calculator
 def start():
 
-    # print it, but dont print the function
+    # print the schema
     for op in operation_schema:
         print(f"enter {op['operation']} for {op['description']}")
 
-    # the user chooses an operation
+    # the user chooses an operation from the schema
     user_op_choice = input('please enter here:')
 
-    # find the operation that is dictated with the number/option that the user chooses
+    # find the operation that is associated with the number/option that the user chooses
     for op in operation_schema:
         if user_op_choice == str(op['operation']):
+
+            # execute the function
             op['func']()
             break
 
@@ -310,145 +311,29 @@ def start():
     else:
         print('invalid input, please rerun the code and put in a valid input.')
 
-start()
+# exit the program if stop is executed
+def stop():
+    exit()
 
-"""
+# asks the user if it should start/continue or stop
+start_schema = [
+    {'option': 'yes', 'purpose': 'start/continue', 'function': start},
+    {'option': 'no', 'purpose': 'stop', 'function': stop}
+]
+
+# first thing that the user sees
+def menu():
+
+    for opt in start_schema:
+        print(f"\nenter {opt['option']} to {opt['purpose']}")
+
+    user_option_choice = input('\nplease enter here:')
+
+    for opt in start_schema:
+        if user_option_choice == str(opt['option']):
+
+            opt['function']()
+            break
+
 while True:
-    try:
-        operation = int(input('''
-enter 1 for addition
-enter 2 for subtration
-enter 3 for multiplication
-enter 4 for division
-enter 5 for MOD
-enter 6 for GCD
-enter 7 for LCM
-enter 8 for exponents
-enter 9 for factorial
-enter 10 for square root
-: '''))
-    except Exception as e:
-        print('try again')
-    if operation == type(int) and operation >= 1 and operation <= 10:
-        break
-
-
-if operation == 1:
-    num1 = (input('enter your number: '))
-    result = evaluate(num1)
-    if result:
-        num2 = (input('enter your second number: '))
-        result = evaluate(num2)
-        if result:
-            add(eval(num1), eval(num2))
-        else:
-            print(f'input cannot be evaluated. please input something that is a number')
-    else:
-        print(f'input cannot be evaluated. please input something that is a number')
-if operation == 2:
-    num1 = (input('enter your number: '))
-    result = evaluate(num1)
-    if result:
-        num2 = (input('enter your second number: '))
-        result = evaluate(num2)
-        if result:
-            sub(eval(num1), eval(num2))
-        else:
-            print(f'input cannot be evaluated. please input something that is a number')
-    else:
-        print(f'input cannot be evaluated. please input something that is a number')
-if operation == 3:
-    num1 = (input('enter your number: '))
-    result = evaluate(num1)
-    if result:
-        num2 = (input('enter your second number: '))
-        result = evaluate(num2)
-        if result:
-            multiply(eval(num1), eval(num2))
-        else:
-            print(f'input cannot be evaluated. please input something that is a number')
-    else:
-        print(f'input cannot be evaluated. please input something that is a number')
-if operation == 4:
-    num1 = (input('enter your number: '))
-    result = evaluate(num1)
-    if result:
-        num2 = (input('enter your second number: '))
-        result = evaluate(num2)
-        if result:
-            divide(eval(num1), eval(num2))
-        else:
-            print(f'input cannot be evaluated. please input something that is a number')
-    else:
-        print(f'input cannot be evaluated. please input something that is a number')
-if operation == 5:
-    num1 = (input('enter your number: '))
-    result = evaluate(num1)
-    if result:
-        num2 = (input('enter your second number: '))
-        result = evaluate(num2)
-        if result:
-            mod(eval(num1), eval(num2))
-        else:
-            print(f'input cannot be evaluated. please input something that is a number')
-    else:
-        print(f'input cannot be evaluated. please input something that is a number')
-if operation == 6:
-    num1 = (input('enter your number: '))
-    result = evaluate(num1)
-    if result:
-        num2 = (input('enter your second number: '))
-        result = evaluate(num2)
-        if result:
-            gcd(eval(num1), eval(num2))
-        else:
-            print(f'input cannot be evaluated. please input something that is a number')
-    else:
-        print(f'input cannot be evaluated. please input something that is a number')
-if operation == 7:
-    num1 = (input('enter your number: '))
-    result = evaluate(num1)
-    if result:
-        num2 = (input('enter your second number: '))
-        result = evaluate(num2)
-        if result:
-            lcm(eval(num1), eval(num2))
-        else:
-            print(f'input cannot be evaluated. please input something that is a number')
-    else:
-        print(f'input cannot be evaluated. please input something that is a number')
-if operation == 8:
-    num1 = (input('enter your number: '))
-    result = evaluate(num1)
-    if result:
-        num2 = (input('enter your second number: '))
-        result = evaluate(num2)
-        if result:
-            power(eval(num1), eval(num2))
-        else:
-            print(f'input cannot be evaluated. please input something that is a number')
-    else:
-        print(f'input cannot be evaluated. please input something that is a number')
-if operation == 9:
-    num1 = (input('enter your number: '))
-    result = evaluate(num1)
-    if result:
-        if eval(num1) < 0:
-            print(f'{num1} is a negative number, and cannot be evaluated')
-        elif float.is_integer(float(num1)) == False:
-            print(f'{num1} is a decimal, and thus cannot be evaluated')
-        else:
-            factorial(eval(num1))
-    else:
-        print('input cannot be evaluated. please input something that is a number')
-if operation == 10:
-    num1 = (input('your number: '))
-    result = evaluate(num1)
-    if result:
-        if eval(num1) < 0:
-            print(f'{num1} is a negative number. it has an imaginary root: {eval(num1) ** (1/2)}')
-        else:
-            sqrt(num1)
-    else:
-        print('input cannot be evaluated')
-"""
+    menu()
