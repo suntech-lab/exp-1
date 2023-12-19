@@ -80,10 +80,8 @@ def divide(): # divides two numbers, makes sure that it cant divide by zero
     num2 = validate_input(num2) # validates it as if it were any other input
 
     while num2 == 0: # this time, the second input may not equal zero. if it does, it prints a request to enter it again
-        print('num2 is equal to or represents zero, please input another number.')
-        num2 = input()
-
-        num2 = validate_input(num2) # validates the new input
+        print('num2 is equal to or represents zero, divide by zero error')
+        break
     
     if not num2:
         return
