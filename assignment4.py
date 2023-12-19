@@ -308,7 +308,7 @@ def start():
 
     # if they dont enter a valid choice, tell them to re-enter the choice
     else:
-        print('invalid input, please rerun the code and put in a valid input.')
+        print('invalid input, please put in a valid input.')
 
 # exit the program if stop is executed
 def stop():
