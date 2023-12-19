@@ -1,9 +1,9 @@
 # calculates the inputted expression, prints error if it cannot
-def validate_input(x):
+def validate_input(input):
 
     # tries to evaluate the x, the user input
     try:
-        n = eval(x)
+        num = eval(input)
 
     # if it cant, it prints an error
     except Exception as error:
@@ -11,7 +11,7 @@ def validate_input(x):
         return
     
     # gives the evaluated input back as n
-    return n
+    return num
 
 # adds two numbers together, one of the simplest functions
 def add():
