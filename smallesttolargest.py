@@ -23,5 +23,5 @@ def sort_list(list):
             return
 
 print('sorting...')
-list = gen_list(32)
+list = gen_list(35)
 sort_list(list)
