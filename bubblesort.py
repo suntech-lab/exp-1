@@ -1,14 +1,15 @@
 import random
+import timeit
 
 def gen_list(size):
     i = 0
     list = []
     while i < size:
-        list.append(random.randint(0, 100))
+        list.append(random.randint(0, 1000))
         i += 1
     return list
 
-def sort_list(list):
+def bubble_sort(list):
     length = len(list)
     swapped = False
     for i in range(length - 1):
@@ -19,8 +20,9 @@ def sort_list(list):
         if not swapped:
             return
 
-list = gen_list(35)
+list = gen_list(10)
 print(list)
 print('sorting...')
-sort_list(list)
+bubble_sort(list)
 print(list)
+print(f' it took {timeit.default_timer()} nanoseconds to sort')
