@@ -1,5 +1,4 @@
 import random
-import time
 
 def gen_list(size):
     i = 0
@@ -17,11 +16,11 @@ def sort_list(list):
             if list[j] > list[j + 1]:
                 swapped = True
                 list[j], list[j + 1] = list[j + 1], list[j]
-                print(list)
-                time.sleep(0.01)
         if not swapped:
             return
 
-print('sorting...')
 list = gen_list(35)
+print(list)
+print('sorting...')
 sort_list(list)
+print(list)
