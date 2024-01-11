@@ -21,7 +21,7 @@ def insertion_sort(list):
 
     return list
 
-list = gen_list(10)
+list = gen_list(100)
 print(list)
 print('sorting...')
 print(insertion_sort(list))

@@ -20,7 +20,7 @@ def bubble_sort(list):
         if not swapped:
             return
 
-list = gen_list(10)
+list = gen_list(100)
 print(list)
 print('sorting...')
 bubble_sort(list)

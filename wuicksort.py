@@ -29,7 +29,7 @@ def quick_sort(list):
     return quick_sort(items_lower) + [pivot] + quick_sort(items_greater)
 
 
-list = gen_list(10)
+list = gen_list(100)
 print(list)
 print('sorting...')
 print(quick_sort(list))
