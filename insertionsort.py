@@ -1,11 +1,11 @@
 import random
-import timeit
+import time
 
 def gen_list(size):
     i = 0
     list = []
     while i < size:
-        list.append(random.randint(0, 1000))
+        list.append(random.randint(0, 10000))
         i += 1
     return list
 
@@ -21,8 +21,10 @@ def insertion_sort(list):
 
     return list
 
-list = gen_list(100)
+list = gen_list(10000)
 print(list)
 print('sorting...')
+t0 = time.time()
 print(insertion_sort(list))
-print(f' it took {timeit.default_timer()} nanoseconds to sort')
+t1 = time.time()
+print(f'{t1 - t0:.22f}')
