@@ -17,7 +17,7 @@ def insertion_sort(list):
 
         while list[j - 1] > value_to_sort and j > 0:
             list[j], list[j - 1] = list[j - 1], list[j]
-            j -= j
+            j -= 1
 
     return list
 

@@ -23,7 +23,25 @@ def bubblesort(A):
                 swapped = True
             yield A 
   
-  
+def quick_sort(list):
+    length = len(list)
+    if length <= 1:
+        return list
+    else: 
+        pivot = list.pop()
+
+    items_greater = []
+    items_lower = []
+
+    for item in list:
+        if item > pivot:
+            items_greater.append(item)
+
+        else:
+            items_lower.append(item)
+
+    return quick_sort(items_lower) + [pivot] + quick_sort(items_greater)
+
 def visualize(): 
     N = 500
     A = list(range(1, N + 1)) 
@@ -32,11 +50,11 @@ def visualize():
     # creates a generator object containing all  
     # the states of the array while performing  
     # sorting algorithm 
-    generator = bubblesort(A) 
+    generator = quick_sort(A) 
       
     # creates a figure and subsequent subplots 
     fig, ax = plt.subplots() 
-    ax.set_title("Bubble Sort O(n\N{SUPERSCRIPT TWO})") 
+    ax.set_title("Quick Sort O(n\N{SUPERSCRIPT TWO})") 
     bar_sub = ax.bar(range(len(A)), A, align="edge") 
       
     # sets the maximum limit for the x-axis 
@@ -59,7 +77,7 @@ def visualize():
         frames=generator, 
         repeat=True, 
         blit=False, 
-        interval=5, 
+        interval=2, 
         save_count=1000000, 
     ) 
       
@@ -74,25 +92,6 @@ def gen_list(size):
         list.append(random.randint(0, 1000))
         i += 1
     return list
-
-def quick_sort(list):
-    length = len(list)
-    if length <= 1:
-        return list
-    else: 
-        pivot = list.pop()
-
-    items_greater = []
-    items_lower = []
-
-    for item in list:
-        if item > pivot:
-            items_greater.append(item)
-
-        else:
-            items_lower.append(item)
-
-    return quick_sort(items_lower) + [pivot] + quick_sort(items_greater)
   
 if __name__ == "__main__": 
     visualize() 
