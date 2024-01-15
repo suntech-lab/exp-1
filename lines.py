@@ -1,4 +1,3 @@
-'''
 # imports 
 import random 
 from matplotlib import pyplot as plt, animation
@@ -23,38 +22,45 @@ def bubblesort(A):
                 swapped = True
             yield A 
   
-def quick_sort(A):
-    length = len(A)
-    if length <= 1:
-        return A
-    else: 
-        pivot = A.pop()
+def quick_sort(A, smaller, larger):
+    if smaller < larger:
+        pi = partition(A, smaller, larger)
+        yield A.copy()
+        yield from quick_sort(A, smaller, pi)
+        yield from quick_sort(A, pi + 1, larger)
 
-    items_greater = []
-    items_lower = []
+def partition(A, smaller, larger):
+    pivot = A[smaller]
+    left = smaller + 1
+    right = larger
 
-    for item in A:
-        if item > pivot:
-            items_greater.append(item)
-
+    swapped = False
+    while not swapped:
+        while left <= right and A[left] <= pivot:
+            left = left + 1
+        while A[right] >= pivot and right >= left:
+            right = right - 1
+        if right < left:
+            swapped = True
         else:
-            items_lower.append(item)
+            swap(A, left, right)
 
-    return quick_sort(items_lower) + [pivot] + quick_sort(items_greater)
+    swap(A, smaller, right)
+    return right
 
-def visualize(): 
+def visualize():
     N = 1000
     A = list(range(1, N + 1)) 
     random.shuffle(A) 
-      
+
     # creates a generator object containing all  
     # the states of the array while performing  
     # sorting algorithm 
-    generator = quick_sort(A) 
+    generator = quick_sort(A, 0, len(A) - 1) 
       
     # creates a figure and subsequent subplots 
     fig, ax = plt.subplots() 
-    ax.set_title("Quick Sort O(n\N{SUPERSCRIPT TWO})") 
+    ax.set_title("quicksort(n\N{SUPERSCRIPT TWO})") 
     bar_sub = ax.bar(range(len(A)), A, align="edge") 
       
     # sets the maximum limit for the x-axis 
@@ -63,7 +69,7 @@ def visualize():
     iteration = [0] 
       
     # helper function to update each frame in plot 
-    def update(A, rects, iteration): 
+    def update(A, rects, iteration):
         for rect, val in zip(rects, A): 
             rect.set_height(val) 
         iteration[0] += 1
@@ -75,106 +81,15 @@ def visualize():
         func=update, 
         fargs=(bar_sub, iteration), 
         frames=generator, 
-        repeat=True, 
+        repeat=False, 
         blit=False, 
-        interval=2, 
-        save_count=1000000, 
-    ) 
-      
-    # for showing the animation on screen 
-    plt.show() 
-    plt.close() 
-  
-if __name__ == "__main__": 
-    visualize() 
-'''
-
-# imports 
-import random 
-from matplotlib import pyplot as plt, animation 
-  
-# helper methods 
-def swap(A, i, j): 
-    A[i], A[j] = A[j], A[i] 
-  
-  
-# algorithms 
-def bubblesort(A): 
-    swapped = True
-      
-    for i in range(len(A) - 1): 
-        if not swapped: 
-            return
-        swapped = False
-          
-        for j in range(len(A) - 1 - i): 
-            if A[j] > A[j + 1]: 
-                swap(A, j, j + 1) 
-                swapped = True
-            yield A 
-  
-def quick_sort(A):
-    length = len(A)
-    if length <= 1:
-        return A
-    else: 
-        pivot = list.pop()
-
-    items_greater = []
-    items_lower = []
-
-    for item in list:
-        if item > pivot:
-            items_greater.append(item)
-
-        else:
-            items_lower.append(item)
-
-    return quick_sort(items_lower) + [pivot] + quick_sort(items_greater)
-
-def visualize(): 
-    N = 1000
-    A = list(range(1, N + 1)) 
-    random.shuffle(A) 
-      
-    # creates a generator object containing all  
-    # the states of the array while performing  
-    # sorting algorithm 
-    generator = bubblesort(A) 
-      
-    # creates a figure and subsequent subplots 
-    fig, ax = plt.subplots() 
-    ax.set_title("Bubble Sort O(n\N{SUPERSCRIPT TWO})") 
-    bar_sub = ax.bar(range(len(A)), A, align="edge") 
-      
-    # sets the maximum limit for the x-axis 
-    ax.set_xlim(0, N) 
-    text = ax.text(0.02, 0.95, "", transform=ax.transAxes) 
-    iteration = [0] 
-      
-    # helper function to update each frame in plot 
-    def update(A, rects, iteration): 
-        for rect, val in zip(rects, A): 
-            rect.set_height(val) 
-        iteration[0] += 1
-        text.set_text(f"# of operations: {iteration[0]}") 
-  
-    # creating animation object for rendering the iteration 
-    anim = animation.FuncAnimation( 
-        fig, 
-        func=update, 
-        fargs=(bar_sub, iteration), 
-        frames=generator, 
-        repeat=True, 
-        blit=False, 
-        interval=15, 
+        interval=1, 
         save_count=90000, 
-    ) 
-      
-    # for showing the animation on screen 
-    plt.show() 
+    )
+
+    plt.show()
     plt.close() 
   
   
-if __name__ == "__main__": 
-    visualize() 
+if __name__ == "__main__":
+    visualize()
