@@ -1,10 +1,3 @@
-def crash():
-    try:
-        crash()
-    except:
-        crash()
-    crash()
+import os
 
-crash()
-
-print('juujikakunkyugo')
+print(os.listdir())
