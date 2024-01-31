@@ -9,8 +9,8 @@ def hash_password(password, salt=None):
     return salt + hash_bytes
 
 def verify_password(stored_password, provided_password):
-    salt = stored_password[:16]  # Extract the salt from the stored password
-    stored_hash = stored_password[16:]  # Extract the hash from the stored password
+    salt = stored_password[:64]  # Extract the salt from the stored password
+    stored_hash = stored_password[64:]  # Extract the hash from the stored password
     provided_hash = hashlib.pbkdf2_hmac('sha256', provided_password.encode('utf-8'), salt, 100000)
     return stored_hash == provided_hash
 
