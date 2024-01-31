@@ -26,6 +26,8 @@ def write():
     time.sleep(2)
     pyautogui.typewrite(message)
     pyautogui.press('enter')
+    time.sleep(0.5)
+    pyautogui.hotkey('ctrl', 'w')
 
 def track():
     print('press ctrl-c to quit')
