@@ -65,8 +65,6 @@ def rgbtrack():
     except KeyboardInterrupt:
         print('\n')
 
-
-
 dict = [
     {'pyautogui': 1, 'desc': 'write a discord message', 'func': write},
     {'pyautogui': 2, 'desc': 'track the pixel', 'func': track},
