@@ -4,59 +4,60 @@ import msvcrt
 
 def hash_password(password, salt=None):
     if salt is None:
-        salt = os.urandom(64)  # Generate a random salt if not provided
-    hash_bytes = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
-    return salt + hash_bytes
+        salt = os.urandom(64) # generate a 64 byte salt
+    hashbytes = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 500000) 
+    return salt + hashbytes
 
-def verify_password(stored_password, provided_password):
-    salt = stored_password[:64]  # Extract the salt from the stored password
-    stored_hash = stored_password[64:]  # Extract the hash from the stored password
-    provided_hash = hashlib.pbkdf2_hmac('sha256', provided_password.encode('utf-8'), salt, 100000)
-    return stored_hash == provided_hash
+def verify_password(storedpassword, givenpassword):
+    salt = storedpassword[:64] # remove the salt
+    storedhash = storedpassword[64:] # remove the hash
+    providedhash = hashlib.pbkdf2_hmac('sha256', givenpassword.encode('utf-8'), salt, 500000)
+    return storedhash == providedhash
 
 def save_password_to_file(password, filename):
     with open(filename, 'wb') as file:
-        file.write(password)
+        file.write(password) # write the hashed and salted password into the password file
 
 def read_password_from_file(filename):
     with open(filename, 'rb') as file:
-        return file.read()
+        return file.read() # read the hashed and salted password
 
 def masked_input(prompt):
     print(prompt, end='', flush=True)
     password = ""
     while True:
         char = msvcrt.getch().decode('utf-8')
-        if char == '\r' or char == '\n':
+        if char == '\r' or char == '\n': # if enter is pressed it prints and breaks out of the loop
             print()
             break
-        elif char == '\b':
+        elif char == '\b': # if the character is backspace the last character is deleted
             if password:
                 password = password[:-1]
                 print('\b \b', end='', flush=True)
-        else:
+        else: # else, replace the characters with an asterisk
             password += char
             print('*', end='', flush=True)
     return password
 
-# Check if the password file exists
-password_file = '#######.bin'
-if os.path.exists(password_file):
-    # Read the stored password from the file
-    stored_password = read_password_from_file(password_file)
 
-    # Get the password to verify from the user
-    password_to_verify = masked_input("Enter the password to verify: ")
+passwordfile = '#######.bin' # give the file that the password is in
 
-    # Verify the password
-    if verify_password(stored_password, password_to_verify):
-        print("Password is correct.")
+while True:
+
+    if os.path.exists(passwordfile): # if the file exists, read it from file and ask for the password
+    
+        storedpassword = read_password_from_file(passwordfile)
+
+        passwordtoverify = masked_input("Enter the password to verify: ") # make sure the input is masked (replaced with asterisks)
+
+        if verify_password(storedpassword, passwordtoverify): # verify passowrd
+            print("Password is correct.")
+            break
+        else:
+            print("Password is incorrect.")
     else:
-        print("Password is incorrect.")
-else:
-    # If the password file doesn't exist, prompt the user to create a new password
-    new_password = input("Enter a new password: ")
-    hashed_password = hash_password(new_password)
-    # Save the hashed password to the file
-    save_password_to_file(hashed_password, password_file)
-    print("Password saved.")
+        newpassword = input("Enter a new password: ") # if the file isnt found, make a new one
+        hashedpassword = hash_password(newpassword) # hash it
+
+        save_password_to_file(hashedpassword, passwordfile) # make a new file, put the password (encrypted) into the file
+        print("Password saved.")

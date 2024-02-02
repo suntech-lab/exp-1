@@ -6,6 +6,18 @@ import sys
 
 def write():
     message = str(input('what do you want python to type?\n'))
+    pyautogui.press('winleft')
+    time.sleep(2)
+    pyautogui.typewrite('discord')
+    pyautogui.press('enter')
+    pyautogui.mouseDown(983, 67)
+    while True:
+        if pyautogui.pixel == (49, 51, 561):
+            pyautogui.leftClick(1152, 1004)
+            pyautogui.typewrite(message)
+        else:
+            exit()
+    '''
     subprocess.run(["start", "chrome.exe"], shell = True)
     pyautogui.hotkey('winleft', 'up')
     time.sleep(2)
@@ -30,6 +42,7 @@ def write():
     pyautogui.press('enter')
     time.sleep(0.5)
     pyautogui.hotkey('ctrl', 'w')
+    '''
 
 def track():
     print('press ctrl-c to quit')
@@ -54,22 +67,6 @@ def rgbtrack():
     except KeyboardInterrupt:
         print('\n')
 
-def keymacro():
-    press = input('whaddya want what what what want what what: ')
-    try:
-        while True:
-            time.sleep(random.randint(1, 2))
-            pyautogui.press(press)
-    except KeyboardInterrupt:
-        sys.exit()
-
-def clickmacro():
-    try:
-        while True:
-            time.sleep(random.randint(1, 2))
-            pyautogui.leftClick()
-    except KeyboardInterrupt:
-        sys.exit()
 
 
 dict = [
