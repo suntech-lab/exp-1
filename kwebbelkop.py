@@ -1,6 +1,8 @@
 import pyautogui
 import subprocess
 import time
+import random
+import sys
 
 def write():
     message = str(input('what do you want python to type?\n'))
@@ -52,12 +54,30 @@ def rgbtrack():
     except KeyboardInterrupt:
         print('\n')
 
+def keymacro():
+    press = input('whaddya want what what what want what what: ')
+    try:
+        while True:
+            time.sleep(random.randint(1, 2))
+            pyautogui.press(press)
+    except KeyboardInterrupt:
+        sys.exit()
+
+def clickmacro():
+    try:
+        while True:
+            time.sleep(random.randint(1, 2))
+            pyautogui.leftClick()
+    except KeyboardInterrupt:
+        sys.exit()
 
 
 dict = [
     {'pyautogui': 1, 'desc': 'write a discord message', 'func': write},
     {'pyautogui': 2, 'desc': 'track the pixel', 'func': track},
-    {'pyautogui': 3, 'desc': 'track the rgb value of the pixel the cursor is on', 'func': rgbtrack}
+    {'pyautogui': 3, 'desc': 'track the rgb value of the pixel the cursor is on', 'func': rgbtrack},
+    {'pyautogui': 4, 'desc': 'press a key every once in a while', 'func': keymacro},
+    {'pyautogui': 5, 'desc': 'do a click every once in a while', 'func': clickmacro}
 ]
 
 def start():
