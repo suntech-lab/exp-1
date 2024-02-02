@@ -86,6 +86,8 @@ while True:
             print("Password is correct.")
             
             if find('information.txt', 'C:/Users/ericl/Documents/lab'):
+                
+                print('found it')
 
                 get_key()
 
@@ -94,8 +96,6 @@ while True:
                 file = 'information.txt'
 
                 encrypt(file, key)
-
-                decrypt(file, key)
                 
                 break
 
