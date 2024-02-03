@@ -2,11 +2,15 @@ import hashlib
 import os
 import msvcrt
 from cryptography.fernet import Fernet
+import random
+import string
 
 def hash_password(password, salt=None):
     if salt is None:
         salt = os.urandom(64) # generate a 64 byte salt
+        #salt = ''.join(random.choice(string.ascii_letters) for i in range(64))
     hashbytes = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 500000) 
+    #print(str(salt + hashbytes))
     return salt + hashbytes
 
 def find(name, path):
@@ -69,14 +73,13 @@ def decrypt(filename, key):
         with open(filename, 'wb') as file:
             file.write(decrypted_data)
 
-def opentxt():
-    open('information.txt', 'x')
-
 passwordfile = '#######.bin' # give the file that the password is in
 
 laptop_location = 'C:/Users/ericl/Documents/lab'
 
-desktop_location = 'C:/Users/Eric/Desktop/FunnyPrograms/exp-1'
+desktop_location = 'C:/Users/Eric/Desktop/FunnyPrograms'
+
+file = 'information.txt'
 
 while True:
 
@@ -97,17 +100,18 @@ while True:
 
                 key = load_key()
 
-                file = 'information.txt'
-
                 encrypt(file, key)
                 
                 break
 
             elif not find('information.txt', laptop_location) or not find('information.txt', desktop_location):
                 print('Creating information...')
-
-                opentxt()
-
+                f = open('information.txt', 'x')
+                info = input('What would you like to add to the newly created file?\n:')
+                f.write(info) #WIP WIP WIP WIP (NOT ENCRYPTING NEW INFORMATION, WHY?)
+                get_key() #WIP WIP WIP WIP (NOT ENCRYPTING NEW INFORMATION, WHY?)
+                key = load_key() #WIP WIP WIP WIP (NOT ENCRYPTING NEW INFORMATION, WHY?)
+                encrypt(file,key) #WIP WIP WIP WIP (NOT ENCRYPTING NEW INFORMATION, WHY?)
                 break
             
         else:
