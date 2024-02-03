@@ -2,11 +2,15 @@ import hashlib
 import os
 import msvcrt
 from cryptography.fernet import Fernet
+import random
+import string
 
 def hash_password(password, salt=None):
     if salt is None:
         salt = os.urandom(64) # generate a 64 byte salt
+        #salt = ''.join(random.choice(string.ascii_letters) for i in range(64))
     hashbytes = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 500000) 
+    #print(str(salt + hashbytes))
     return salt + hashbytes
 
 def find(name, path):
@@ -69,10 +73,13 @@ def decrypt(filename, key):
         with open(filename, 'wb') as file:
             file.write(decrypted_data)
 
-def opentxt():
-    open('information.txt', 'x')
-
 passwordfile = '#######.bin' # give the file that the password is in
+
+laptop_location = 'C:/Users/ericl/Documents/lab'
+
+desktop_location = 'C:/Users/Eric/Desktop/FunnyPrograms'
+
+file = 'information.txt'
 
 while True:
 
@@ -82,10 +89,10 @@ while True:
 
         passwordtoverify = masked_input("Enter the password to verify: ") # make sure the input is masked (replaced with asterisks)
 
-        if verify_password(storedpassword, passwordtoverify): # verify passowrd
+        if verify_password(storedpassword, passwordtoverify):
             print("Password is correct.")
             
-            if find('information.txt', 'C:/Users/ericl/Documents/lab'):
+            if find('information.txt', laptop_location) or find('information.txt', desktop_location):
                 
                 print('found it')
 
@@ -93,16 +100,21 @@ while True:
 
                 key = load_key()
 
-                file = 'information.txt'
-
                 encrypt(file, key)
                 
                 print(file)
 
                 break
 
-            else:
-                print('sdhufdshdflih')
+            elif not find('information.txt', laptop_location) or not find('information.txt', desktop_location):
+                print('Creating information...')
+                f = open('information.txt', 'x')
+                info = input('What would you like to add to the newly created file?\n:')
+                f.write(info) #WIP WIP WIP WIP (NOT ENCRYPTING NEW INFORMATION, WHY?)
+                get_key() #WIP WIP WIP WIP (NOT ENCRYPTING NEW INFORMATION, WHY?)
+                key = load_key() #WIP WIP WIP WIP (NOT ENCRYPTING NEW INFORMATION, WHY?)
+                encrypt(file,key) #WIP WIP WIP WIP (NOT ENCRYPTING NEW INFORMATION, WHY?)
+                break
             
         else:
             print("Password is incorrect.")
