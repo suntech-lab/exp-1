@@ -74,6 +74,10 @@ def opentxt():
 
 passwordfile = '#######.bin' # give the file that the password is in
 
+laptop_location = 'C:/Users/ericl/Documents/lab'
+
+desktop_location = 'C:/Users/Eric/Desktop/FunnyPrograms/exp-1'
+
 while True:
 
     if os.path.exists(passwordfile): # if the file exists, read it from file and ask for the password
@@ -82,10 +86,10 @@ while True:
 
         passwordtoverify = masked_input("Enter the password to verify: ") # make sure the input is masked (replaced with asterisks)
 
-        if verify_password(storedpassword, passwordtoverify): # verify passowrd
+        if verify_password(storedpassword, passwordtoverify):
             print("Password is correct.")
             
-            if find('information.txt', 'C:/Users/ericl/Documents/lab'):
+            if find('information.txt', laptop_location) or find('information.txt', desktop_location):
                 
                 print('found it')
 
@@ -99,8 +103,12 @@ while True:
                 
                 break
 
-            else:
-                print('sdhufdshdflih')
+            elif not find('information.txt', laptop_location) or not find('information.txt', desktop_location):
+                print('Creating information...')
+
+                opentxt()
+
+                break
             
         else:
             print("Password is incorrect.")
