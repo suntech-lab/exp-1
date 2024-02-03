@@ -97,6 +97,8 @@ while True:
 
                 encrypt(file, key)
                 
+                print(file)
+
                 break
 
             else:
