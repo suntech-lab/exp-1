@@ -55,20 +55,21 @@ def rgbtrack():
         print('\n')
 
 def keymacro():
-    input = input('key:')
-    try:
-        while True:
+    key = input('key:')
+    while True:
+        try:
             time.sleep(random.randint(1, 2))
-            pyautogui.press(input)
-    except KeyboardInterrupt:
-        sys.exit()
+            pyautogui.press(key)
+        except KeyboardInterrupt:
+            sys.exit()
 
 def clickmacro():
-    try:
-        time.sleep(random.randint(1, 2))
-        pyautogui.click()
-    except KeyboardInterrupt:
-        sys.exit()
+    while True:
+        try:
+            time.sleep(random.randint(1, 2))
+            pyautogui.click()
+        except KeyboardInterrupt:
+            sys.exit()
 
 dict = [
     {'pyautogui': 1, 'desc': 'write a discord message', 'func': write},
