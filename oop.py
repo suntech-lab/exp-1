@@ -1,23 +1,24 @@
 # dog.py
 
 class Bird:
-    species = "Birdis Biggus"
 
-    def __init__(self, name, age, colour):
+    def __init__(self, name, age, colour, species):
         self.name = name
         self.age = age
         self.colour = colour
+        self.species = species
+
 
     # Instance method
     def description(self):
-        return f"{self.name} is {self.age} years old and is {self.colour}"
+        return f"{self.name} is {self.age} years old and is {self.colour} from the {self.species} species."
     # Another instance method
     def speak(self, sound):
         return f"{self.name} says {sound}"
 
-woodstock = Bird('woodstock', 57, 'yellow')
+woodstock = Bird('woodstock', 57, 'yellow', 'birdus smallus')
 
-bigbird = Bird('big bird', 6, "yellow")
+bigbird = Bird('big bird', 6, 'yellow', 'birdus biggus')
 
 print(bigbird.description())
 print(woodstock.description())

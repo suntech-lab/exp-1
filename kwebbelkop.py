@@ -5,6 +5,7 @@ import random
 import sys
 
 def write():
+    message = input('message:')
     subprocess.run(["start", "chrome.exe"], shell = True)
     pyautogui.hotkey('winleft', 'up')
     time.sleep(2)
