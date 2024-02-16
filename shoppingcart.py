@@ -33,7 +33,7 @@ class ShoppingCart(object):
     def __init__(self, customer_name):
         self.customer_name = customer_name
 
-    def do_nothing():
+    def do_nothing(self):
         pass
 
     def add_item(self):
@@ -88,15 +88,16 @@ class ShoppingCart(object):
                 print(f'{item['item']}, ${item['price']}, {item['weight']}kg')
             
         start()
-        
+   
     def coupon(self):
-        have_coupon = input('Enter your coupon here: ')#???
-        for coupon in coupons:                         #???
-            if have_coupon == str(coupon['coupon']):   #???
-                print('Coupon success.')               #???
-            else:                                      #???
-                print('Invalid coupon.')               #???
-                self.proceed_to_checkout()             #???
+        have_coupon = input('Enter your coupon here: ')
+        for c in discount:
+            if have_coupon == str(c['coupon']): 
+                print('Coupon success.')
+                return
+            else:
+                print('Invalid coupon.')
+                self.proceed_to_checkout()
 
     def proceed_to_checkout(self):
         notax = 0
@@ -121,7 +122,7 @@ class ShoppingCart(object):
         if notax > 50:
             print(f'Your total with tax comes to {notax*0.05 + notax*0.07 + notax:,.2f}. Shipping is not included because you have spent over 50 dollars. Thank you for your patronage!')
         else:
-            print(f'Your total with tax comes to {notax*0.05 + notax*0.07 + weight*2 + notax:,.2f}. Shipping fees were included because your purchase was not valued higher than 50 dollars. Thank you for your patronage!')
+            print(f'Your total with tax comes to {notax*0.05 + notax*0.07 + weight*1.25 + notax:,.2f}. Shipping fees were included because your purchase was not valued higher than 50 dollars. Thank you for your patronage!')
             
 
 shop_items = [
@@ -151,7 +152,7 @@ coupon_menu = [
     {'havecoupons': 'n', 'desc': 'you dont have any coupons', 'func': ShoppingCart.do_nothing}
 ]
 
-coupons = [
+discount = [
     {'coupon': 'thisisgreat.Extending!'},
     {'coupon':          'acouponthisis'}
 ]
