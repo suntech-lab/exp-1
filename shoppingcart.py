@@ -1,35 +1,43 @@
 class ShoppingCart(object):
 
-    items_in_cart = []
+    items_in_cart = [] #list with items as dictionaries
 
-    coupon_discount = 1
+    coupon_discount = 1 #discount multiplier
 
     def __init__(self, customer_name):
         self.customer_name = customer_name
 
-    def do_nothing(self):
+    def do_nothing(self): 
         pass
 
     def add_item(self):
         print('\n')
         saw_item = False
 
-        for item in shop_items:
+        for item in shop_items: #show the shop
             print(f"press {item['opt']} for: {item['item']}, ${item['price']:,.2f}")
 
         user_opt_choice = input('\nPlease enter here: ')
 
-        while saw_item == False:
+        while saw_item == False: #if python has not seen the item that the user wants to add to cart
 
             for opt in shop_items:
 
-                if user_opt_choice == str(opt['opt']):
+                if user_opt_choice == str(opt['opt']): #if python finds the item
                     saw_item = True
-                    self.items_in_cart.append({'item': opt['item'], 'price': opt['price'], 'weight': opt['weight']})
-                    print(f"{opt['item']} added to {self.customer_name}'s cart.")
-                    break
 
-            else:
+                    for item in self.items_in_cart:
+
+                        if str(opt['item']) == item['item']: #if the item is already in the cart
+                            print(f"This item is already in {self.customer_name}'s cart.")
+                            start()
+
+                    else: #if its not in cart already
+                        self.items_in_cart.append({'item': opt['item'], 'price': opt['price'], 'weight': opt['weight']})
+                        print(f"{opt['item']} added to {self.customer_name}'s cart.")
+                        break
+
+            else: #incase the user enters something wrong
                 print('Invalid input. Maybe you meant to input a number?')
 
             start()
@@ -43,12 +51,12 @@ class ShoppingCart(object):
             print('There is nothing in your cart.')
             start()
 
-        for item in self.items_in_cart:
-            print(f'{item['item']}, ${item['price']}, {item['weight']}kg')
+        for item in self.items_in_cart: #print cart
+            print(f"{item['item']}, ${item['price']}, {item['weight']}kg")
 
         item_to_remove = input('Enter the name of the item you want to remove: ')
 
-        while saw_item == False:
+        while saw_item == False: #same logic with add_item
 
             for item in self.items_in_cart:
 
@@ -65,9 +73,9 @@ class ShoppingCart(object):
 
     def total(self):
         total = 0
-        weight = 0
+        weight = 0 #weight is for shipping
 
-        for item in self.items_in_cart:
+        for item in self.items_in_cart: #add everything up
             total += item['price']
             weight += item['weight']
 
@@ -85,8 +93,8 @@ class ShoppingCart(object):
 
         else:
 
-            for item in self.items_in_cart:
-                print(f'{item['item']}, ${item['price']}, {item['weight']}kg')
+            for item in self.items_in_cart: #print contents of cart
+                print(f"{item['item']}, ${item['price']}, {item['weight']}kg")
             
         start()
    
@@ -95,13 +103,13 @@ class ShoppingCart(object):
         saw_coupon = False
         have_coupon = input('Enter your coupon here: ')
 
-        while saw_coupon == False:
+        while saw_coupon == False: #same logic as add_item
 
             for dict in discount:
 
                 if have_coupon == dict['coupon']:
                     print('Coupon success.')
-                    self.coupon_discount = 0.5
+                    self.coupon_discount = 0.5 #change the discount multiplier to 50% off
                     saw_coupon = True
                     break
 
@@ -112,7 +120,7 @@ class ShoppingCart(object):
 
     def proceed_to_checkout(self):
         print('\n')
-        notax = 0
+        notax = 0 #cost before tax
         weight = 0
 
         if len(self.items_in_cart) == 0:
@@ -122,8 +130,8 @@ class ShoppingCart(object):
             notax += item['price']
             weight += item['weight']
 
-        for opt in coupon_menu:
-            print(f'Press {opt['havecoupons']} if you {opt['desc']}.')
+        for opt in coupon_menu: #ask of the user has coupons
+            print(f"Press {opt['havecoupons']} if you {opt['desc']}.")
 
         coupon_menu_choice = input('Enter here: ')
 
@@ -140,7 +148,7 @@ class ShoppingCart(object):
             print(f"{self.customer_name}'s total with tax comes to {notax*0.05 + notax*0.07 + notax*self.coupon_discount:,.2f}. Shipping is not included because you have spent over 50 dollars. Thank you for your patronage!")
             exit()
 
-        else:
+        else: #add shpping costs if the cart is worth less than 50$
             print(f"{self.customer_name}'s total with tax comes to {notax*0.05 + notax*0.07 + weight*1.25 + notax*self.coupon_discount:,.2f}. Shipping fees were included because your purchase was not valued higher than 50 dollars. Thank you for your patronage!")
             exit()
 
@@ -189,6 +197,6 @@ def start():
             opt['func'](my_cart)
             break
 
-my_cart = ShoppingCart('Eric')
+my_cart = ShoppingCart('Eric') #initialize
 
 start()
