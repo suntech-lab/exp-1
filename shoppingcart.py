@@ -13,61 +13,78 @@ class ShoppingCart(object):
     def add_item(self):
         print('\n')
         saw_item = False
+
         for item in shop_items:
             print(f"press {item['opt']} for: {item['item']}, ${item['price']:,.2f}")
 
         user_opt_choice = input('\nPlease enter here: ')
 
         while saw_item == False:
+
             for opt in shop_items:
+
                 if user_opt_choice == str(opt['opt']):
                     saw_item = True
                     self.items_in_cart.append({'item': opt['item'], 'price': opt['price'], 'weight': opt['weight']})
                     print(f"{opt['item']} added to {self.customer_name}'s cart.")
                     break
+
             else:
                 print('Invalid input. Maybe you meant to input a number?')
+
             start()
 
 
     def remove_item(self):
         print('\n')
         saw_item = False
+
         if len(self.items_in_cart) == 0:
             print('There is nothing in your cart.')
             start()
 
         for item in self.items_in_cart:
             print(f'{item['item']}, ${item['price']}, {item['weight']}kg')
+
         item_to_remove = input('Enter the name of the item you want to remove: ')
 
         while saw_item == False:
+
             for item in self.items_in_cart:
+
                 if item_to_remove == str(item['item']):
                     saw_item = True
                     self.items_in_cart.remove(item)
                     print(f"{item_to_remove} has been removed from {self.customer_name}'s cart.")
                     break
+
             else:
                 print('Invalid input. Maybe you spelt something wrong?')
+
             start()
 
     def total(self):
         total = 0
         weight = 0
+
         for item in self.items_in_cart:
             total += item['price']
             weight += item['weight']
+
         print(f"The total value of the items in {self.customer_name}'s cart is ${total:,.2f} and it weighs a total of {weight:,.2f} kilograms.")
+        
         if total > 50:
             print('You are eligible for free shipping!')
+
         start()
 
     def check_cart(self):
+
         if len(self.items_in_cart) == 0:
             print(f"There is nothing in {self.customer_name}'s cart.")
 
         else:
+
             for item in self.items_in_cart:
                 print(f'{item['item']}, ${item['price']}, {item['weight']}kg')
             
@@ -77,13 +94,17 @@ class ShoppingCart(object):
         print('\n')
         saw_coupon = False
         have_coupon = input('Enter your coupon here: ')
+
         while saw_coupon == False:
+
             for dict in discount:
-                if have_coupon == dict['coupon']: 
+
+                if have_coupon == dict['coupon']:
                     print('Coupon success.')
                     self.coupon_discount = 0.5
                     saw_coupon = True
                     break
+
             else:
                 print('Coupon invalid.')
                 self.proceed_to_checkout()
@@ -93,26 +114,32 @@ class ShoppingCart(object):
         print('\n')
         notax = 0
         weight = 0
+
         if len(self.items_in_cart) == 0:
             print(f"There is nothing in {self.customer_name}'s cart.")
+
         for item in self.items_in_cart:
             notax += item['price']
             weight += item['weight']
+
         for opt in coupon_menu:
             print(f'Press {opt['havecoupons']} if you {opt['desc']}.')
 
         coupon_menu_choice = input('Enter here: ')
 
         for opt in coupon_menu:
+
             if coupon_menu_choice == str(opt['havecoupons']):
                 opt['func'](my_cart)
 
         else:
+
             pass
         
         if notax > 50:
             print(f"{self.customer_name}'s total with tax comes to {notax*0.05 + notax*0.07 + notax*self.coupon_discount:,.2f}. Shipping is not included because you have spent over 50 dollars. Thank you for your patronage!")
             exit()
+
         else:
             print(f"{self.customer_name}'s total with tax comes to {notax*0.05 + notax*0.07 + weight*1.25 + notax*self.coupon_discount:,.2f}. Shipping fees were included because your purchase was not valued higher than 50 dollars. Thank you for your patronage!")
             exit()
@@ -150,14 +177,15 @@ discount = [
 
 def start():
     print('\n')
+
     for opt in menu:
             print(f"press {opt['opt']} to {opt['desc']}")
 
     user_opt_choice = input('\nPlease enter here: ')
 
     for opt in menu:
-        if user_opt_choice == str(opt['opt']):
 
+        if user_opt_choice == str(opt['opt']):
             opt['func'](my_cart)
             break
 
