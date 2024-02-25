@@ -197,6 +197,10 @@ def start():
             opt['func'](my_cart)
             break
 
+        else:
+            print('Invalid input.')
+            start()
+
 my_cart = ShoppingCart('Eric') #initialize
 
 start()
