@@ -1,4 +1,6 @@
-string = 'monkeys'
-d = 'asdh'
+import sys
 
-print(string + ' ' + d)
+type(sys.path)
+
+for path in (sys.path):
+    print(path)
