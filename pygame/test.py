@@ -22,7 +22,7 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
-        self.surf = pygame.transform.scale(pygame.image.load('protag.png'), (40, 40))
+        self.surf = pygame.transform.scale(pygame.image.load('heroidle2.png'), (40, 40))
         self.rect = self.surf.get_rect(center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
 
     def update(self, pressed_keys):
