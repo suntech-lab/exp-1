@@ -1,5 +1,5 @@
 import pygame
-import time
+import os
 import random
 from pygame.locals import (
     K_UP,
@@ -22,7 +22,7 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
-        self.surf = pygame.transform.scale(pygame.image.load('heroidle2.png'), (40, 40))
+        self.surf = pygame.transform.scale(pygame.image.load(os.path.join('pygame', 'hero.png')), (40, 40))
         self.rect = self.surf.get_rect(center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
 
     def update(self, pressed_keys):
@@ -49,7 +49,7 @@ class Player(pygame.sprite.Sprite):
 class Object(pygame.sprite.Sprite):
     def __init__(self):
         super(Object, self).__init__()
-        self.surf = pygame.transform.scale(pygame.image.load('Object.png'), (50, 50))
+        self.surf = pygame.transform.scale(pygame.image.load(os.path.join('pygame', 'obj.png')), (50, 50))
         self.rect = self.surf.get_rect()
         self.spawn()
 
@@ -66,7 +66,7 @@ pygame.time.set_timer(SPAWN_OBJECT, 1000)
 player = Player()
 object = Object()
 
-imp = pygame.image.load('cloud.jpeg').convert()
+imp = pygame.image.load(os.path.join('pygame', 'cloud.jpeg')).convert()
 
 objects = []
 
