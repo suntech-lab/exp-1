@@ -12,22 +12,23 @@ from pygame.locals import (
 )
 
 pygame.init()
-pygame.display.set_caption('image')
+pygame.display.set_caption('erics game')
 
-SCREEN_WIDTH = 500
-SCREEN_HEIGHT = 670
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
-        self.surf = pygame.transform.scale(pygame.image.load(os.path.join('pygame', 'hero.png')), (40, 40))
+        self.surf = pygame.transform.scale(pygame.image.load(os.path.join('pygame', 'yellow (2).png')), (40, 40))
         self.rect = self.surf.get_rect(center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
 
     def update(self, pressed_keys):
         if pressed_keys[K_UP]:
-            self.rect.move_ip(0, -3)
+            if self.rect.bottom == SCREEN_HEIGHT:
+                self.rect.move(0, -10)
         if pressed_keys[K_DOWN]:
             self.rect.move_ip(0, 3)
         if pressed_keys[K_LEFT]:
@@ -49,7 +50,7 @@ class Player(pygame.sprite.Sprite):
 class Object(pygame.sprite.Sprite):
     def __init__(self):
         super(Object, self).__init__()
-        self.surf = pygame.transform.scale(pygame.image.load(os.path.join('pygame', 'obj.png')), (50, 50))
+        self.surf = pygame.transform.scale(pygame.image.load(os.path.join('pygame', 'whitecircle.png')), (50, 50))
         self.rect = self.surf.get_rect()
         self.spawn()
 
@@ -58,23 +59,24 @@ class Object(pygame.sprite.Sprite):
         self.rect.y = 0
 
     def update(self):
-        self.rect.move_ip(0, 3)
+        self.rect.move_ip(0, 7)
 
 SPAWN_OBJECT = pygame.USEREVENT + 1
-pygame.time.set_timer(SPAWN_OBJECT, 1000)
+pygame.time.set_timer(SPAWN_OBJECT, 100)
 
 player = Player()
 object = Object()
 
-imp = pygame.image.load(os.path.join('pygame', 'cloud.jpeg')).convert()
 
 objects = []
+
+player_x, player_y = (SCREEN_WIDTH - 40) // 2, SCREEN_HEIGHT - 40 - 20
 
 running = True
 
 while running:
 
-    screen.blit(imp, (0, 0))
+    screen.fill((0, 0, 0))
 
     for event in pygame.event.get():
         if event.type == KEYDOWN:
@@ -90,6 +92,9 @@ while running:
             objects.append(new_object)
 
     pressed_keys = pygame.key.get_pressed()
+
+    if player.rect.bottom != SCREEN_HEIGHT:
+        player.rect.move_ip(0, 3)
     player.update(pressed_keys)
 
     for obj in objects:
