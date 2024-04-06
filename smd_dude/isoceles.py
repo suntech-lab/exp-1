@@ -3,7 +3,7 @@ def isoceles(rows):
     asterisksperrow = 1
     spacesperrow = rows
     while numberofrows < rows:
-        print(' '*spacesperrow + '*'*asterisksperrow)
+        print(f' '*spacesperrow + '*'*asterisksperrow)
         numberofrows += 1
         asterisksperrow += 2
         spacesperrow -= 1
