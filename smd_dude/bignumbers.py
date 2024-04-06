@@ -7,11 +7,12 @@ Pre:
     1.) the function takes the list, list and the list, numbers
     2.) the function appends random numbers from one to ten until the length of the list reaches one hundred thousand
     3.) it uses a for loop to keep track of how many times it has appeared by adding one to the index that is the difference between the number and one
+    4.) uses the x variable to keep track of the number that appears
+    5.) takes the value of the index of the difference between x and one to print the amount of times that it appeared
+    6.) adds one to x
 
-Post (in the print statement):
-    1.) uses the x variable to keep track of the number that appears
-    2.) takes the value of the index of the difference between x and one to print the amount of times that it appeared
-    3.) adds one to x
+post:
+    it just works
 """
 
 

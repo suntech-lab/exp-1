@@ -1,4 +1,4 @@
-def isoceles(rows):
+def isosceles(rows):
     numberofrows = 0
     asterisksperrow = 1
     spacesperrow = rows
@@ -8,6 +8,6 @@ def isoceles(rows):
         asterisksperrow += 2
         spacesperrow -= 1
 
-rows = int(input('How many rows do you want for your right angled triangle?: '))
+rows = int(input('How many rows do you want for your isosceles triangle?: '))
 
-isoceles(rows)
+isosceles(rows)
