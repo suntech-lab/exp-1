@@ -11,6 +11,8 @@ def sort(new_score):
         i += 1
     leaderboard.insert(i, new_score)
     leaderboard.pop()
-    print(leaderboard)
+    print('Python Homework Leaderboard\n')
+    for score in leaderboard:
+        print(score)
 
 sort(new_score)
