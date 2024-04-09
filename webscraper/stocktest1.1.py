@@ -22,9 +22,8 @@ price = where_its_at.find('fin-streamer')
 stock_price = price.text
 stock_increase = price_element.text
 
-while True:
-    time.sleep(600)
-    print('Stock Increase:', stock_increase)
-    print('Current Stock Value:', stock_price)
-    print(datetime.now())
-    print()
+
+print('Stock Increase:', stock_increase)
+print('Current Stock Value:', stock_price)
+print(datetime.now())
+print()
