@@ -15,7 +15,7 @@ with an id attribute of 'ResultsContainer'
 job_elements = results.find_all("div", class_="card-content")
 
 '''
-line 14: within the results (see line seven), 
+line 15: within the results (see line seven), 
 finds ALL of the elements (the target elements are div elements) with a CLASS attriute of 'card-content', 
 which is pretty self-explanatory
 '''
