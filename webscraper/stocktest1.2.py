@@ -1,6 +1,5 @@
 '''
 made this for fun
-it finds the current price of the S&P 500 and the price change
 uses the yahoo finance website
 ill test out how it fares when the price changes, when it changes
 '''
@@ -27,6 +26,7 @@ soup = BeautifulSoup(response.text, 'html.parser')
 
 where_its_at = soup.find('div', class_='D(ib) Mend(20px)')
 
+''''''
 price_element = where_its_at.find('span')
 price = where_its_at.find('fin-streamer')
 
