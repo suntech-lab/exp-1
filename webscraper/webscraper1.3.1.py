@@ -14,9 +14,8 @@ github_token = read_password_from_file('C:/Users/ericl/Documents/lab/gittoken.tx
 auth = HTTPBasicAuth(github_token, '')#uses the github authentication token to get the data
 url = 'https://api.github.com/user'
 response = requests.get(url, auth=auth)
-user_data = BeautifulSoup(response.content, "html.parser")
 
-user_data = response.json()#json so that it becomes a python dict
+user_data = response.json()#json is used so that it becomes a python dict
 
 data = {'username': 'login',
         'company': 'company',
@@ -31,4 +30,4 @@ data = {'username': 'login',
 
 print(f'Here are some aspects of Eric\'s github account:')
 for key in data:
-    print(f'{key}: {user_data[data.get(key)]}')
+    print(f'{key}: {user_data[data.get(key)]}')#prints details

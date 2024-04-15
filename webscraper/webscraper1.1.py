@@ -10,14 +10,15 @@ page = requests.Session()
 URL = "https://cars.com"
 page.mount("https://", adapter)
 response = page.get(URL)
+
 '''
 line 6-8,11-12: will try three times to get the right response in case of three errors:
 
 1. waiting for server to start answering for five seconds
 2. there is no access to the server or there it dropped connection
 3. 5XX responses by default
-
 '''
+
 print(response)
 
 #authentication
