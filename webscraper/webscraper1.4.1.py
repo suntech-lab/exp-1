@@ -56,9 +56,7 @@ while nextpage < 4:
             attributename = element.find('td').get('data-th')
             if attribute is not None:#check if attribute exists
                 attributeinfo = str(attribute.text.strip())
-                if attributename == 'Size':
-                    print(f'{attributename}: {attributeinfo.replace("～", "-")}')
-                print(f'{attributename}: {attributeinfo}')
+                print(f'{attributename}: {attributeinfo.replace("～", "-")}')
                 attributedict[attributename] = attributeinfo
             else:
                 pass
@@ -67,8 +65,6 @@ while nextpage < 4:
         #above prints the attributes neatly so that it is read easily instead of just lines
 
     nextpage += 1
-
-print(listofattributes)
 
 with open('csv.csv', 'w', newline='') as file:
     writer = csv.writer(file)
