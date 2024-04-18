@@ -34,48 +34,68 @@ while nextpage < 4:
     for item in items:
 
         attributedict = {}
-        
-        name = item.find('a', class_="product-item-link")
-        attributedict['Name'] = name.text.strip()
 
         href = item.find('a').get('href')#href(hypertext reference): the page of the specific shoe
         itemresponse = requests.get(href)
 
         itemsoup = BeautifulSoup(itemresponse.content, 'html.parser')
+        itemname = itemsoup.find('span', class_='base')
         itemdescription = itemsoup.find('div', class_='value')
         itemattributes = itemsoup.find_all('tr')
         #above section designates and finds the shoe details and attributes
 
-        print(name.text.strip())
-        if itemdescription:
-            print(itemdescription.text.strip())
-            attributedict['Description'] = itemdescription.text.strip()
+        if itemname:
+            name = str(itemname.text.strip()).replace("’", "'")
+            print(name)
+            attributedict['Name'] = name
+
+        if itemdescription != None:
+            description = str(itemdescription.text.strip())
+            print(description + 'DFHGDSKFJHGDSFGJHKFDSKGJHFDSKGJH')
+            attributedict['Description'] = description
+        elif itemdescription == None:
+            attributedict['Description'] = None
+        
 
         for element in itemattributes:
             attribute = element.find('td', class_='col data')
             attributename = element.find('td').get('data-th')
             if attribute is not None:#check if attribute exists
-                attributeinfo = str(attribute.text.strip())
-                print(f'{attributename}: {attributeinfo.replace("～", "-")}')
+                attributeinfo = str(attribute.text.strip()).replace("～", "-").replace("、", ",").replace("™", "TM")
+                print(f'{attributename}: {attributeinfo}')
                 attributedict[attributename] = attributeinfo
             else:
-                pass
+                print(f'{attributename}: {None}')
+                attributedict[attributename] = None
+
+        print(attributedict)
         listofattributes.append(attributedict)
         print()
         #above prints the attributes neatly so that it is read easily instead of just lines
 
     nextpage += 1
 
-with open('csv.csv', 'w', newline='') as file:
-    writer = csv.writer(file)
-    if choice == 'shoes':
-        field = ['Name', 'Description', 'Color(s)', 'Surface', 'Upper', 'Midsole', 'Outsole', 'Size', 'Material', 'Item Code']
-    elif choice == 'racquets':
-        field = ['Name', 'Flex', 'Frame', 'Shaft', 'Joint', 'Length', 'Weight/Grip', 'Stringing advice', 'Color(s)', 'Made In', 'Item Code']
-    elif choice == 'apparel':
-        field = ['Name', 'Color(s)', 'Material', 'Item Code']
 
-    for dict in listofattributes:
-        writer.writerow(dict.values())
+if choice == 'shoes':
+    with open('shoes.csv', 'w', newline='') as file:
+        writer = csv.writer(file)
+        field = ['Name', 'Description', 'Color(s)', 'Surface', 'Upper', 'Midsole', 'Outsole', 'Size', 'Material', 'Item Code']
+        writer.writerow(field)
+        for dict in listofattributes:
+            writer.writerow(dict.values())
+elif choice == 'racquets':
+    with open('racquets.csv', 'w', newline='') as file:
+        writer = csv.writer(file)
+        field = ['Name', 'Flex', 'Frame', 'Shaft', 'Joint', 'Length', 'Weight/Grip', 'Stringing advice', 'Color(s)', 'Made In', 'Item Code']
+        writer.writerow(field)
+        for dict in listofattributes:
+            writer.writerow(dict.values())
+elif choice == 'apparel':
+    with open('apparel.csv', 'w', newline='') as file:
+        writer = csv.writer(file)
+        field = ['Name', 'Color(s)', 'Material', 'Item Code']
+        writer.writerow(field)
+        for dict in listofattributes:
+            writer.writerow(dict.values())
 
 
