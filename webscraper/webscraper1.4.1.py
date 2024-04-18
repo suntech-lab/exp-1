@@ -9,7 +9,7 @@ badminton = [
 ]
 #the "?p=1" part of the urls arent actually needed it was just easier to change the page like that
 #it defaults to the first page if there isnt a "?p=1"
-nextpage = 1 
+nextpage = 1
 
 listofattributes = []
 
@@ -66,10 +66,8 @@ while nextpage < 4:
                 print(f'{attributename}: {attributeinfo}')
                 attributedict[attributename] = attributeinfo
             else:
-                print(f'{attributename}: {None}')
-                attributedict[attributename] = None
+                attribute = None
 
-        print(attributedict)
         listofattributes.append(attributedict)
         print()
         #above prints the attributes neatly so that it is read easily instead of just lines
@@ -78,21 +76,21 @@ while nextpage < 4:
 
 
 if choice == 'shoes':
-    with open('shoes.csv', 'w', newline='') as file:
+    with open('yonexshoes.csv', 'w', newline='') as file:
         writer = csv.writer(file)
         field = ['Name', 'Description', 'Color(s)', 'Surface', 'Upper', 'Midsole', 'Outsole', 'Size', 'Material', 'Item Code']
         writer.writerow(field)
         for dict in listofattributes:
             writer.writerow(dict.values())
 elif choice == 'racquets':
-    with open('racquets.csv', 'w', newline='') as file:
+    with open('yonexracquets.csv', 'w', newline='') as file:
         writer = csv.writer(file)
         field = ['Name', 'Flex', 'Frame', 'Shaft', 'Joint', 'Length', 'Weight/Grip', 'Stringing advice', 'Color(s)', 'Made In', 'Item Code']
         writer.writerow(field)
         for dict in listofattributes:
             writer.writerow(dict.values())
 elif choice == 'apparel':
-    with open('apparel.csv', 'w', newline='') as file:
+    with open('yonexapparel.csv', 'w', newline='') as file:
         writer = csv.writer(file)
         field = ['Name', 'Color(s)', 'Material', 'Item Code']
         writer.writerow(field)
