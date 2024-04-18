@@ -49,18 +49,19 @@ while nextpage < 4:
             print(name)
             attributedict['Name'] = name
 
-        if itemdescription != None:
+        if itemdescription:
             description = str(itemdescription.text.strip())
-            print(description + 'DFHGDSKFJHGDSFGJHKFDSKGJHFDSKGJH')
-            attributedict['Description'] = description
-        elif itemdescription == None:
-            attributedict['Description'] = None
+            if description != '':
+                print(description)
+                attributedict['Description'] = description
+            else:
+                attributedict['Description'] = None
         
 
         for element in itemattributes:
             attribute = element.find('td', class_='col data')
             attributename = element.find('td').get('data-th')
-            if attribute is not None:#check if attribute exists
+            if attribute:#check if attribute exists
                 attributeinfo = str(attribute.text.strip()).replace("～", "-").replace("、", ",").replace("™", "TM")
                 print(f'{attributename}: {attributeinfo}')
                 attributedict[attributename] = attributeinfo
@@ -97,5 +98,3 @@ elif choice == 'apparel':
         writer.writerow(field)
         for dict in listofattributes:
             writer.writerow(dict.values())
-
-
