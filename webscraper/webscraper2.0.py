@@ -9,7 +9,6 @@ def suggest(choice, fieldnames):
     matches = get_close_matches(choice, fieldnames)
     if matches:
         print(f'Maybe you meant "{matches[0]}"?')
-        exit()
     else:
         return
 
@@ -40,10 +39,15 @@ for opt in badminton:
 choice = input('Enter your choice: ')
 
 for opt in badminton:
+    print(f'choice is {choice}')
     if choice == opt['item']:
+        print('item')
         url = opt['url']
+        break
+else:
     suggest(choice, fieldnames)
-    break
+    exit()
+
 
 filename = f'yonex_{choice}.csv'
 
