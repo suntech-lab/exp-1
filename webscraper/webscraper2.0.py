@@ -1,8 +1,17 @@
 import requests
 from bs4 import BeautifulSoup
 import csv
+from difflib import get_close_matches
 
-listofattributes = []
+def suggest(choice, fieldnames):
+    if choice in fieldnames:
+        return
+    matches = get_close_matches(choice, fieldnames)
+    if matches:
+        print(f'Maybe you meant "{matches[0]}"?')
+    else:
+        return
+
 badminton = [
     {'item': 'shoes', 'url': 'https://www.yonex.com/badminton/footwear?p=1'},
     {'item': 'racquets', 'url': 'https://www.yonex.com/badminton/racquets?p=1'},
@@ -20,7 +29,7 @@ fieldnames = {
     'strings': ['Name', 'Description', 'Color(s)', 'Gauge', 'Length', 'Core', 'Outer', 'Coating', 'Made In', 'Item Code'],
     'bags': ['Name', 'Description', 'Color(s)', 'Size (LxWxH)', 'Item Code'],
     'grips': ['Name', 'Description', 'Width', 'Length', 'Thickness', 'Material(s)', 'Quantity', 'Item Code'],
-    'towels': ['Name','Description', 'Color(s)', 'Material(s)', 'Made In', 'Item Code'],
+    'towels': ['Name', 'Color(s)', 'Material(s)', 'Made In', 'Item Code'],
     'bands': ['Name', 'Color(s)', 'Material(s)', 'Item Code']
 }
 
@@ -32,6 +41,9 @@ choice = input('Enter your choice: ')
 for opt in badminton:
     if choice == opt['item']:
         url = opt['url']
+    else:
+        suggest(choice, fieldnames)
+        exit()
 
 filename = f'yonex_{choice}.csv'
 
@@ -49,18 +61,16 @@ def getdescription(itemdescription, attributedict):
     if itemdescription:
         description = str(itemdescription.text.strip()).replace("’", "'")
         description = ' '.join(description.split())
-        if description != '':
-            print(description)
-            attributedict['Description'] = description
+        print(description)
+        attributedict['Description'] = description
 
 def getattributes(itemattributes, attributedict):
     for element in itemattributes:
         attributename = element.find('td').get('data-th')
         attribute = element.find('td', class_='col data')
-        if attribute:
-            attributeinfo = str(attribute.text.strip()).replace("～", "-").replace("、", ",").replace("™", "TM")
-            print(f'{attributename}: {attributeinfo}')
-            attributedict[attributename] = attributeinfo
+        attributeinfo = str(attribute.text.strip()).replace("～", "-").replace("、", ",").replace("™", "TM")
+        print(f'{attributename}: {attributeinfo}')
+        attributedict[attributename] = attributeinfo
     with open(filename, 'a', newline='') as file:
         writer = csv.DictWriter(file, fieldnames=fieldnames[choice])
         filleditem = {field: attributedict.get(field, '') for field in fieldnames[choice]}
@@ -88,7 +98,6 @@ while True:
         getdescription(itemdescription, attributedict)
         getattributes(itemattributes, attributedict)
 
-        listofattributes.append(attributedict)
         print()
 
     next_page_button = soup.find('li', class_="item pages-item-next")

@@ -37,18 +37,16 @@ def getdescription(itemdescription, attributedict):
     if itemdescription:
         description = str(itemdescription.text.strip()).replace("’", "'")
         description = ' '.join(description.split())
-        if description != '':
-            print(description)
-            attributedict['Description'] = description
+        print(description)
+        attributedict['Description'] = description
 
 def getattributes(itemattributes, attributedict):
     for element in itemattributes:
         attributename = element.find('td').get('data-th')
         attribute = element.find('td', class_='col data')
-        if attribute:
-            attributeinfo = str(attribute.text.strip()).replace("～", "-").replace("、", ",").replace("™", "TM")
-            print(f'{attributename}: {attributeinfo}')
-            attributedict[attributename] = attributeinfo
+        attributeinfo = str(attribute.text.strip()).replace("～", "-").replace("、", ",").replace("™", "TM")
+        print(f'{attributename}: {attributeinfo}')
+        attributedict[attributename] = attributeinfo
 
 def writecsv():
     filename = f'yonex_{choice}.csv'
@@ -60,7 +58,7 @@ def writecsv():
         'strings': ['Name', 'Description', 'Color(s)', 'Gauge', 'Length', 'Core', 'Outer', 'Coating', 'Made In', 'Item Code'],
         'bags': ['Name', 'Description', 'Color(s)', 'Size (LxWxH)', 'Item Code'],
         'grips': ['Name', 'Description', 'Width', 'Length', 'Thickness', 'Material(s)', 'Quantity', 'Item Code'],
-        'towels': ['Name','Description', 'Color(s)', 'Material(s)', 'Made In', 'Item Code'],
+        'towels': ['Name', 'Color(s)', 'Material(s)', 'Made In', 'Item Code'],
         'bands': ['Name', 'Color(s)', 'Material(s)', 'Item Code']
     }
     
