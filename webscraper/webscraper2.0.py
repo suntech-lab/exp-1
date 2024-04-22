@@ -70,9 +70,10 @@ def getattributes(itemattributes, attributedict):
     for element in itemattributes:
         attributename = element.find('td').get('data-th')
         attribute = element.find('td', class_='col data')
-        attributeinfo = str(attribute.text.strip()).replace("～", "-").replace("、", ",").replace("™", "TM")
-        print(f'{attributename}: {attributeinfo}')
-        attributedict[attributename] = attributeinfo
+        if attribute:
+            attributeinfo = str(attribute.text.strip()).replace("～", "-").replace("、", ",").replace("™", "TM")
+            print(f'{attributename}: {attributeinfo}')
+            attributedict[attributename] = attributeinfo
     with open(filename, 'a', newline='') as file:
         writer = csv.DictWriter(file, fieldnames=fieldnames[choice])
         filleditem = {field: attributedict.get(field, '') for field in fieldnames[choice]}
