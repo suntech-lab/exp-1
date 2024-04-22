@@ -4,13 +4,12 @@ github doesnt allow git tokens to be pushed, but it works
 '''
 import requests
 from requests.auth import HTTPBasicAuth
-from bs4 import BeautifulSoup
 
 def read_password_from_file(file_name):
     with open(file_name, 'rb') as file:
         return file.read()
 
-github_token = read_password_from_file('C:/Users/ericl/Documents/lab/gittoken.txt')
+github_token = read_password_from_file('C:/Users/Eric/Desktop/FunnyPrograms/exp-1/gittoken.txt')
 auth = HTTPBasicAuth(github_token, '')#uses the github authentication token to get the data
 url = 'https://api.github.com/user'
 response = requests.get(url, auth=auth)
