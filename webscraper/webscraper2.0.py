@@ -25,7 +25,7 @@ badminton = [
 fieldnames = {
     'shoes': ['Name', 'Description', 'Color(s)', 'Surface', 'Upper', 'Midsole', 'Outsole', 'Size', 'Material', 'Item Code'],
     'racquets': ['Name', 'Flex', 'Frame', 'Shaft', 'Joint', 'Length', 'Weight/Grip', 'Stringing advice', 'Color(s)', 'Made In', 'Item Code'],
-    'apparel': ['Name', 'Color(s)', 'Material', 'Item Code'],
+    'apparel': ['Name', 'Color(s)', 'Material(s)', 'Item Code'],
     'strings': ['Name', 'Description', 'Color(s)', 'Gauge', 'Length', 'Core', 'Outer', 'Coating', 'Made In', 'Item Code'],
     'bags': ['Name', 'Description', 'Color(s)', 'Size (LxWxH)', 'Item Code'],
     'grips': ['Name', 'Description', 'Width', 'Length', 'Thickness', 'Material(s)', 'Quantity', 'Item Code'],
