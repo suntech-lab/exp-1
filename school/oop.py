@@ -90,7 +90,7 @@ class NonMarineMammal(Mammal):
 
 class Dog(NonMarineMammal, NonWingedMammal):
   def __init__(self):
-    print('Dog has 4 legs.');
+    print('Dog has 4 legs.')
     super().__init__('Dog')
     
 d = Dog()
