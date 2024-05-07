@@ -13,10 +13,12 @@ def bubble_sort(list):
     length = len(list)
     swapped = False
     for i in range(length - 1):
+
         for j in range(0, length - i - 1):
             if list[j] > list[j + 1]:
                 swapped = True
                 list[j], list[j + 1] = list[j + 1], list[j]
+                
         if not swapped:
             return
 
