@@ -1,22 +1,17 @@
-palindrome = str(input('enter your palindrome: '))
-
-small_index = 0
-large_index = -1
-
-def palindromer(palindrome):
-    for i in range(len(palindrome)//2):
-       
+class Solution(object):
+    def isPalindrome(self, x):
+        
         small_index = 0
         large_index = -1
         
-        if palindrome[small_index] != palindrome[large_index]:
-            print('this is not a palindrome')
-            break
-
-        elif palindrome[small_index] == palindrome[large_index]:
+        for i in range(len(x)//2):
+            if x[small_index] != x[large_index]:
+                return False
             small_index += 1
-            large_index = large_index - 1
-            print('this is a palindrome')
-            break
+            large_index -= 1
+        return True
+            
+x = input('?:')
 
-palindromer(palindrome)
+answer = Solution().isPalindrome(str(x))
+print(answer)
