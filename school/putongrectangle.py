@@ -56,6 +56,19 @@ end_x = 300
 end_y = 246
 arcade.draw_line(start_x, start_y, end_x, end_y, arcade.color.BLACK, 12)
 
+# Draw strings
+
+start_y = 560
+start_x = 250
+end_x = 250
+end_y = 442
+while start_x < 350:
+    arcade.draw_line(start_x, start_y, end_x, end_y, arcade.color.BLACK, 1)
+    start_x += 2
+    end_x += 2
+
+arcade.draw
+
 # Finish drawing and display the result
 arcade.finish_render()
 
