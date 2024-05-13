@@ -87,14 +87,14 @@ def prompt(sorts):
 
             list = genlist(10000)
             oglist = str(list[0:5]) + '...' + str(list[-6:-1])
-            print(f'list before sushi: {oglist}')
+            print(f'list before satosugu: {oglist}')
 
             t0 = time.time()
             newlist, comparisons = op['func'](list)
             t1 = time.time()
             newlist_display = str(newlist[0:5]) + '...' + str(newlist[-6:-1])
-            print(f'list after sushi: {newlist_display}')
-            print(f'{t1 - t0:.2f} seconds')
+            print(f'list after satosugu: {newlist_display}')
+            print(f'{t1 - t0:.20f} seconds')
             print(f'comparisons made: {comparisons}')
             target = int(input('what number are you looking for: '))
             if binarysearch(newlist, target):
