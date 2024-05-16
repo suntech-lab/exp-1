@@ -37,7 +37,7 @@ class GameWindow(arcade.Window):
         self.player_sprite.center_y = 120
         self.scene.add_sprite('Player', self.player_sprite)
 
-        for x in range(0, 1250, 64):
+        for x in range(0, 5000, 64):
             wall = arcade.Sprite('C:/Users/ericl/Documents/lab/school/doodlegame/terrain/grass1.jpg', TILE_SCALING)
             wall.center_x = x
             wall.center_y = 10
