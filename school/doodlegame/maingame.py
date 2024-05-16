@@ -20,12 +20,15 @@ class GameWindow(arcade.Window):
 
         self.player_sprite = None
 
+        self.physics_engine = None
+
         arcade.set_background_color(arcade.color.WHITE)
 
     def setup(self):
         self.player_list = arcade.SpriteList()
         self.wall_list = arcade.SpriteList(use_spatial_hash=True)
         self.scene = arcade.Scene()
+        self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, self.scene.get_sprite_list("Walls"))
 
         self.scene.add_sprite_list('Player')
         self.scene.add_sprite_list('Walls', use_spatial_hash=True)
@@ -49,13 +52,40 @@ class GameWindow(arcade.Window):
             wall = arcade.Sprite('C:/Users/ericl/Documents/lab/school/doodlegame/terrain/cow1.png', TILE_SCALING)
             wall.position = coord
             self.scene.add_sprite('Walls', wall)
-            self.wall_list.append(wall)
 
     def on_draw(self):
         self.clear()
-        self.wall_list.draw()
-        self.player_list.draw()
         self.scene.draw()
+
+    def on_key_press(self, key, modifiers):
+        """Called whenever a key is pressed."""
+
+        if key == arcade.key.UP or key == arcade.key.W:
+            self.player_sprite.change_y = PLAYER_V
+        elif key == arcade.key.DOWN or key == arcade.key.S:
+            self.player_sprite.change_y = -PLAYER_V
+        elif key == arcade.key.LEFT or key == arcade.key.A:
+            self.player_sprite.change_x = -PLAYER_V
+        elif key == arcade.key.RIGHT or key == arcade.key.D:
+            self.player_sprite.change_x = PLAYER_V
+
+    def on_key_release(self, key, modifiers):
+        """Called when the user releases a key."""
+
+        if key == arcade.key.UP or key == arcade.key.W:
+            self.player_sprite.change_y = 0
+        elif key == arcade.key.DOWN or key == arcade.key.S:
+            self.player_sprite.change_y = 0
+        elif key == arcade.key.LEFT or key == arcade.key.A:
+            self.player_sprite.change_x = 0
+        elif key == arcade.key.RIGHT or key == arcade.key.D:
+            self.player_sprite.change_x = 0
+
+    def on_update(self, delta_time):
+        """Movement and game logic"""
+
+        # Move the player with the physics engine
+        self.physics_engine.update()
 
 
 def main():
