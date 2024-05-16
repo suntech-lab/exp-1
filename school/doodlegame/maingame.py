@@ -28,8 +28,10 @@ class GameWindow(arcade.Window):
         self.player_list = arcade.SpriteList()
         self.wall_list = arcade.SpriteList(use_spatial_hash=True)
         self.scene = arcade.Scene()
-        self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, self.scene.get_sprite_list("Walls"))
-
+        self.physics_engine = arcade.PhysicsEngineSimple(
+            self.player_sprite, self.scene.get_sprite_list("Walls")
+            )
+        
         self.scene.add_sprite_list('Player')
         self.scene.add_sprite_list('Walls', use_spatial_hash=True)
         
@@ -52,9 +54,12 @@ class GameWindow(arcade.Window):
             wall = arcade.Sprite('C:/Users/ericl/Documents/lab/school/doodlegame/terrain/cow1.png', TILE_SCALING)
             wall.position = coord
             self.scene.add_sprite('Walls', wall)
+            self.wall_list.append(wall)
 
     def on_draw(self):
         self.clear()
+        self.wall_list.draw()
+        self.player_list.draw()
         self.scene.draw()
 
     def on_key_press(self, key, modifiers):
