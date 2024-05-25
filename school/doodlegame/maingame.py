@@ -1,13 +1,20 @@
 import arcade
+import random
 
 SCREEN_TITLE = "Eraser Run"
 CHARACTER_SCALING = 0.5
+COIN_SCALING = 0.1
 SCREEN_WIDTH = 1000
-SCREEN_HEIGHT = 500
+SCREEN_HEIGHT = 700
 TILE_SCALING = 0.5
-PLAYER_V = 5
+PLAYER_V = 10
 GRAVITY = 1
-PLAYER_JUMP_V = 20
+PLAYER_JUMP_V = 30
+PLAYER_START_X = 64
+PLAYER_START_Y = 120
+PLATFORMLAYERNAME = 'Platforms'
+COINLAYERNAME = 'Coins'
+DEATHLAYERNAME = 'Deadspace'
 
 class GameWindow(arcade.Window):
 
@@ -24,45 +31,54 @@ class GameWindow(arcade.Window):
 
         self.physics_engine = None
 
+        self.collect_coin_sound = arcade.load_sound('C:/Users/ericl/Documents/lab/school/doodlegame/terrain/crayoncollectsound.mp3')
+        self.jump_sound = arcade.load_sound('C:/Users/ericl/Documents/lab/school/doodlegame/player_1/playerjumpsound.mp3')
+
+        self.gui_camera = None
+        self.score = 0
+
+        self.tile_map = None
+
         arcade.set_background_color(arcade.color.WHITE)
 
     def setup(self):
-        self.scene = arcade.Scene()
-
         self.camera = arcade.Camera(self.width, self.height)
+        self.gui_camera = arcade.Camera(self.width, self.height)
+        self.score = 0
+        
+        map_name = 'C:/Users/ericl/Documents/lab/school/doodlegame/terrain/map1.tmx'
+        layer_options = {'Platforms': {'use_spatial_hash': True}}
+        self.tile_map = arcade.load_tilemap(map_name, TILE_SCALING, layer_options)
+        self.scene = arcade.Scene.from_tilemap(self.tile_map)
 
         filelocation = 'C:/Users/ericl/Documents/lab/school/doodlegame/player_1/player_running.png'
         self.player_sprite = arcade.Sprite(filelocation, CHARACTER_SCALING)
-        self.player_sprite.center_x = 64
-        self.player_sprite.center_y = 120
+        self.player_sprite.center_x = PLAYER_START_X
+        self.player_sprite.center_y = PLAYER_START_Y
         self.scene.add_sprite('Player', self.player_sprite)
 
-        for x in range(0, 5000, 64):
-            wall = arcade.Sprite('C:/Users/ericl/Documents/lab/school/doodlegame/terrain/grass1.jpg', TILE_SCALING)
-            wall.center_x = x
-            wall.center_y = 10
-            self.scene.add_sprite('Walls', wall)
-        
-        coordinates_list = [[512, 96], [256, 96], [768, 96]]
-        for coord in coordinates_list:
-            wall = arcade.Sprite('C:/Users/ericl/Documents/lab/school/doodlegame/terrain/cow1.png', TILE_SCALING)
-            wall.position = coord
-            self.scene.add_sprite('Walls', wall)
+        if self.tile_map.background_color:
+            arcade.set_background_color(self.tile_map.background_color)
 
         self.physics_engine = arcade.PhysicsEnginePlatformer(
-            self.player_sprite, gravity_constant=GRAVITY, walls=self.scene["Walls"]
+            self.player_sprite, gravity_constant=GRAVITY, walls=[self.scene["Platforms"],self.scene['Deadspace']]
             )
 
     def on_draw(self):
         self.clear()
-        self.scene.draw()
         self.camera.use()
+        self.scene.draw()
+        self.gui_camera.use()
+
+        score_text = (f'SCORE : {self.score}')
+        arcade.draw_text(score_text, 10, 450, arcade.csscolor.BLACK, 18)
 
     def on_key_press(self, key, modifiers):
 
         if key == arcade.key.UP or key == arcade.key.W:
             if self.physics_engine.can_jump():
                 self.player_sprite.change_y = PLAYER_JUMP_V
+                arcade.play_sound(self.jump_sound)
         elif key == arcade.key.DOWN or key == arcade.key.S:
             self.player_sprite.change_y = -PLAYER_V
         elif key == arcade.key.LEFT or key == arcade.key.A:
@@ -95,6 +111,20 @@ class GameWindow(arcade.Window):
 
     def on_update(self, delta_time):
         self.physics_engine.update()
+
+        coin_hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.scene['Coins'])
+        for coin in coin_hit_list:
+            coin.remove_from_sprite_lists()
+            arcade.play_sound(self.collect_coin_sound)
+            self.score += 1
+
+        if self.player_sprite.center_y < -10:
+            exit()
+        if arcade.check_for_collision_with_list(self.player_sprite, self.scene['Deadspace']):
+            exit()
+        else:
+            pass
+
         self.center_camera_to_player()
 
 def main():

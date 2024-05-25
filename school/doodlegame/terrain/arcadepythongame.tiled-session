@@ -1,0 +1,65 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "first_map.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "doodle tiles.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 0.33,
+            "scaleInEditor": 1
+        },
+        "first map.tmx": {
+            "scale": 0.33,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 830.3030303030301,
+                "y": 401.5151515151515
+            }
+        },
+        "first_map.tmx": {
+            "scale": 0.26125,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 1600.0000000000005,
+                "y": 1601.9138755980864
+            }
+        },
+        "map1.tmx": {
+            "scale": 0.25,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 18056,
+                "y": 1730
+            }
+        },
+        "tutorial.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 0.125,
+            "scaleInEditor": 1
+        }
+    },
+    "last.imagePath": "C:/Users/ericl/Documents/lab/school/doodlegame/terrain",
+    "map.fixedSize": true,
+    "map.height": 100,
+    "map.lastUsedFormat": "tmx",
+    "map.width": 10000,
+    "openFiles": [
+        "first_map.tmx"
+    ],
+    "project": "arcadepythongame.tiled-project",
+    "recentFiles": [
+        "tutorial.tsx",
+        "map1.tmx",
+        "first_map.tmx",
+        "first map.tmx",
+        "doodle tiles.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.type": 1
+}
