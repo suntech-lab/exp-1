@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "first_map.tmx",
+    "activeFile": "map1.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -30,12 +30,22 @@
                 "y": 1601.9138755980864
             }
         },
+        "gametiles.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 0.125,
+            "scaleInEditor": 0.33
+        },
+        "gif.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "map1.tmx": {
             "scale": 0.25,
-            "selectedLayer": 2,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 18056,
-                "y": 1730
+                "x": 18388,
+                "y": 1790
             }
         },
         "tutorial.tsx": {
@@ -50,15 +60,17 @@
     "map.lastUsedFormat": "tmx",
     "map.width": 10000,
     "openFiles": [
-        "first_map.tmx"
+        "map1.tmx"
     ],
     "project": "arcadepythongame.tiled-project",
     "recentFiles": [
-        "tutorial.tsx",
         "map1.tmx",
+        "gif.tsx",
+        "doodle tiles.tsx",
+        "gametiles.tsx",
+        "tutorial.tsx",
         "first_map.tmx",
-        "first map.tmx",
-        "doodle tiles.tsx"
+        "first map.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.type": 1
