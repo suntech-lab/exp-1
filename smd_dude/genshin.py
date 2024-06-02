@@ -1,9 +1,10 @@
 import time
 import random
 
+# pre: bubble sort
 def bubblesort(list):
     swapped = False
-    comparisons = 0 
+    comparisons = 0
     for i in range(len(list) - 1):
         for j in range(0, len(list) - i - 1):
             comparisons += 1
@@ -13,7 +14,9 @@ def bubblesort(list):
         if not swapped:
             return list, comparisons
     return list, comparisons
-        
+# post: sorted list and comparisons made
+
+# pre: insertion sort
 def insertionsort(list):
     comparisons = 0
     for j in range(1, len(list)):
@@ -23,7 +26,9 @@ def insertionsort(list):
             list[j], list[j - 1] = list[j - 1], list[j]
             j -= 1
     return list, comparisons
+# post: sorted list and comparisons made
 
+# pre: selection sort
 def selectionsort(list):
     comparisons = 0
     for i in range(len(list) - 1):
@@ -34,7 +39,9 @@ def selectionsort(list):
                 smallindex = j
         list[i], list[smallindex] = list[smallindex], list[i]
     return list, comparisons
+# post: sorted list and comparisons made
 
+# pre: quick sort
 def quicksort(list):
     if len(list) <= 1:
         return list, 0
@@ -51,7 +58,9 @@ def quicksort(list):
     sorted_lower, comparisons_lower = quicksort(items_lower)
     sorted_greater, comparisons_greater = quicksort(items_greater)
     return sorted_lower + [pivot] + sorted_greater, comparisons + comparisons_lower + comparisons_greater
+# post: sorted list and comparisons made
 
+# pre: binary search
 def binarysearch(list, target):
     left = 0
     right = 9999
@@ -65,10 +74,13 @@ def binarysearch(list, target):
         else:
             right = mid - 1
         checks += 1
-    return 
+    return
+# post: number of checks made to find the target
 
+# pre: generates a list
 def genlist(size):
     return [random.randint(0, 10000) for _ in range(size)]
+# post: a list
 
 sorts = [
     {'sort': 'bubble', 'func': bubblesort},
@@ -77,6 +89,7 @@ sorts = [
     {'sort': 'insertion', 'func': insertionsort},
 ]
 
+# pre: gives user a prompt, uses the function that is in the same dict as the user's input, times the function, uses the binary search, prints results
 def prompt(sorts):
     for op in sorts:
         print(f"type {op['sort']} for {op['sort']}sort")
@@ -87,14 +100,14 @@ def prompt(sorts):
 
             list = genlist(10000)
             oglist = str(list[0:5]) + '...' + str(list[-6:-1])
-            print(f'list before satosugu: {oglist}')
+            print(f'list before sushi: {oglist}')
 
             t0 = time.time()
             newlist, comparisons = op['func'](list)
             t1 = time.time()
             newlist_display = str(newlist[0:5]) + '...' + str(newlist[-6:-1])
-            print(f'list after satosugu: {newlist_display}')
-            print(f'{t1 - t0:.20f} seconds')
+            print(f'list after sushi: {newlist_display}')
+            print(f'{t1 - t0:.2f} seconds')
             print(f'comparisons made: {comparisons}')
             target = int(input('what number are you looking for: '))
             if binarysearch(newlist, target):
@@ -104,5 +117,6 @@ def prompt(sorts):
             break
     else:
         print('invalid input, get outta here')
+# post: the answers
 
 prompt(sorts)
