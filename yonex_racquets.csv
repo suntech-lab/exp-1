@@ -1,1 +1,76 @@
 Name,Flex,Frame,Shaft,Joint,Length,Weight/Grip,Stringing advice,Color(s),Made In,Item Code
+ASTROX 88 S PRO,STIFF,"HM Graphite, CFR, Tungsten","HM Graphite, 2G-NamdTM FLEX FORCE, Ultra PE Fiber",NEW Built-in T-Joint,5 mm longer,,,Silver / Black,Japan,3AX88S-P
+ASTROX 88 S TOUR,STIFF,"HM Graphite, CSR, Tungsten","HM Graphite, 2G-NamdTM FLEX FORCE",Built-in T-Joint,5 mm longer,,,Silver / Black,,3AX88S-T
+ASTROX 88 S GAME,Medium,"HM Graphite, CSR, Tungsten","HM Graphite, 2G-NANOMESH NEO",Built-in T-Joint,5 mm longer,,,Silver / Black,,3AX88S-G
+ASTROX 88 D PRO,STIFF,"HM Graphite, CFR, Tungsten","HM Graphite, 2G-NamdTM FLEX FORCE, Ultra PE Fiber",NEW Built-in T-Joint,10 mm longer,,,Black / Silver,Japan,3AX88D-P
+ASTROX 88 D TOUR,STIFF,"HM Graphite, CSR, Tungsten","HM Graphite, 2G-NamdTM FLEX FORCE",Built-in T-Joint,10 mm longer,,,Black / Silver,,3AX88D-T
+ASTROX 88 D GAME,Medium,"HM Graphite, CSR, Tungsten","HM Graphite, 2G-NANOMESH NEO",Built-in T-Joint,10 mm longer,,,Black / Silver,,3AX88D-G
+ASTROX 88 PLAY,Medium,Graphite,Graphite,,10 mm longer,,,Black / Silver,,3AX88-PL
+NANOFLARE NEXTAGE,Medium,"HT Graphite, Nanocell NEO",Graphite,Built-in T-Joint,10 mm longer,,,White / Gray,,NF-NX
+ASTROX 3 DG HF,Hi-Flex,"HM Graphite, Tungsten","HM Graphite, NANOMESH NEO",Built-in T-Joint,10 mm longer,,,BLUE/WHITE,,AX3DG HF
+ASTROX 3 DG ST,STIFF,"HM Graphite, Tungsten","HM Graphite, NANOMESH NEO",Built-in T-Joint,10 mm longer,,,BLACK/BLUE,,AX3DG ST
+NANOFLARE 800 PRO,STIFF,"HM Graphite, M40X, SUPER HMG, Copper","HM Graphite, SUPER HMG,  ULTRA PE FIBER","New Built-in T-Joint, Graphite",10 mm longer,,,Deep Green,,NF-800P
+NANOFLARE 800 TOUR,STIFF,"Graphite, Nanocell NEO, HM Graphite, Copper","HM Graphite, SUPER HMG","Built-in T-Joint, Graphite",10 mm longer,,,Deep Green,,NF-800T
+NANOFLARE 800 GAME,Medium,"Graphite, Nanocell NEO, HM Graphite, Copper",Graphite,Built-in T-Joint,10 mm longer,,,Deep Green,,NF-800G
+NANOFLARE 800 PLAY,Medium,Graphite,Graphite,,10 mm longer,,,Deep Green,,NF-800PL
+NANOFLARE 002 CLEAR,Hi-Flex,HT Graphite,Graphite,,10 mm longer,,,Yellow,China,NF-002C
+NANOFLARE 002 FEEL,Hi-Flex,HT Graphite,Graphite,,10 mm longer,,,Magenta,China,NF-002F
+NANOFLARE 002 ABILITY,Hi-Flex,HT Graphite,Graphite,,10 mm longer,,,Lime,China,NF-002A
+NANOFLARE 1000 PLAY,Medium,Graphite,Graphite,,10 mm longer,,,Lightning Yellow,,NF-1000PL
+NANOFLARE 1000 GAME,Medium,,Graphite,Built-in T-Joint,10 mm longer,,,Lightning Yellow,,NF-1000G
+NANOFLARE 1000 TOUR,Extra Stiff,"HM Graphite, Nanocell NEO, EX-HYPER MG",HM Graphite,Built-in T-Joint,10 mm longer,,,Lightning Yellow,,NF-1000T
+NANOFLARE 1000 Z,Extra Stiff,"HM Graphite, NANOMETRIC DR, M40X, EX-HYPER MG","HM Graphite, Ultra PE FIBER",NEW Built-in T-Joint,10 mm longer,,,Lightning Yellow,,NF-1000Z
+ASTROX 77 PRO,Medium,"HM Graphite, Flex Fuse, Tungsten","HM Graphite, NamdTM, Ultra PE Fiber",NEW Built-in T-Joint,10 mm longer,,,High orange,Japan,AX77-P
+ASTROX 77 TOUR,Medium,"HM Graphite, LIGHT Feel CARBON NEO, Tungsten","HM Graphite, NANOMESH NEO",Built-in T-Joint,10 mm longer,,,High orange,,AX77-T
+ASTROX 77 PLAY,Hi-Flex,Graphite,Graphite,,10 mm longer,,,High Orange,,AX77-PL
+ASTROX 100ZZ,Extra Stiff,"HM Graphite, Namd, Tungsten, Black Micro Core, Nanometric","HM Graphite, NamdTM",NEW Built-in T-Joint,10 mm longer,,,"Kurenai, Dark Navy",Japan,AX100ZZ
+ASTROX 100 TOUR,Extra Stiff,"HM Graphite, Nanomesh Neo, Tungsten","HM Graphite, NamdTM",Built-in T-Joint,10 mm longer,,,Kurenai,,AX100T
+ASTROX 100 GAME,Medium,"HM Graphite, Nanomesh Neo, Tungsten","HM Graphite, NANOMESH NEO",Built-in T-Joint,10 mm longer,,,Kurenai,,AX100G
+ASTROX 99 PRO,STIFF,"HM Graphite, Namd, VOLUME CUT RESIN, Tungsten","HM Graphite, NamdTM",NEW Built-in T-Joint,10 mm longer,,,"White Tiger, Cherry Sunburst",Japan,AX99-P
+ASTROX 99 TOUR,STIFF,"HM Graphite, NANOMESH NEO, VOLUME CUT RESIN, Tungsten","HM Graphite, NamdTM",Built-in T-Joint,,,,"White Tiger, Cherry Sunburst",,AX99-T
+ASTROX 99 GAME,Medium,"HM Graphite, NANOMESH NEO, VOLUME CUT RESIN, Tungsten","HM Graphite, NANOMESH NEO",Built-in T-Joint,10 mm longer,,,"White Tiger, Cherry Sunburst",,AX99-G
+ASTROX 99 PLAY,Medium,Graphite,Graphite,,,,,"White Tiger, Cherry Sunburst",,AX99-PL
+ASTROX 70,Hi-Flex,"HM Graphite, VDM, Tungsten","HM Graphite, NamdTM",NEW Built-in T-Joint,10 mm longer,,,Saxe,,AX70
+ASTROX 22 RX,STIFF,"HM Graphite, Tungsten","HM Graphite, NANOMESH NEO",Built-in T-Joint,10 mm longer,,,Black / Gold,,AX22RX
+ASTROX 22 F,Medium,"HM Graphite, NANOMETRIC DR, Tungsten","HM Graphite, NANOMESH NEO",Built-in T-Joint,10 mm longer,,,Black / Lime,,AX22F
+ASTROX 22 LT,Medium,"HM Graphite, Tungsten","HM Graphite, NANOMESH NEO",,10 mm longer,,,Black / Red,,AX22LT
+ASTROX NEXTAGE,Medium,"HM Graphite, VDM, Tungsten","Graphite, NANOMESH NEO",Built-in T-Joint,10 mm longer,,,Black / Green,,AXNT
+ASTROX ABILITY,Hi-Flex,"Graphite, Tungsten","Graphite, NANOMESH NEO",Built-in T-Joint,10 mm longer,,,Magenta,,AXA
+ASTROX CLEAR,Hi-Flex,"Graphite, Tungsten","Graphite, NANOMESH NEO",Built-in T-Joint,10 mm longer,,,Yellow,,AXC
+ASTROX FEEL,Hi-Flex,"Graphite, Tungsten","Graphite, NANOMESH NEO",Built-in T-Joint,10 mm longer,,,Orange,,AXF
+ASTROX 01 ABILITY,Hi-Flex,Graphite,Graphite,,10 mm longer,,,Red,,AX01A
+ASTROX 01 CLEAR,Hi-Flex,Graphite,Graphite,,10 mm longer,,,Blue,,AX01C
+ASTROX 01 FEEL,Hi-Flex,Graphite,Graphite,,10 mm longer,,,Lime,,AX01F
+ASTROX 7 DG,Medium,"HM Graphite, Tungsten","HM Graphite, NANOMESH NEO",Built-in T-Joint,10 mm longer,,,Black / Blue,,AX7DG
+ASTROX 1 DG,Hi-Flex,"HM Graphite, Tungsten","HM Graphite, NANOMESH NEO",Built-in T-Joint,10 mm longer,,,Blue / Black,,AX1DG
+ASTROX E 13,,Aluminum,Graphite,,,,,"Black / Blue, Black / Bright Red",,AXE13
+ARCSABER 7 PRO,Medium,"HM Graphite, POCKETING BOOSTER","HM Graphite, Ultra PE FIBER","NEW Built-in T-Joint, T-ANCHOR",10 mm longer,,,Gray / Yellow,Japan,ARC7-P
+ARCSABER 7 TOUR,Medium,"HM Graphite, POCKETING BOOSTER",HM Graphite,"Built-in T-Joint, T-ANCHOR",10 mm longer,,,Gray / Yellow,,ARC7-T
+ARCSABER 7 PLAY,Hi-Flex,Graphite,Graphite,"Built-in T-Joint, T-ANCHOR",10 mm longer,,,Gray / Yellow,,ARC7-PL
+ARCSABER 11 PRO,STIFF,"HM Graphite, POCKETING BOOSTER","HM Graphite, SUPER HMG,  ULTRA PE FIBER","NEW Built-in T-Joint, T-ANCHOR",10 mm longer,,,Grayish Pearl,Japan,ARC11-P
+ARCSABER 11 TOUR,STIFF,"HM Graphite, POCKETING BOOSTER","HM Graphite, SUPER HMG","Built-in T-Joint, T-ANCHOR",10 mm longer,,,Grayish Pearl,,ARC11-T
+ARCSABER 11 PLAY,Medium,Graphite,Graphite,,10 mm longer,,,Grayish Pearl,,ARC11-PL
+NANOFLARE 700,Medium,"HM Graphite, M40X, SUPER HMG",HM Graphite,NEW Built-in T-Joint,10 mm longer,,,"Magenta, Cyan",Japan,NF-700
+NANOFLARE 370 SPEED,STIFF,"HM Graphite, Nanocell NEO, EX-HMG",HM Graphite,,10 mm longer,,,Blue,,NF-370SP
+NANOFLARE 270 SPEED,Medium,"HM Graphite, Nanocell NEO, SUPER HMG",HM Graphite,Built-in T-Joint,10 mm longer,,,Purple,,NF-270SP
+NANOFLARE 170 LIGHT,Hi-Flex,"Graphite, Nanocell NEO, HM Graphite",Graphite,Built-in T-Joint,10 mm longer,,,"Black / Orange, Black / Blue",,NF-170LT
+NANOFLARE 70,Hi-Flex,"HM Graphite, M40X, SUPER HMG, VDM",HM Graphite,NEW Built-in T-Joint,10 mm longer,,,Coral Pink,Japan,NF-70
+NANOFLARE 555,STIFF,"HM Graphite, Nanocell NEO, EX-HMG, Solid Titanium",HM Graphite,Built-in T-Joint,10 mm longer,,,Matte White,,NF-555
+NANOFLARE 500,Medium,"HM Graphite, Nanocell NEO, EX-HMG",HM Graphite,Built-in T-Joint,10 mm longer,,,Matte Black,,NF-500
+NANOFLARE 001 ABILITY,Hi-Flex,Graphite,Graphite,,10 mm longer,,,Flash Red,,NF-001A
+NANOFLARE 001 CLEAR,Hi-Flex,Graphite,Graphite,,10 mm longer,,,Cyan,,NF-001C
+NANOFLARE 001 FEEL,Hi-Flex,Graphite,Graphite,,10 mm longer,,,Green,,NF-001F
+NANOFLARE E13,,Aluminum,Graphite,,,,,"Blue / Red, Turquoise / Yellow",,NF-E13
+DUORA Z-STRIKE,Extra Stiff,"HM Graphite, NANOMETRIC DR, Hyper-MG","HM Graphite, NANOMETRIC, EX-HMG","NEW Built-in T-Joint, T-ANCHOR",10 mm longer,,,Black / White,Japan,DUO-ZS
+NANORAY GlanZ,Hi-Flex,"HM Graphite, REXIL FIBER, NANOMETRIC","HM Graphite, NANOMETRIC, X-FULLERENE",NEW Built-in T-Joint,10 mm longer,,,Navy / Turquoise,Japan,NR-GZ
+ISOMETRIC TR 1,Medium,Graphite,Graphite,,10 mm longer,,,Blue,,ISO-TR1
+ISOMETRIC TR 0,Medium,Graphite,Graphite,,10 mm longer,,,Green,,ISO-TR0
+ISOMETRIC LITE 3,Medium,Graphite,Graphite,,10 mm longer,,,"Red, Yellow, Cyan",,ISOL3
+MUSCLE POWER 8 LT,,Aluminum,"Graphite, Nylon",,,,,Orange,,MP8LT
+MUSCLE POWER 5 LT,,Aluminum,Steel,,,,,White / Turquoise,,MP5LT
+MUSCLE POWER 2,,Aluminum,Steel,,,,,"White / Red , White / Yellow",,MP2
+MUSCLE POWER 1,,Aluminum,Steel,,,,,"White / Black , White / Red",,MP1
+B 7000 MDM,,Aluminum,Steel,,,,,"Red, Cyan",,B7000MDM
+B 4000,,Aluminum,Steel,,,,,"Mint, Corn Yellow",,B4000
+NANOFLARE JUNIOR,Hi-Flex,"Graphite, Nanocell NEO, HM Graphite",Graphite,Built-in T-Joint,,,,Cyan,,NF-JR
+MUSCLE POWER 2 JUNIOR,,Aluminum,Steel,,21 in.,,,White / Lime Yellow,,MP2JR
