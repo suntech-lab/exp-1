@@ -16,17 +16,17 @@ winScreen = pygame.display.set_mode(SCREEN_DIMENSIONS, 0, 32)
 pygame.display.set_caption("Hello, Alien World!")
 FPSspeed = pygame.time.Clock()
 imgBGImage = 'space.jpg'
-BG = pygame.image.load('C:/Users/annah/OneDrive/Desktop/Programming 11/UFO' + imgBGImage).convert()
+BG = pygame.image.load('C:/Users/Eric/Desktop/FunnyPrograms/exp-1/smd_dude/annaspacegame/' + imgBGImage).convert()
 pygame.mixer.pre_init(44100, -16, 2, 2048)
 
 
 class MyShip():
 	def __init__(self):
-		self.image = pygame.image.load('C:/Users/annah/OneDrive/Desktop/Programming 11/UFO' + 'Player.png').convert_alpha()
+		self.image = pygame.image.load('C:/Users/Eric/Desktop/FunnyPrograms/exp-1/smd_dude/annaspacegame/' + 'Player.png').convert_alpha()
 		self.x = 557 # start player in approximate middle of x axis
 		self.y = 600 # start player near the bottom of window
 		self.xDirection = 0
-		self.laser = pygame.mixer.Sound('C:/Users/annah/OneDrive/Desktop/Programming 11/UFO' + 'blaster.wav') 
+		self.laser = pygame.mixer.Sound('C:/Users/Eric/Desktop/FunnyPrograms/exp-1/smd_dude/annaspacegame/' + 'blaster.wav') 
 		
 		# Step 1: add this variable to your class
 		# down = no shield
@@ -72,8 +72,26 @@ class MyShip():
 			pygame.draw.circle(winScreen, color=(173, 216, 230), center=((self.x + 45), (self.y + 71.5)), radius=70)
 
 		
+class Alien():
+    def __init__(self):
+        self.image = pygame.image.load('C:/Users/Eric/Desktop/FunnyPrograms/exp-1/smd_dude/annaspacegame/' + 'alien.png').convert_alpha()
+        self.x = 50
+        self.y = 50
+        self.xDirection = 4  # speed and direction of horizontal movement
+        self.yDirection = 20  # distance to move down when changing direction
+
+    def update(self):
+        self.x += self.xDirection
+        if self.x > 910 or self.x < 0:  # hit the right or left wall
+            self.xDirection *= -1  # change direction
+            self.y += self.yDirection  # move down
+
+    def draw(self):
+        winScreen.blit(self.image, (self.x, self.y))
+
 	
 Player = MyShip()
+Coolguy = Alien()
 
 RunGame = True
 while RunGame==True:
@@ -110,11 +128,13 @@ while RunGame==True:
 #~-~-~-~-~-~-~-~-~-~-~-~-~-UPDATES~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-	
 	
 	Player.update()
-	Player.collision()
+	Player.collision() 
+	Coolguy.update()
 	
 #~-~-~-~-~-~-~-~-~-~-~-~-~-DRAWING~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-	
 	winScreen.blit(BG, (0,0))
 	Player.draw()	
+	Coolguy.draw()
 	pygame.display.update()
 	FPSspeed.tick(60) # this limits our game speed to 32 fps
 	
