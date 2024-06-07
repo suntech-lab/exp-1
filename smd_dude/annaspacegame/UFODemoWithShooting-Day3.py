@@ -22,6 +22,8 @@ pygame.mixer.pre_init(44100, -16, 2, 2048)
 
 class MyShip():
 	def __init__(self):
+		# pre: initialises everything with self, assigns objects to variables
+		# post: everything is initialised
 		self.image = pygame.image.load('C:/Users/annah/OneDrive/Desktop/Programming 11/UFO' + 'Player.png').convert_alpha()
 		self.x = 557 # start player in approximate middle of x axis
 		self.y = 600 # start player near the bottom of window
@@ -36,12 +38,13 @@ class MyShip():
 
 	
 	def update(self):
-		# our xDirection variable will contain either a - or a + value
-		# if it is a - value, adding a - value moves us to the left
-		# if it is a + value, adding a + value moves us to the right
+	# pre: produce speed by adding the xdirection variable to the x coordinate of the UFO
+	# post: the UFO moves because the x changed
 		self.x += self.xDirection
 			
 	def collision(self):
+		# pre: makes sure that the UFO doesnt go out of bounds by bouncing it away
+		# post: the UFO moves back whenever it touches a wall
 		# yesterday's collision stuff
 		# why do you think we use < and > instead of == kinds of checks?
 		'''
@@ -62,6 +65,8 @@ class MyShip():
 			self.xDirection = 0
 			
 	def draw(self):
+		# pre: draws the ship and shield with blit method
+		# post: the ship and shield is drawn
 		# pretty straight forward, draw the ship to the screen
 		winScreen.blit(self.image, (self.x, self.y))
 		# Step 3: add the code here to draw a circle around our ship
@@ -91,8 +96,8 @@ class Alien():
 
 	
 Player = MyShip()
-Coolguy = Alien()
-print(Coolguy.image.get_rect())
+SigmaAlienGyattRizzSkibidiToiletMewingEdging = Alien()
+print(SigmaAlienGyattRizzSkibidiToiletMewingEdging.image.get_rect())
 
 RunGame = True
 while RunGame==True:
@@ -130,12 +135,12 @@ while RunGame==True:
 	
 	Player.update()
 	Player.collision() 
-	Coolguy.update()
+	SigmaAlienGyattRizzSkibidiToiletMewingEdging.update()
 	
 #~-~-~-~-~-~-~-~-~-~-~-~-~-DRAWING~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-	
 	winScreen.blit(BG, (0,0))
 	Player.draw()	
-	Coolguy.draw()
+	SigmaAlienGyattRizzSkibidiToiletMewingEdging.draw()
 	pygame.display.update()
 	FPSspeed.tick(60) # this limits our game speed to 32 fps
 	
