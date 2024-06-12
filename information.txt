@@ -18,8 +18,13 @@ call of the night
 
 READING
 
+<<<<<<< HEAD
 the guy she was interested in wasnt a guy at all 52
 
+=======
+the guy i liked wasnt a guy at all
+ajin 17
+>>>>>>> 68fc8db78d34d6c79592a1c242116326c40bbad6
 
 =============================================================================================================================
 

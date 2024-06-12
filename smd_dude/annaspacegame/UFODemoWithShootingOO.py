@@ -33,35 +33,47 @@ pygame.mixer.pre_init(44100, -16, 2, 2048)
 
 
 class MyShip():
-	def __init__(self):
 
+	
+	def __init__(self):
+	# pre: initialises everything with self, assigns objects to variables
+	# post: everything is initialised
 		self.image = pygame.image.load('C:/Users/annah/OneDrive/Desktop/Programming 11/UFO' + 'Player.png').convert_alpha()
 		self.x = 557 # start player in approximate middle of x axis
 		self.y = 600 # start player near the bottom of window
 		self.xDirection = 0
 		self.laser = pygame.mixer.Sound('C:/Users/annah/OneDrive/Desktop/Programming 11/UFO' + 'blaster.wav') 
+	
 
+	
 	def update(self):
+	# pre: produce speed by adding the xdirection variable to the x coordinate of the UFO
+	# post: the UFO moves because the x changed
 		self.x += self.xDirection
+	
 			
+	
 	def collision(self):
-		
+	# pre: makes sure that the UFO doesnt go out of bounds by bouncing it away
+	# post: the UFO moves back whenever it touches a wall
 		if self.x < 0:
 			self.xDirection *= -1
 			self.xDirection = 0
 		elif self.x > 934:
 			self.xDirection *= -1
 			self.xDirection = 0
+	
 		
+	
 	def draw(self):
-		# pretty straight forward, draw the ship to the screen
+	# pre: draws the ship with blit method
+	# post: the ship is drawn
 		winScreen.blit(self.image, (self.x, self.y))
+	
 		
 
 	
 Player = MyShip()
-
-print(Player.image.get_rect())
 
 RunGame = True
 while RunGame==True:
