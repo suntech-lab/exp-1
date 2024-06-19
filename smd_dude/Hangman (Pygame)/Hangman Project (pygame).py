@@ -25,20 +25,19 @@ INTROSCREENSOUND = pygame.mixer.Sound(DIRECTORY + "start.wav")
 BGMUSIC = pygame.mixer.Sound(DIRECTORY + "BgMusic.wav")
 BGMUSIC.play()
 
-#Classes go here
 class SplashScreen:
     INTROSCREENSOUND.play()
     def __init__(self):
         #pre:
-        #post: Initializes splash screen
+        #post: initialises splash screen attributes
 
         self.image = pygame.image.load(DIRECTORY + "Introscreen.jpg")
         self.startTime = pygame.time.get_ticks()
         self.show = True
     
     def draw(self):
-        #pre:
-        #post: draws splashscreen
+        #pre: self attributes
+        #post: blits the screen on to the screen
 
         if pygame.time.get_ticks() - self.startTime <= SPLASHSCREENMILLISECONDS:
             SCREEN.blit(self.image, (0, 0))
@@ -48,49 +47,49 @@ class SplashScreen:
 class InstructionsScreen:
     def __init__(self):
         #pre:
-        #post:Initializes the InstructionsScreen
+        #post: initialises the instructions screen attributes
 
         self.image = pygame.image.load(DIRECTORY + "Instructions.jpg")
         self.show = False
 
     def draw(self):
-        #pre:
-        #post:Draws the InstructionsScreen
+        #pre: self attributes
+        #post: blits the screen on to the screen
 
         SCREEN.blit(self.image, (0, 0))
 
 class LoseScreen:
     def __init__(self):
         #pre:
-        #post: Initializes the LoseScreen
+        #post: initialises the lose screen attributes
 
         self.image = pygame.image.load(DIRECTORY + "Loser.jpg")
         self.show = False
 
     def draw(self):
-        #pre:
-        #post: Draws the LoseScreen image on the screen
+        #pre: self attributes
+        #post: blits the screen on to the screen
 
         SCREEN.blit(self.image, (0, 0))
 
 class WinScreen:
     def __init__(self):
         #pre:
-        #post: Initializes the WinScreen with necessary attributes
+        #post: initialises the win screen attributes
 
         self.image = pygame.image.load(DIRECTORY + "Winner.jpg")
         self.show = False
 
     def draw(self):
-        #pre:
-        #post: Draws the WinScreen image
+        #pre: self attributes
+        #post: blits the screen on to the screen
 
         SCREEN.blit(self.image, (0, 0))
 
 class Word:
     def __init__(self, level):
-        #pre: needs a string representing the difficulty level
-        #post: Chooses a word from the dictionary 
+        #pre: the difficulty level string from seleclevel
+        #post: finds a word in the dictionary 
 
         Words = open(DIRECTORY + "Dictionary.txt").read().split("\n")
         self.SecretWord = random.choice(Words)
@@ -119,11 +118,11 @@ class Word:
         self.rect = (self.x, self.y, len(self.SecretWord) * 30, 30)
         self.font = pygame.font.SysFont("arial", 30)
 
-        #print(self.SecretWord) note: include this to test
+        #print(self.SecretWord) #testing
 
     def RevealWord(self):
-        #pre:
-        #post: Updates the Reveal attribute with revealed letters
+        #pre: self attributes
+        #post: changes the reveal blanks with the letters
 
         self.Reveal = ""
         for letter in self.SecretWord:
@@ -136,8 +135,8 @@ class Word:
         return self.Reveal
 
     def Draw(self):
-        #pre:
-        #post: Draws the word on the screen
+        #pre: self attributes
+        #post: blits the letters on the screen
 
         position = 0
         for character in self.Reveal:
@@ -157,7 +156,7 @@ class Word:
 class Hangingman:
     def __init__(self):
         #pre:
-        #post: Initializes the Hangingman object
+        #post: initialises the hangingman attributes
 
         self.x = 0
         self.y = 0
@@ -166,20 +165,16 @@ class Hangingman:
             self.image.append(pygame.image.load(DIRECTORY + 'img'+str(x)+".jpg")) #image name is like imgx.png
 
     def draw(self, errors):
-        #pre: needs an integer representing the number of errors
-        #post: Draws the hanging man image on the screen
+        #pre: self attributes, the number of errors made in integers
+        #post: blits the unfortunate person onto the screen
 
         SCREEN.blit(self.image[errors], (self.x, self.y))
 
     
 class Button:
     def __init__(self, x, y, width, height, text):
-        #pre:x: An integer representing the x-coordinate of the button.
-        #- y: An integer representing the y-coordinate of the button.
-        #- width: An integer representing the width of the button.
-        #- height: An integer representing the height of the button.
-        #- text: A string representing the text on the button.
-        #post: Initializes the Button with necessary attributes
+        #pre: position, dimensions, and content
+        #post: inits the button attributes
 
         self.rect = pygame.Rect(x, y, width, height)
         self.text = text
@@ -187,8 +182,8 @@ class Button:
         self.clicked = False
 
     def draw(self):
-        #pre:
-        #post: Draws the button on the screen with the specified text
+        #pre: self attributes
+        #post: blits onto the screen with the content of button
     
         pygame.draw.rect(SCREEN, WHITE, self.rect)
         pygame.draw.rect(SCREEN, BLACK, self.rect, 2)
@@ -198,17 +193,16 @@ class Button:
         SCREEN.blit(TextSurface, TextRect)
         
     def isClicked(self, mousePos):
-        #pre: mousePos: A tuple representing the mouse position (x, y)
-        #post: Returns True if the button is clicked, False otherwise
+        #pre: self attributes, coordinate of cursor
+        #post: returns bool value to signal if button is pressed or not
 
         return self.rect.collidepoint(mousePos)
 
 
 class LetterButton:
     def __init__(self, letter, position):
-        #pre: letter: A string representing the letter on the button.
-        #- position: An integer representing the position of the button.
-        #post: Initializes the LetterButton
+        #pre: the letter on the button as a string, the position of the button
+        #post: inits letterbutton attributes
 
         self.GreenInk = (0, 200, 0)
         self.BlackInk = (0, 0, 0)
@@ -234,8 +228,8 @@ class LetterButton:
         self.clicked = False  # Add a clicked attribute to track whether the button is clicked
 
     def draw(self):
-        #pre:
-        #post: Draws the letter button on the screen based on its state (clicked or not clicked)
+        #pre: self attributes
+        #post: blits button on screen depending on pos of cursor
 
         if not self.clicked and self.show:
             if self.mouse:
@@ -246,8 +240,8 @@ class LetterButton:
             SCREEN.blit(self.letter, (self.x + 8, self.y))
 
     def mouseover(self):
-        #pre:
-        #post:
+        #pre: self attributes
+        #post: detects if the mouse is on the button (letter)
 
         x, y = pygame.mouse.get_pos()
         if self.x <= x < self.x + self.size and self.y < y < self.y + self.size:
@@ -257,8 +251,8 @@ class LetterButton:
             self.mouse = False
 
     def click(self):
-        #pre:
-        #post: Returns the letter if the button is clicked and updates it
+        #pre: self attributes
+        #post: updates the button and then returns letter on the button
 
         global Alphabet
         x, y = pygame.mouse.get_pos()
@@ -276,21 +270,21 @@ class LetterButton:
 class ScoreBoard:
     def __init__(self):
         #pre:
-        #post: Initializes the ScoreBoard
+        #post: inits scoreboard attributes
 
         self.Score = 0
         self.BlackRect = None
         self.font = pygame.font.SysFont('Times New Roman', 50)
     
     def IncreaseScore(self):
-        #pre:
-        #post: Increases the score attribute by 1
+        #pre: self attributes
+        #post: adds one to score
 
         self.Score +=1
     
     def draw(self, screen):
-        #pre: Needs the Pygame screen object
-        #post: Draws the score on the screen within a black rectangle
+        #pre: self attributes, the pygame screen object
+        #post: blits score onto black rectangle
 
         ScoreText = self.font.render(f"SCORE: {self.Score}", True, RED)
         RectWidth = ScoreText.get_width() + 20
@@ -303,8 +297,8 @@ class ScoreBoard:
 
 
 def SelectLevel(): #i kinda removed it from the main game loop or else it would be too long
-    #pre: Handles the selection of the game difficulty level
-    #post: Returns the selected difficulty level or None if no level is chosen
+    #pre:
+    #post: looks at which button is clicked and changes the difficulty to it
 
     if event.type == pygame.MOUSEBUTTONDOWN:
         mousePos = pygame.mouse.get_pos()
@@ -332,8 +326,6 @@ def SelectLevel(): #i kinda removed it from the main game loop or else it would 
             easyButton.clicked = False
             mediumButton.clicked = False
             return "Hard"
-
-    return None  # Return None if no level is chosen
 
 
 #-----------Setup Stuffs-------------------
