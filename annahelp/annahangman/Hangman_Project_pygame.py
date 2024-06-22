@@ -18,22 +18,19 @@ SPLASHSCREENMILLISECONDS = 3000
 pygame.font.init()
 
 # Sounds
-DIRECTORY = 'C:/Users/Eric/Desktop/FunnyPrograms/exp-1/smd_dude/annahangman/' # Need to get rid of all the directories or blake is gonna beat my ass
-LOSESOUND = pygame.mixer.Sound(DIRECTORY + "losesound_laugh.wav")
-WINSOUND = pygame.mixer.Sound(DIRECTORY + "winsound_oh.wav")
-INCORRECTSOUND = pygame.mixer.Sound(DIRECTORY + "wrongsound_bones.wav")
-CORRECTSOUND = pygame.mixer.Sound(DIRECTORY + "correctsound_spring.wav")
-INTROSCREENMUSIC = pygame.mixer.Sound(DIRECTORY + "intromusic.wav")
-BACKGROUNDMUSIC = pygame.mixer.Sound(DIRECTORY + "backgroundmusic.wav")
+LOSESOUND = pygame.mixer.Sound("losesound_laugh.wav")
+WINSOUND = pygame.mixer.Sound("winsound_oh.wav")
+INCORRECTSOUND = pygame.mixer.Sound("wrongsound_bones.wav")
+CORRECTSOUND = pygame.mixer.Sound("correctsound_spring.wav")
+BACKGROUNDMUSIC = pygame.mixer.Sound("backgroundmusic.wav")
 BACKGROUNDMUSIC.play()
 
 # Splashscreens
 class SplashScreen:
-    INTROSCREENMUSIC.play()
     def __init__(self):
         #pre:
         #post: initialises splash screen attributes
-        self.image = pygame.image.load(DIRECTORY + "introscreen.jpg")
+        self.image = pygame.image.load("introscreen.jpg")
         self.image = pygame.transform.scale(self.image, (SCREENWIDTH, SCREENHEIGHT))
         self.startTime = pygame.time.get_ticks()
         self.show = True
@@ -50,7 +47,7 @@ class InstructionsScreen:
     def __init__(self):
         #pre:
         #post: initialises the instructions screen attributes
-        self.image = pygame.image.load(DIRECTORY + "instructionsscreen.jpg")
+        self.image = pygame.image.load("instructionsscreen.jpg")
         self.image = pygame.transform.scale(self.image, (SCREENWIDTH, SCREENHEIGHT))
         self.show = False
 
@@ -63,7 +60,7 @@ class LosingScreen:
     def __init__(self):
         #pre:
         #post: initialises the lose screen attributes
-        self.image = pygame.image.load(DIRECTORY + "losescreen.jpg")
+        self.image = pygame.image.load("losescreen.jpg")
         self.image = pygame.transform.scale(self.image, (SCREENWIDTH, SCREENHEIGHT))
         self.show = False
 
@@ -76,7 +73,7 @@ class WinScreen:
     def __init__(self):
         #pre:
         #post: initialises the win screen attributes
-        self.image = pygame.image.load(DIRECTORY + "winscreen.jpg")
+        self.image = pygame.image.load("winscreen.jpg")
         self.image = pygame.transform.scale(self.image, (SCREENWIDTH, SCREENHEIGHT))
         self.show = False
 
@@ -90,7 +87,7 @@ class Word:
     def __init__(self, level):
         #pre: the difficulty level string from seleclevel
         #post: finds a word in the dictionary 
-        Words = open(DIRECTORY + "Dictionary.txt").read().split("\n")
+        Words = open("Dictionary.txt").read().split("\n")
         self.SecretWord = random.choice(Words)
         self.iLow = 0
         self.iHigh = 0
@@ -154,7 +151,7 @@ class Hangingman:
         
         self.imagelist = []
         for x in range(0, 10):
-            self.image = pygame.image.load(DIRECTORY + 'guess'+ str(x) +".jpg")
+            self.image = pygame.image.load('guess'+ str(x) +".jpg")
             self.image = pygame.transform.scale(self.image, (SCREENWIDTH, SCREENHEIGHT))
             self.imagelist.append(self.image)
 
