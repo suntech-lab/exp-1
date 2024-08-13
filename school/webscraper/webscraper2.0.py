@@ -24,7 +24,7 @@ badminton = [
 ]
 fieldnames = {
     'shoes': ['Name', 'Description', 'Color(s)', 'Surface', 'Upper', 'Midsole', 'Outsole', 'Size', 'Material', 'Item Code'],
-    'racquets': ['Name', 'Flex', 'Frame', 'Shaft', 'Joint', 'Length', 'Weight/Grip', 'Stringing advice', 'Color(s)', 'Made In', 'Item Code'],
+    'racquets': ['Name', 'Flex', 'Frame', 'Shaft', 'Joint', 'Length', 'Weight / Grip', 'Stringing Advice', 'Color(s)', 'Made In', 'Item Code'],
     'apparel': ['Name', 'Color(s)', 'Material(s)', 'Item Code'],
     'strings': ['Name', 'Description', 'Color(s)', 'Gauge', 'Length', 'Core', 'Outer', 'Coating', 'Made In', 'Item Code'],
     'bags': ['Name', 'Description', 'Color(s)', 'Size (LxWxH)', 'Item Code'],
@@ -70,8 +70,12 @@ def getattributes(itemattributes, attributedict):
     for element in itemattributes:
         attributename = element.find('td').get('data-th')
         attribute = element.find('td', class_='col data')
+        '''
+        if attributename == 'Weight / Grip' or 'Stringing Advice':
+            attribute = element.find('td', class_='col data')
+        '''
         if attribute:
-            attributeinfo = str(attribute.text.strip()).replace("～", "-").replace("、", ",").replace("™", "TM")
+            attributeinfo = str(attribute.text.strip()).replace("～", "-").replace("、", ",").replace("™", "TM").replace('<br>', ' ').replace('<br/>', ' ')
             print(f'{attributename}: {attributeinfo}')
             attributedict[attributename] = attributeinfo
     with open(filename, 'a', newline='') as file:
