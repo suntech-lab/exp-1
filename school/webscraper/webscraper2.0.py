@@ -55,13 +55,13 @@ with open(filename, 'w', newline='') as file:
 
 def gettitle(itemname, attributedict):
     if itemname:
-        name = str(itemname.text.strip()).replace("’", "'")
+        name = str(itemname.text.strip()).replace("～", "-").replace("、", ",").replace("™", "TM").replace("’", "'")
         print(name)
         attributedict['Name'] = name
 
 def getdescription(itemdescription, attributedict):
     if itemdescription:
-        description = str(itemdescription.text.strip()).replace("’", "'")
+        description = str(itemdescription.text.strip()).replace("～", "-").replace("、", ",").replace("™", "TM").replace("’", "'")
         description = ' '.join(description.split())
         print(description)
         attributedict['Description'] = description
@@ -75,7 +75,7 @@ def getattributes(itemattributes, attributedict):
             attribute = element.find('td', class_='col data')
         '''
         if attribute:
-            attributeinfo = str(attribute.text.strip()).replace("～", "-").replace("、", ",").replace("™", "TM").replace('<br>', ' ').replace('<br/>', ' ')
+            attributeinfo = str(attribute.text.strip()).replace("～", "-").replace("、", ",").replace("™", "TM").replace("’", "'")
             print(f'{attributename}: {attributeinfo}')
             attributedict[attributename] = attributeinfo
     with open(filename, 'a', newline='') as file:
