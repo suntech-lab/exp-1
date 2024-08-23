@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head>
+    <title>python loops</title>
+</head>
+
+<body>
+    <a href="index.html">back to the main page</a>
+    <h2><code>for</code> loop:</h2>
+    <p>the <code>for</code> loop iterates(goes through each element) in a range.</p>
+    <p>for example, if i had a list like <code>[1,2,3]</code> called <code>list</code> and wrote something like:</p>
+    <xmp>
+for element in list:
+    print('doodoo')
+    </xmp>
+    <p>it would print <code>'doodoo'</code> three times like so:</p>
+    <xmp>
+doodoo
+doodoo
+doodoo
+    </xmp>
+    <p>here, the <code>for</code> loop is looking at each element one-by-one in <code>list</code>, and printing <code>'doodoo'</code> one time for every element that it scans/detects/sees. the for loop assigns each element(object/thing) in the list a variable called <code>element</code> as i specified in the loop and does what it needs to do with it before continuing to iterate.</p>
+
+    <h2><code>while</code> loop:</h2>
+    <p>the <code>while</code> loop keeps looping until a condition is reached.</p>
+    <p>for example, if i assigned <code>1</code> to a variable called <code>x</code> and wrote something like:</p>
+    <xmp>
+while x <= 3:
+    print('yeah')
+    x += 1
+    </xmp>
+    <p>it would print <code>'yeah'</code> three times like so:</p>
+    <xmp>
+yeah
+yeah
+yeah
+    </xmp>
+    <p>here, the <code>while</code> loop is checking to see if <code>x</code> is smaller than or equal to 3. if it is, it prints <code>'yeah'</code> and then adds one to the value of <code>x</code>. once the loop eventually assigns <code>x</code> to a value larger than three, it stops.</p>
+    
+    <h2>nested loop:</h2>
+    <p>a nested loop is just a loop in another loop, like:</p>
+    <xmp>
+while *whatever condition*:
+    for *whatever condition*:
+        *something happens*
+    </xmp>
+    <p>here, the <code>for</code> loop is the nested loop.</p>
+</body>
