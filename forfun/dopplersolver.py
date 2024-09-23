@@ -24,8 +24,9 @@ def sourcedirectiondecision():
         if choice == str(op['direction']):
             op['func']()
             break
-    else:
-        print('invalid input, please put in a valid input.')
+        else:
+            print('invalid input, please put in a valid input.')
+            exit()
 
 sourcedirectiondecision()
 
