@@ -28,6 +28,7 @@ public class Javadayone {//file has the same name as the public class
         System.out.println(floater);
         System.out.println(letter);
         System.out.println(text);
+        System.out.println(bool);
         
         System.out.println(text + string);
         String firstname = "Eric ";
@@ -78,6 +79,8 @@ public class Javadayone {//file has the same name as the public class
         System.out.println(testLong2);
         System.out.println(testFloat);
         System.out.println(testDouble);
+        System.out.println(testBool);
+        System.out.println(testChar);
 
         //primitive numbers can be divided into two types
         //integers and decimals
@@ -105,10 +108,69 @@ public class Javadayone {//file has the same name as the public class
         System.out.println(narrowInt);
         System.out.println(wideInt);
 
-        float wideFloat = 9.0f;
+        float wideFloat = 9.9f;
         int narrowFloat = (int)wideFloat;
         System.out.println(wideFloat);
         System.out.println(narrowFloat);
+
+        //operators
+        int increment = 5;
+        ++increment;
+        System.out.println(increment);
+        --increment;
+        System.out.println(increment);
+
+        //&&
+        //^and
+        //||
+        //^or
+        //!
+        //^not
+
+        //Strings
+        String blah = "onE two THREE four";
+        System.out.println(blah.length());
+        System.out.println(blah.toUpperCase());
+        System.out.println(blah.toLowerCase());
+        System.out.println(blah.indexOf("THREE"));
+
+        //concatenation same as python
+        //new concat() method
+
+        String blahah = "Jon";
+        String gah = "Garfield";
+        String fargield = blahah.concat(gah);
+        System.out.println(fargield);
+
+        //math
+        System.out.println(Math.max(100, 2));
+        System.out.println(Math.min(100, 2));
+        System.out.println(Math.sqrt(100));
+        System.out.println(Math.abs(-10000000));
+        System.out.println(Math.random());
+
+        //boolean same as python
+
+        //if, else, if...else, SWITCH loops
+
+        double randomNumber = Math.random();
+
+        if (randomNumber <= 0.3)
+        {
+            System.out.println("give me lasagna");
+        } else if (randomNumber > 0.6) {
+            System.out.println("im not ungry");
+        } else {
+            System.out.println("i need sugar");
+        }
+
+        //ternary operator
+
+        //variable = definition;
+        //variable = (condition) ? "potential value": "potential value";
+
+        String result = (randomNumber < 0.2) ? "randomNumber is less than 0.2": "randomNumber is larger than 0.2";
+        System.out.println(result);
         }
 }
 /*
