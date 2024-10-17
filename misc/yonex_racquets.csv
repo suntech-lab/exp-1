@@ -1,4 +1,8 @@
 Name,Flex,Frame,Shaft,Joint,Length,Weight / Grip,Stringing Advice,Color(s),Made In,Item Code
+NANOFLARE 700 PLAY,Hi-Flex,Graphite,Graphite,,10 mm longer,4U5,4U: 20 - 28 lbs,"Midnight Purple, Silver / Sky Blue",China,2NF700PL
+NANOFLARE 700 GAME,Hi-Flex,"Graphite, Nanocell NEO, HM Graphite, SERVO FILTER",Graphite,Built-in T-Joint,10 mm longer,"4U5,6",4U: 20 - 28 lbs,"Midnight Purple, Silver / Sky Blue",Taiwan,2NF-700G
+NANOFLARE 700 PRO,Medium,"HM Graphite, NANOMETRIC DR, M40X, EX-HYPER MG","HM Graphite, SUPER HMG,  ULTRA PE FIBER",NEW Built-in T-Joint,10 mm longer,"4U5,6/5U5,6",5U: 19 - 27 lbs4U: 20 - 28 lbs,Midnight Purple,Japan,2NF-700P
+NANOFLARE 700 TOUR,Medium,"HM Graphite, Nanocell NEO, SUPER HMG, SERVO FILTER","HM Graphite, SERVO FILTER",Built-in T-Joint,10 mm longer,"4U5,6/5U5,6",5U: 19 - 27 lbs4U: 20 - 28 lbs,"Midnight Purple, Silver / Sky Blue",Taiwan,2NF-700T
 ASTROX 88 S PRO,STIFF,"HM Graphite, CFR, Tungsten","HM Graphite, 2G-NamdTM FLEX FORCE, Ultra PE Fiber",NEW Built-in T-Joint,5 mm longer,"4U (Avg. 83g) G5,63U (Avg. 88g) G4,5,6",4U: 20 - 28 lbs3U: 21 - 29 lbs,Silver / Black,Japan,3AX88S-P
 ASTROX 88 S TOUR,STIFF,"HM Graphite, CSR, Tungsten","HM Graphite, 2G-NamdTM FLEX FORCE",Built-in T-Joint,5 mm longer,"4U (Avg. 83g) G5,63U (Avg. 88g) G4,5,6",4U: 20 - 28 lbs3U: 21 - 29 lbs,Silver / Black,,3AX88S-T
 ASTROX 88 S GAME,Medium,"HM Graphite, CSR, Tungsten","HM Graphite, 2G-NANOMESH NEO",Built-in T-Joint,5 mm longer,"4U (Avg. 83g) G5,6",4U: 20 - 28 lbs,Silver / Black,,3AX88S-G
@@ -6,7 +10,7 @@ ASTROX 88 D PRO,STIFF,"HM Graphite, CFR, Tungsten","HM Graphite, 2G-NamdTM FLEX 
 ASTROX 88 D TOUR,STIFF,"HM Graphite, CSR, Tungsten","HM Graphite, 2G-NamdTM FLEX FORCE",Built-in T-Joint,10 mm longer,"4U (Avg. 83g) G5,63U (Avg. 88g) G4,5,6",4U: 20 - 28 lbs3U: 21 - 29 lbs,Black / Silver,,3AX88D-T
 ASTROX 88 D GAME,Medium,"HM Graphite, CSR, Tungsten","HM Graphite, 2G-NANOMESH NEO",Built-in T-Joint,10 mm longer,"4U (Avg. 83g) G5,6",4U: 20 - 28 lbs,Black / Silver,,3AX88D-G
 ASTROX 88 PLAY,Medium,Graphite,Graphite,,10 mm longer,4U (Avg. 83g) G5,4U: 20 - 28 lbs,Black / Silver,,3AX88-PL
-NANOFLARE NEXTAGE,Medium,"HT Graphite, Nanocell NEO",Graphite,Built-in T-Joint,10 mm longer,4U (Avg. 83g) G5,20 - 28 lbs,White / Gray,,NF-NX
+NANOFLARE NEXTAGE,Medium,"HT Graphite, Nanocell NEO",Graphite,Built-in T-Joint,10 mm longer,4U (Avg. 83g) G5,20 - 28 lbs,White / Gray,,NF-NT
 ASTROX 3 DG HF,Hi-Flex,"HM Graphite, Tungsten","HM Graphite, NANOMESH NEO",Built-in T-Joint,10 mm longer,"4U (Avg. 83g) G4,5",4U: 20 - 35 lbs,BLUE/WHITE,,AX3DG HF
 ASTROX 3 DG ST,STIFF,"HM Graphite, Tungsten","HM Graphite, NANOMESH NEO",Built-in T-Joint,10 mm longer,"4U (Avg. 83g) G4,5",4U: 20 - 35 lbs,BLACK/BLUE,,AX3DG ST
 NANOFLARE 800 PRO,STIFF,"HM Graphite, M40X, SUPER HMG, Copper","HM Graphite, SUPER HMG,  ULTRA PE FIBER","New Built-in T-Joint, Graphite",10 mm longer,"4U (Avg. 83g) G5,6,3U(Avg. 88g) G4,5,6","4U: 20 - 28 lbs,3U: 21 - 29 lbs",Deep Green,,NF-800P
@@ -50,10 +54,6 @@ ARCSABER 7 PLAY,Hi-Flex,Graphite,Graphite,"Built-in T-Joint, T-ANCHOR",10 mm lon
 ARCSABER 11 PRO,STIFF,"HM Graphite, POCKETING BOOSTER","HM Graphite, SUPER HMG,  ULTRA PE FIBER","NEW Built-in T-Joint, T-ANCHOR",10 mm longer,"4U (Avg. 83g) G5, 63U (Avg. 88g) G4, 5, 6",4U: 19 - 27 lbs3U: 20 - 28 lbs,Grayish Pearl,Japan,ARC11-P
 ARCSABER 11 TOUR,STIFF,"HM Graphite, POCKETING BOOSTER","HM Graphite, SUPER HMG","Built-in T-Joint, T-ANCHOR",10 mm longer,"4U (Avg. 83g) G5, 63U (Avg. 88g) G4, 5, 6",4U: 19 - 27 lbs3U: 20 - 28 lbs,Grayish Pearl,,ARC11-T
 ARCSABER 11 PLAY,Medium,Graphite,Graphite,,10 mm longer,"4U (Avg.83g) G5, 6",4U: 19 - 27 lbs,Grayish Pearl,,ARC11-PL
-NANOFLARE 700,Medium,"HM Graphite, M40X, SUPER HMG",HM Graphite,NEW Built-in T-Joint,10 mm longer,"5U (Avg. 78g) G5, 64U (Avg. 83g) G4, 5, 6",5U: 19 - 27 lbs4U: 20 - 28 lbs,"Magenta, Cyan",Japan,NF-700
-NANOFLARE 370 SPEED,STIFF,"HM Graphite, Nanocell NEO, EX-HMG",HM Graphite,,10 mm longer,"5U (Avg. 78g) G4, 54U (Avg. 83g) G4, 5",5U: 19 - 26 lbs4U: 20 - 27 lbs,Blue,,NF-370SP
-NANOFLARE 270 SPEED,Medium,"HM Graphite, Nanocell NEO, SUPER HMG",HM Graphite,Built-in T-Joint,10 mm longer,"5U (Avg. 78g) G4, 54U (Avg. 83g) G4, 5",5U: 19 - 26 lbs4U: 20 - 27 lbs,Purple,,NF-270SP
-NANOFLARE 170 LIGHT,Hi-Flex,"Graphite, Nanocell NEO, HM Graphite",Graphite,Built-in T-Joint,10 mm longer,"5U (Avg. 78g) G4, 5, 6",5U: 19 - 26 lbs,"Black / Orange, Black / Blue",,NF-170LT
 NANOFLARE 70,Hi-Flex,"HM Graphite, M40X, SUPER HMG, VDM",HM Graphite,NEW Built-in T-Joint,10 mm longer,"4U (Avg. 83g) G5,6",4U 18-26lbs,Coral Pink,Japan,NF-70
 NANOFLARE 555,STIFF,"HM Graphite, Nanocell NEO, EX-HMG, Solid Titanium",HM Graphite,Built-in T-Joint,10 mm longer,"4U (Avg. 83g) G4, 5",4U: 20 - 28 lbs,Matte White,,NF-555
 NANOFLARE 500,Medium,"HM Graphite, Nanocell NEO, EX-HMG",HM Graphite,Built-in T-Joint,10 mm longer,"5U (Avg. 78g) G4, 54U (Avg. 83g) G4, 5",5U: 19 - 26 lbs4U: 20 - 27 lbs,Matte Black,,NF-500

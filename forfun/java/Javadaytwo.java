@@ -69,7 +69,7 @@ public class Javadaytwo {
 
         //boolean same as python
 
-        //if, else, if...else, SWITCH loops
+        //if, else, if...else
 
         double randomNumber = Math.random();
 

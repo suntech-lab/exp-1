@@ -47,7 +47,7 @@ else:
     exit()
 
 
-filename = f'C:/Users/Eric/Desktop/FunnyPrograms/exp-1/misc/yonex_{choice}.csv'
+filename = f'C:/Users/ericl/Documents/lab/misc/yonex_{choice}.csv'
 
 with open(filename, 'w', newline='') as file:
     writer = csv.DictWriter(file, fieldnames=fieldnames[choice])
