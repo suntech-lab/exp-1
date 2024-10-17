@@ -1,5 +1,5 @@
 //this is a comment, two forward slashes
-public class Javadayone {//file has the same name as the public class
+public class Javaday1 {//file has the same name as the public class
     public static void main(String[] args) {
         System.out.println("Hello World");
         System.out.println("curly brackets signify the start and end of one block of code");

@@ -1,4 +1,4 @@
-public class Javadaytwo {
+public class Javaday2 {
     public static void main(String[] args) {
         //primitive numbers can be divided into two types
         //integers and decimals
