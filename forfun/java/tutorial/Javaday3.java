@@ -1,3 +1,4 @@
+package tutorial;
 public class Javaday3 {
     public static void main(String[] args) {
         
@@ -102,4 +103,4 @@ public class Javaday3 {
     }
 }
 
-//Completed W3Schools Java tutorial Java Switch-Arrays
+//Completed W3Schools Java Tutorial Java Switch-Arrays

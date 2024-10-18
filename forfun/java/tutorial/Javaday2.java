@@ -1,3 +1,4 @@
+package tutorial;
 public class Javaday2 {
     public static void main(String[] args) {
         //primitive numbers can be divided into two types
@@ -93,4 +94,4 @@ public class Javaday2 {
     }
     }
 
-//Completed W3Schools Java tutorial Java Data Types-If...Else
+//Completed W3Schools Java Tutorial Java Data Types-If...Else

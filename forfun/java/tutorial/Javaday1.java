@@ -1,3 +1,4 @@
+package tutorial;
 //this is a comment, two forward slashes
 public class Javaday1 {//file has the same name as the public class
     public static void main(String[] args) {
@@ -91,5 +92,5 @@ public class Javaday1 {//file has the same name as the public class
  */
 
  /*
-  * Completed W3Schools Java tutorial Java Home-Variables
+  * Completed W3Schools Java Tutorial Java Home-Variables
   */
