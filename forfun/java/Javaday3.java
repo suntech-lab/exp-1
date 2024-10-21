@@ -1,4 +1,4 @@
-package tutorial;
+package forfun.java;
 public class Javaday3 {
     public static void main(String[] args) {
         
