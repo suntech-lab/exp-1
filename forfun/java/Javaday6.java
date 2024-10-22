@@ -1,13 +1,29 @@
 package forfun.java;
 public class Javaday6{
-    int x;
+    int johnage;
+    int jerryage;
+    final int jobage = 89;
 
     public Javaday6(){
-        x = 5;
+        johnage = 0;
+        jerryage = 0;
+    }
+        
+    public void johnagesetter(int x){
+        johnage = x;
     }
 
-    public static void main(String[] args){
-        Javaday6 myObj = new Javaday6();
-        System.out.println(myObj.x);
+    public void jerryagesetter(int x){
+        jerryage = x;
+    }
+
+    static void dookie(){
+        System.out.println("dookiemonster");
+    }
+
+    public void dooks(){
+        System.out.println("dook");
     }
 }
+
+//Completed W3Schools Java Tutorial Java Constructors
