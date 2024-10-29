@@ -3,6 +3,8 @@ package forfun.java;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JPanel;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class Javaday7panel extends JPanel implements Runnable{
     final int originalTileSize = 16;
@@ -30,7 +32,20 @@ public class Javaday7panel extends JPanel implements Runnable{
     @Override
     public void run() {
         while (gameThread != null) {
-            System.out.println("The game loop is running");
+            //update
+            update();
+            //draw
+            repaint();
         }
+    }
+
+    public void update() {
+
+    }
+
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        Graphics2D g2 = (Graphics2D)g;
     }
 }
