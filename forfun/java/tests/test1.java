@@ -1,3 +1,5 @@
+package forfun.java.tests;
+
 import java.util.Scanner;
 
 public class test1 {
@@ -9,6 +11,7 @@ public class test1 {
         String userName = myObj.nextLine();
         System.out.println("Your username has been confirmed as" + userName);
 
+        myObj.close();
     }
 
 }
