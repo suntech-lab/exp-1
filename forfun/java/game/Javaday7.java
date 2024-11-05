@@ -25,6 +25,4 @@ public class Javaday7 {
 
 }
 
-//https://www.youtube.com/watch?v=VpH33Uw-_0E
-
-//6:07
+//https://www.youtube.com/watch?v=wT9uNGzMEM4
