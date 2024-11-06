@@ -3,7 +3,7 @@ package forfun.java.game.main;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JPanel;
-
+import entity.Player;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
@@ -22,6 +22,7 @@ public class Javaday7panel extends JPanel implements Runnable{
 
     Javaday7keyhandler keyH = new Javaday7keyhandler();
     Thread gameThread;
+    Player player = new Player(this.keyH);
 
     int playerX = 100;
     int playerY = 100;
