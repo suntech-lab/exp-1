@@ -1,4 +1,4 @@
-package forfun.java.game;
+package forfun.java.game.main;
 
 import javax.swing.JFrame;
 
