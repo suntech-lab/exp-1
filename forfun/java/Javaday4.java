@@ -1,4 +1,4 @@
-package forfun.java;
+package java;
 public class Javaday4 {
     static void myMethod(){
         System.out.println("myMethod has been executed.");

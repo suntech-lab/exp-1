@@ -1,17 +1,18 @@
-package forfun.java.game.main;
+package java.game.main;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JPanel;
-import entity.Player;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.game.entity.Javaday7player;
 
 public class Javaday7panel extends JPanel implements Runnable{
     final int originalTileSize = 16;
     final int scale = 3;
 
-    final int tileSize = originalTileSize*scale;
+    public final int tileSize = originalTileSize*scale;
     final int maxScreenCol = 16;
     final int maxScreenRow = 12;
     final int screenWidth = tileSize*maxScreenCol;
@@ -22,7 +23,7 @@ public class Javaday7panel extends JPanel implements Runnable{
 
     Javaday7keyhandler keyH = new Javaday7keyhandler();
     Thread gameThread;
-    Player player = new Player(this.keyH);
+    Javaday7player player = new Javaday7player(this,keyH);
 
     int playerX = 100;
     int playerY = 100;
@@ -78,18 +79,7 @@ public class Javaday7panel extends JPanel implements Runnable{
     }
 
     public void update() {
-        if (keyH.upPressed == true) {
-            playerY -= playerSpeed;
-        }
-        if (keyH.downPressed == true) {
-            playerY += playerSpeed;
-        }
-        if (keyH.leftPressed == true) {
-            playerX -= playerSpeed;
-        }
-         if (keyH.rightPressed == true) {
-            playerX += playerSpeed;
-        }
+        player.update();
     }
 
     public void paintComponent(Graphics g) {
@@ -97,9 +87,7 @@ public class Javaday7panel extends JPanel implements Runnable{
 
         Graphics2D g2 = (Graphics2D)g;
 
-        g2.setColor(Color.white);
-
-        g2.fillRect(playerX, playerY, tileSize, tileSize);
+        player.draw(g2);
 
         g2.dispose();
     }

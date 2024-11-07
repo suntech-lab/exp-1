@@ -1,4 +1,4 @@
-package forfun.java.tests;
+package java.tests;
 
 import java.util.Scanner;
 

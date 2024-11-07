@@ -1,4 +1,4 @@
-package forfun.java.game.main;
+package java.game.main;
 
 import javax.swing.JFrame;
 
@@ -26,3 +26,4 @@ public class Javaday7 {
 }
 
 //https://www.youtube.com/watch?v=wT9uNGzMEM4
+//12:19

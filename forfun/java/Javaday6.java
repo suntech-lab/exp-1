@@ -1,4 +1,4 @@
-package forfun.java;
+package java;
 public class Javaday6{
     int johnage;
     int jerryage;

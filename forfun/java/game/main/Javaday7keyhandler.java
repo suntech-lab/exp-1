@@ -1,4 +1,4 @@
-package forfun.java.game.main;
+package java.game.main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

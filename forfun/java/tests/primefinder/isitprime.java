@@ -1,4 +1,4 @@
-package forfun.java.tests.primefinder;
+package java.tests.primefinder;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package forfun.java.tests.primefinder;
+package java.tests.primefinder;
 
 public class isitprimeoperate {
     public static void main(String[] args) {
