@@ -49,7 +49,7 @@ def partition(A, smaller, larger):
     return right
 
 def visualize():
-    N = 1000
+    N = 200
     A = list(range(1, N + 1)) 
     random.shuffle(A) 
 
