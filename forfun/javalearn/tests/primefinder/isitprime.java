@@ -1,4 +1,4 @@
-package java.tests.primefinder;
+package javalearn.tests.primefinder;
 
 import java.util.Scanner;
 

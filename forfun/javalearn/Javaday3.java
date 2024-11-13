@@ -1,4 +1,4 @@
-package java;
+package javalearn;
 public class Javaday3 {
     public static void main(String[] args) {
         

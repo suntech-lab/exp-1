@@ -1,4 +1,4 @@
-package java.game.main;
+package javalearn.game.main;
 
 import javax.swing.JFrame;
 
@@ -9,7 +9,7 @@ public class Javaday7 {
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
-        window.setTitle("2d game");
+        window.setTitle("cool game");
 
         Javaday7panel javaday7panel = new Javaday7panel();
         window.add(javaday7panel);
@@ -24,6 +24,4 @@ public class Javaday7 {
     }
 
 }
-
-//https://www.youtube.com/watch?v=wT9uNGzMEM4
-//12:19
+//https://www.youtube.com/watch?v=Ny_YHoTYcxo

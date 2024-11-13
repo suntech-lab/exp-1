@@ -1,4 +1,4 @@
-package java;
+package javalearn;
 public class Javaday2 {
     public static void main(String[] args) {
         //primitive numbers can be divided into two types

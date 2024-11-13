@@ -1,4 +1,4 @@
-package java.tests;
+package javalearn.tests;
 
 import java.util.Scanner;
 

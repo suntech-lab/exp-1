@@ -1,4 +1,4 @@
-package java;
+package javalearn;
 
 public class Javaday5operate {
     public static void main(String[] args){

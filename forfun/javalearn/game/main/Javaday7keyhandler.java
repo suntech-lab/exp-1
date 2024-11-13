@@ -1,4 +1,4 @@
-package java.game.main;
+package javalearn.game.main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

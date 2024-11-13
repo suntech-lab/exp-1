@@ -1,4 +1,4 @@
-package java;
+package javalearn;
 public class Javaday5{
     int x = 5;
     String doog = "doog";

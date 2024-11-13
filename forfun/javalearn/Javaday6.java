@@ -1,4 +1,4 @@
-package java;
+package javalearn;
 public class Javaday6{
     int johnage;
     int jerryage;

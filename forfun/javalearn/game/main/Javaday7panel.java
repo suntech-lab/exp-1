@@ -1,4 +1,4 @@
-package java.game.main;
+package javalearn.game.main;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -6,28 +6,26 @@ import javax.swing.JPanel;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.game.entity.Javaday7player;
+import javalearn.game.entity.Javaday7player;
+import javalearn.game.tile.TileManager;
 
 public class Javaday7panel extends JPanel implements Runnable{
     final int originalTileSize = 16;
     final int scale = 3;
 
     public final int tileSize = originalTileSize*scale;
-    final int maxScreenCol = 16;
-    final int maxScreenRow = 12;
-    final int screenWidth = tileSize*maxScreenCol;
-    final int screenHeight = tileSize*maxScreenRow;
+    public final int maxScreenCol = 16;
+    public final int maxScreenRow = 12;
+    public final int screenWidth = tileSize*maxScreenCol;
+    public final int screenHeight = tileSize*maxScreenRow;
 
     //FPS
     int FPS = 60;
 
+    TileManager tileM = new TileManager(this);
     Javaday7keyhandler keyH = new Javaday7keyhandler();
     Thread gameThread;
     Javaday7player player = new Javaday7player(this,keyH);
-
-    int playerX = 100;
-    int playerY = 100;
-    int playerSpeed = 10;
 
     public Javaday7panel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -87,6 +85,7 @@ public class Javaday7panel extends JPanel implements Runnable{
 
         Graphics2D g2 = (Graphics2D)g;
 
+        tileM.draw(g2);
         player.draw(g2);
 
         g2.dispose();
