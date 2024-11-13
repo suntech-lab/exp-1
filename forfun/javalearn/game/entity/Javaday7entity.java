@@ -1,5 +1,6 @@
 package javalearn.game.entity;
 
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 public class Javaday7entity {
@@ -11,4 +12,6 @@ public class Javaday7entity {
 
     public int spriteCounter = 0;
     public int spriteNum = 1;
+    public Rectangle solidArea;
+    public boolean collisionOn = false;
 }

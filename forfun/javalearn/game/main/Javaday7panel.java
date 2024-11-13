@@ -19,13 +19,19 @@ public class Javaday7panel extends JPanel implements Runnable{
     public final int screenWidth = tileSize*maxScreenCol;
     public final int screenHeight = tileSize*maxScreenRow;
 
+    public final int maxWorldCol = 50;
+    public final int maxWorldRow = 50;
+    public final int worldWidth = tileSize * maxWorldCol;
+    public final int worldHeight = tileSize * maxWorldRow;
+
     //FPS
     int FPS = 60;
 
     TileManager tileM = new TileManager(this);
     Javaday7keyhandler keyH = new Javaday7keyhandler();
     Thread gameThread;
-    Javaday7player player = new Javaday7player(this,keyH);
+    public Javaday7collisionchecker cChecker = new Javaday7collisionchecker(this);
+    public Javaday7player player = new Javaday7player(this,keyH);
 
     public Javaday7panel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
