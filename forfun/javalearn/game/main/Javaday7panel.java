@@ -103,8 +103,8 @@ public class Javaday7panel extends JPanel implements Runnable{
         tileM.draw(g2);
 
         //object
-        for(int i = 0; i < obj.length; i++){
-            if(obj[i] != null){
+        for(int i = 0; i < obj.length; i++) {
+            if(obj[i] != null) {
                 obj[i].draw(g2, this);
             }
         }
