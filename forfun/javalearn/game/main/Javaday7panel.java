@@ -3,10 +3,10 @@ package javalearn.game.main;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JPanel;
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javalearn.game.entity.Javaday7player;
+import javalearn.game.object.SuperObject;
 import javalearn.game.tile.TileManager;
 
 public class Javaday7panel extends JPanel implements Runnable{
@@ -31,7 +31,10 @@ public class Javaday7panel extends JPanel implements Runnable{
     Javaday7keyhandler keyH = new Javaday7keyhandler();
     Thread gameThread;
     public Javaday7collisionchecker cChecker = new Javaday7collisionchecker(this);
+    public AssetSetter aSetter = new AssetSetter(this);
     public Javaday7player player = new Javaday7player(this,keyH);
+    public SuperObject obj[] = new SuperObject[10];
+
 
     public Javaday7panel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -39,7 +42,11 @@ public class Javaday7panel extends JPanel implements Runnable{
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
-        
+
+    }
+
+    public void setupGame() {
+        aSetter.setObject();
     }
 
     public void startGameThread() {
@@ -91,7 +98,18 @@ public class Javaday7panel extends JPanel implements Runnable{
 
         Graphics2D g2 = (Graphics2D)g;
 
+
+        //tile
         tileM.draw(g2);
+
+        //object
+        for(int i = 0; i < obj.length; i++){
+            if(obj[i] != null){
+                obj[i].draw(g2, this);
+            }
+        }
+
+        //player
         player.draw(g2);
 
         g2.dispose();

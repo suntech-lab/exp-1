@@ -19,9 +19,11 @@ public class Javaday7 {
         window.setLocationRelativeTo(null);
         window.setVisible(true);
 
+        javaday7panel.setupGame();
         javaday7panel.startGameThread();
 
     }
 
 }
-//https://www.youtube.com/watch?v=Ny_YHoTYcxo
+//https://www.youtube.com/watch?v=xYtXz34IJdY&t=528s
+//9:56
