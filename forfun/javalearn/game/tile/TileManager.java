@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 import javalearn.game.main.Javaday7panel;
 
 public class TileManager {
-    Javaday7panel gp;
+    Javaday7panel gp;   
     public Tile[] tile;
     public int mapTileNum[][];
 
@@ -38,9 +38,6 @@ public class TileManager {
             tile[2] = new Tile();
             tile[2].image = ImageIO.read(new File("C://Users/ericl/Documents/lab/forfun/javalearn/game/tiles/wall.png"));
             tile[2].collision = true;
-
-            tile[3] = new Tile();
-            tile[3].image = ImageIO.read(new File("C://Users/ericl/Documents/lab/forfun/javalearn/game/tiles/door.png"));
 
             tile[4] = new Tile();
             tile[4].image = ImageIO.read(new File("C://Users/ericl/Documents/lab/forfun/javalearn/game/tiles/path.png"));

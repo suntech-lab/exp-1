@@ -33,7 +33,7 @@ public class Javaday7panel extends JPanel implements Runnable{
     public Javaday7collisionchecker cChecker = new Javaday7collisionchecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
     public Javaday7player player = new Javaday7player(this,keyH);
-    public SuperObject obj[] = new SuperObject[10];
+    public SuperObject obj[] = new SuperObject[15];
 
 
     public Javaday7panel() {
@@ -97,7 +97,6 @@ public class Javaday7panel extends JPanel implements Runnable{
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D)g;
-
 
         //tile
         tileM.draw(g2);
