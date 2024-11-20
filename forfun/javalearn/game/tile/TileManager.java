@@ -64,7 +64,7 @@ public class TileManager {
     public void loadMap() {
         try {
 
-            File is = new File("C://Users/ericl/Documents/lab/forfun/javalearn/game/maps/map02.txt");
+            File is = new File("C://Users/ericl/Documents/lab/forfun/javalearn/game/maps/map01.txt");
             if (is != null) {
                 System.out.println("success");
             }
