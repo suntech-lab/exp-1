@@ -26,6 +26,8 @@ public class Javaday7player extends Javaday7entity{
         solidArea = new Rectangle();
         solidArea.x = 4;
         solidArea.y = 16;
+        solidAreaDefaultX = solidArea.x = 4;
+        solidAreaDefaultY = solidArea.y = 16;
         solidArea.width = 32;
         solidArea.height = 32;
 
@@ -33,8 +35,8 @@ public class Javaday7player extends Javaday7entity{
         getPlayerImage();
     }
     public void setDefaultValues() {
-        worldX = gp.tileSize * 23;
-        worldY = gp.tileSize * 21;
+        worldX = gp.tileSize * 10;
+        worldY = gp.tileSize * 5;
         speed = 3;
         direction = "down";
     }

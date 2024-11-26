@@ -1,8 +1,8 @@
 package javalearn.game.object;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-
 import javalearn.game.main.Javaday7panel;
 
 public class SuperObject {
@@ -11,6 +11,7 @@ public class SuperObject {
     public String name;
     public boolean collision = false;
     public int worldX, worldY;
+    public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
 
     public void draw(Graphics2D g2, Javaday7panel gp) {
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
