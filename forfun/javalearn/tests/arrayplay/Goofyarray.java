@@ -1,5 +1,3 @@
-package javalearn.tests.arrayplay;
-
 import java.util.Arrays;
 
 public class Goofyarray {
