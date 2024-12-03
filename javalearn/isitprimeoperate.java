@@ -1,4 +1,4 @@
-package javalearn.tests.primefinder;
+package javalearn;
 
 public class isitprimeoperate {
     public static void main(String[] args) {

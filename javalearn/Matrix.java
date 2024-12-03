@@ -1,3 +1,4 @@
+package javalearn;
 public class Matrix {
     public static void main(String[] args){
         String[] names = {"anna", "billy", "eric", "matthew", "nicolas", "sarah"};

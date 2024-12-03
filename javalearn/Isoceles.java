@@ -1,3 +1,4 @@
+package javalearn;
 public class Isoceles {
     public static void main(String[] args){
         int numberofrows = 10;

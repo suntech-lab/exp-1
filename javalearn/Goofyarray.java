@@ -1,3 +1,4 @@
+package javalearn;
 import java.util.Arrays;
 
 public class Goofyarray {
