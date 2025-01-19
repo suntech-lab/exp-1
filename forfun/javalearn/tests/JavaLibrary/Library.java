@@ -34,6 +34,7 @@ public class Library {
             int copies = Integer.valueOf(scanner.nextLine());
             Book book = new Book(title, author, copies);
             collection.add(book);
+            System.out.println(title + " Added.");
         }catch (Exception e){
            System.out.println("Invalid input for copies. Sorry!");
            return;
@@ -71,7 +72,11 @@ public class Library {
         System.out.println("What is the title of the book you want to find?: ");
         String title = scanner.nextLine();
         Book book = getBook(title);
-        System.out.println(book);
+        if(book != null){
+            System.out.println(book);
+        }else{
+            System.out.println("Book not found.");
+        }
     }
 
     public void displayBooks(){
