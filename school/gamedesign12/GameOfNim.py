@@ -2,6 +2,10 @@
 Game Of Nim GameDesign12
 Eric Liu
 30/01/2025
+
+NOTE: the game is designed to be played in a terminal that is
+very tall so you can see the whole pile of stones, otherwise,
+the terminal may not be fully cleared before the next turn.
 '''
 
 import random
@@ -189,7 +193,7 @@ Take turns taking 1-3 stones from the pile
 The player who takes the last stone loses! Good luck!
 (make sure your terminal really tall so you can see the whole pile)
 """)
-stonesLeft = random.randint(18, 26)
+stonesLeft = random.randint(22, 32)
 pileOfStones = []
 for i in range(stonesLeft):
     pileOfStones.append(['       ', '[STONE]', '       '])
