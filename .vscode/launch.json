@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Javaday7",
+      "request": "launch",
+      "mainClass": "forfun.javalearn.game.main.Javaday7",
+      "projectName": "lab_bce94d6d"
+    },
+    {
+      "type": "java",
       "name": "Main",
       "request": "launch",
       "mainClass": "forfun.javalearn.tests.JavaLibrary.Main",

@@ -155,25 +155,25 @@ def DetectLoss(board):
     #if there are no similar elements adjacent to each other, column or row, the game ends and the
     #player loses
 
-    accumulator = 0
+    possibleMerges = 0
 
     for row in board:
         for num in range(3):
             if row[num] == row[num + 1]:
-                accumulator += 1
+                possibleMerges += 1
     
     tBoardReference = TransposeBoard(board)
 
     for row in tBoardReference:
         for num in range(3):
             if row[num] == row[num + 1]:
-                accumulator += 1
+                possibleMerges += 1
 
     for row in board:
         if 0 in row:
             return
     
-    if accumulator == 0:
+    if possibleMerges == 0:
         print(Fore.RED + """
                                     __ 
  __ __            __               |  |
@@ -209,7 +209,7 @@ The goal of the game is to add similar numbers together, starting from 2, until 
 However, if no new moves can be made, you lose.
 """ + Fore.LIGHTYELLOW_EX + 
 """
-If you would like a simple AI to play, input "ai" or "AI" as a move when the game asks you to enter a movement.
+If you would like a simple AI to play, input "ai" (not case sensitive) as a move when the game asks you to enter a movement.
 """
 + Fore.LIGHTGREEN_EX + 
 """
@@ -241,16 +241,16 @@ def BestMove(board):
         's': MergeDown([row[:] for row in board])
     }
 
-    best_move = None
-    max_empty = -1
+    bestMove = None
+    maxEmpty = -1
 
     for move, new_board in moves.items(): #.items() puts the key-value pairs in the moves dictionary in tuples in a list
         empty_cells = sum(row.count(0) for row in new_board)
-        if new_board != board and empty_cells > max_empty:
-            max_empty = empty_cells
-            best_move = move
+        if new_board != board and empty_cells > maxEmpty:
+            maxEmpty = empty_cells
+            bestMove = move
 
-    return best_move if best_move else 'a' #if theres no best move then go left
+    return bestMove if bestMove else 'a' #if theres no best move then go left
 
 def MainGameLoop(board, AIMode = False):
 
@@ -263,11 +263,11 @@ def MainGameLoop(board, AIMode = False):
         DetectLoss(board)
         DetectWin(board)
 
-        old_board = [row[:] for row in board]
+        oldBoard = [row[:] for row in board]
 
         if AIMode:
             movement = BestMove(board)
-            time.sleep(0.5)
+            time.sleep(0.2) #sleep so that the screen doesnt flash too much
             print(f'AI chose: {movement.upper()}')
         else:
             movement = input("Enter a movement (WASD): ").lower()
@@ -286,7 +286,7 @@ def MainGameLoop(board, AIMode = False):
         os.system('cls')
         PrintTitle()
 
-        if board != old_board:
+        if board != oldBoard:
             AddRandomTwo(board)
 
 Introduction()
