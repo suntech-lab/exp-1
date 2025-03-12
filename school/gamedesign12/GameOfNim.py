@@ -13,17 +13,17 @@ import time
 import os
 
 #functions
-def prRed(redText):
-    print("\033[91m {}\033[00m" .format(redText))
+def prRed(sRedText):
+    print("\033[91m {}\033[00m" .format(sRedText))
 
-def prGreen(greenText):
-    print("\033[92m {}\033[00m" .format(greenText))
+def prGreen(sGreenText):
+    print("\033[92m {}\033[00m" .format(sGreenText))
 
-def prPurple(purpleText):
-    print("\033[95m {}\033[00m" .format(purpleText))
+def prPurple(sPurpleText):
+    print("\033[95m {}\033[00m" .format(sPurpleText))
 
-def prHighlightText(hightlightedText):
-    print("\033[41m {}\033[0m" .format(hightlightedText))
+def prHighlightText(sHightlightedText):
+    print("\033[41m {}\033[0m" .format(sHightlightedText))
 
 
 def turnOrder():
@@ -31,9 +31,9 @@ def turnOrder():
     #Pre: needs the random module and needs to be placed at the start of the game
     #Post: determines the turn order of the game
 
-    playerOrComputer = random.randint(0, 1)
+    iPlayerOrComputer = random.randint(0, 1)
 
-    if playerOrComputer == 1:
+    if iPlayerOrComputer == 1:
         print('You go first!')
         
         return True
@@ -44,7 +44,7 @@ def turnOrder():
         return False
 
 
-def makeComputerTakeStones(stonesLeft, pileOfStones, stonesTaken):
+def makeComputerTakeStones(iStonesLeft, lPileOfStones, iStonesTaken):
 
     #Pre: needs to know how many stones are left, the pile of stones,
     #how many stones have been taken, and the time module
@@ -52,75 +52,75 @@ def makeComputerTakeStones(stonesLeft, pileOfStones, stonesTaken):
 
     time.sleep(3)
 
-    stonesComputerWillTake = (stonesLeft % 4) - 1
+    iStonesComputerWillTake = (iStonesLeft % 4) - 1
 
     #this will make the computer take three stones only if it's not on the winning track
-    if stonesComputerWillTake <= 0:
-        stonesComputerWillTake = 3
+    if iStonesComputerWillTake <= 0:
+        iStonesComputerWillTake = 3
 
-    stonesLeft -= stonesComputerWillTake
+    iStonesLeft -= iStonesComputerWillTake
 
-    while stonesComputerWillTake > 0:
-        pileOfStones[stonesTaken] = ['[STONE]', '       ', '       ']
+    while iStonesComputerWillTake > 0:
+        lPileOfStones[iStonesTaken] = ['[STONE]', '       ', '       ']
         
-        stonesTaken += 1
+        iStonesTaken += 1
         
-        stonesComputerWillTake -= 1
+        iStonesComputerWillTake -= 1
 
-    return pileOfStones, stonesLeft, stonesTaken
+    return lPileOfStones, iStonesLeft, iStonesTaken
 
 
-def stoneTakingPrompt(stonesLeft, pileOfStones, stonesTaken):
+def stoneTakingPrompt(iStonesLeft, lPileOfStones, iStonesTaken):
 
     #Pre: needs to know how many stones are left, the pile of stones, and how many stones have been taken
     #Post: will ask the user to take stones from the pile
 
-    stonesUserTakes = 0
+    iStonesUserTakes = 0
     
     try:
-        stonesUserTakes = int(input('How many stones do you want to take? (1-3 stones only): '))
+        iStonesUserTakes = int(input('How many stones do you want to take? (1-3 stones only): '))
         
-        if int(stonesUserTakes) < 1 or int(stonesUserTakes) > 3:
+        if int(iStonesUserTakes) < 1 or int(iStonesUserTakes) > 3:
             print("Your integer is out of range. Try again.")
         
-            stoneTakingPrompt(stonesLeft, pileOfStones, stonesTaken)
+            stoneTakingPrompt(iStonesLeft, lPileOfStones, iStonesTaken)
 
     except:
         print("Don't put any letters or special characters. Try again.")
         
-        stoneTakingPrompt(stonesLeft, pileOfStones, stonesTaken)
+        stoneTakingPrompt(iStonesLeft, lPileOfStones, iStonesTaken)
 
-    stonesLeft -= stonesUserTakes
+    iStonesLeft -= iStonesUserTakes
 
-    while stonesUserTakes > 0:
-        pileOfStones[stonesTaken] = ['       ', '       ', '[STONE]']
+    while iStonesUserTakes > 0:
+        lPileOfStones[iStonesTaken] = ['       ', '       ', '[STONE]']
         
-        stonesTaken += 1
+        iStonesTaken += 1
         
-        stonesUserTakes -= 1
+        iStonesUserTakes -= 1
 
-    return pileOfStones, stonesLeft, stonesTaken
+    return lPileOfStones, iStonesLeft, iStonesTaken
 
 
-def showPile(pileOfStones, stonesLeft):
+def showPile(lPileOfStones, iStonesLeft):
 
     #Pre: needs to have the pile of stones and know how many stones are left
     #Post: will display the pile of stones and how many stones are left
 
-    for i in pileOfStones:
+    for i in lPileOfStones:
         print(i[0], i[1], i[2])
 
-    prRed(f'{stonesLeft} stone(s) left.')
+    prRed(f'{iStonesLeft} stone(s) left.')
 
 
-def determineWinner(stonesLeft, pileOfStones):
+def determineWinner(iStonesLeft, lPileOfStones):
 
     #Pre: needs to know whose turn it is, how many stones are left, and the pile of stones
     #Post: will determine the winner of the game
 
-    if stonesLeft <= 1:
-        if playerTurn: #this will print a message depending on whose turn it is when the game ends
-            showPile(pileOfStones, stonesLeft)
+    if iStonesLeft <= 1:
+        if bPlayerTurn: #this will print a message depending on whose turn it is when the game ends
+            showPile(lPileOfStones, iStonesLeft)
             
             prRed("""
      You take the last stone...
@@ -134,7 +134,7 @@ def determineWinner(stonesLeft, pileOfStones):
             exit()
         
         else:
-            showPile(pileOfStones, stonesLeft)
+            showPile(lPileOfStones, iStonesLeft)
             
             prGreen("""
    The computer takes the last stone...
@@ -153,12 +153,12 @@ def beginGame():
     #Pre: it doesn't need anything except being put at the initial start of the game
     #Post: will start the game if the player wants to play, otherwise exits the program
 
-    beginQuery = input('Would you like to play? (y/n): ')
+    sBeginQuery = input('Would you like to play? (y/n): ')
     
-    if beginQuery == 'y':
+    if sBeginQuery == 'y':
         return True
     
-    elif beginQuery == 'n':
+    elif sBeginQuery == 'n':
         print('Goodbye!')
         
         exit()
@@ -193,13 +193,13 @@ Take turns taking 1-3 stones from the pile
 The player who takes the last stone loses! Good luck!
 (make sure your terminal really tall so you can see the whole pile)
 """)
-stonesLeft = random.randint(22, 32)
-pileOfStones = []
-for i in range(stonesLeft):
-    pileOfStones.append(['       ', '[STONE]', '       '])
+iStonesLeft = random.randint(22, 32)
+lPileOfStones = []
+for i in range(iStonesLeft):
+    lPileOfStones.append(['       ', '[STONE]', '       '])
 
-stonesTaken = 0
-playerTurn = turnOrder()
+iStonesTaken = 0
+bPlayerTurn = turnOrder()
 beginGame()
 
 #main loop
@@ -209,17 +209,17 @@ while True:
 
     printTitle()
 
-    determineWinner(stonesLeft, pileOfStones)
+    determineWinner(iStonesLeft, lPileOfStones)
 
-    showPile(pileOfStones, stonesLeft)
+    showPile(lPileOfStones, iStonesLeft)
     
-    if not playerTurn:
+    if not bPlayerTurn:
         prHighlightText('The computer takes a stone or two... or three...')
 
-    if playerTurn:
-        pileOfStones, stonesLeft, stonesTaken = stoneTakingPrompt(stonesLeft, pileOfStones, stonesTaken)
+    if bPlayerTurn:
+        lPileOfStones, iStonesLeft, iStonesTaken = stoneTakingPrompt(iStonesLeft, lPileOfStones, iStonesTaken)
 
     else:
-        pileOfStones, stonesLeft, stonesTaken = makeComputerTakeStones(stonesLeft, pileOfStones, stonesTaken)
+        lPileOfStones, iStonesLeft, iStonesTaken = makeComputerTakeStones(iStonesLeft, lPileOfStones, iStonesTaken)
 
-    playerTurn = not playerTurn
+    bPlayerTurn = not bPlayerTurn

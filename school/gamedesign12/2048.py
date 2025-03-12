@@ -10,113 +10,113 @@ from colorama import Fore
 import time
 
 #create a 4x4 grid
-board = [[0, 0, 0, 0],
+lBoard = [[0, 0, 0, 0],
          [0, 0, 0, 0],
          [0, 0, 0, 0],
          [0, 0, 0, 0]]
 
 
-def AddRandomTwo(board):
+def AddRandomTwo(lBoard):
 
-    #pre: needs to know which cells on the board are empty
-    #post: fills an empty cell with a two or a four
+    #pre: needs to know which cells on the lBoard are empty
+    #post: fills an empty iCell with a two or a four
 
-    emptyCells = [(i, j) for i in range(4)for j in range(4) if board[i][j] == 0]
+    lEmptyCells = [(i, j) for i in range(4)for j in range(4) if lBoard[i][j] == 0]
     
-    if emptyCells:
-        i, j = random.choice(emptyCells)        
-        inject = random.randint(1,8) #2048 has a 1/8 chance of putting a four instead of a two
-        if inject < 8:
-            board[i][j] = 2
+    if lEmptyCells:
+        i, j = random.choice(lEmptyCells)        
+        iInject = random.randint(1,8) #2048 has a 1/8 chance of putting a four instead of a two
+        if iInject < 8:
+            lBoard[i][j] = 2
         else:
-            board[i][j] = 4
+            lBoard[i][j] = 4
 
-def FlipBoard(board):
+def FlipBoard(lBoard):
 
-    #pre: needs the board
-    #post: reverses every row in the board so that it is flipped about the y axis
+    #pre: needs the lBoard
+    #post: reverses every lRow in the lBoard so that it is flipped about the y axis
 
-    return[row[::-1] for row in board]
+    return[lRow[::-1] for lRow in lBoard]
 
-def TransposeBoard(board):
+def TransposeBoard(lBoard):
 
-    #pre: needs the board
-    #post: zips the board and puts it back into a list
+    #pre: needs the lBoard
+    #post: zips the lBoard and puts it back into a list
     #(zip reassigns every first element to every other first element, every second to every second,
     #and so on)
     #map uses the operator passed into the first position on every element in the argument passed in the second
 
-    return list(map(list, zip(*board)))
+    return list(map(list, zip(*lBoard)))
 
-def MergeRowLeft(row):
+def MergeRowLeft(lRow):
 
-    #pre: one row from the board, and it needs to have something in it
+    #pre: one lRow from the lBoard, and it needs to have something in it
     #post: puts all the non-empty units on the left,
-    #combines them, and moves them to the left again
+    #combines them, and dMoves them to the left again
 
-    for num in row:
-        if num == 0:
-            row.remove(num) #remove one zero from the row
-            row.append(0) #add a zero to the end
+    for iNum in lRow:
+        if iNum == 0:
+            lRow.remove(iNum) #remove one zero from the lRow
+            lRow.append(0) #add a zero to the end
         
     for i in range(3):
-        if row[i] == row[i + 1] and row[i] != 0:
-            row[i], row[i + 1] = row[i + 1], row[i]
-            row[i] *= 2
-            row[i + 1] = 0
+        if lRow[i] == lRow[i + 1] and lRow[i] != 0:
+            lRow[i], lRow[i + 1] = lRow[i + 1], lRow[i]
+            lRow[i] *= 2
+            lRow[i + 1] = 0
 
-    for num in row:
-        if num == 0:
-            row.remove(num)
-            row.append(0)
+    for iNum in lRow:
+        if iNum == 0:
+            lRow.remove(iNum)
+            lRow.append(0)
 
-    return row
+    return lRow
 
-def MergeLeft(board):
+def MergeLeft(lBoard):
 
-    #pre: the board
-    #post: merges every row in the board to the left
+    #pre: the lBoard
+    #post: merges every lRow in the lBoard to the left
 
-    for row in board:
-        MergeRowLeft(row)
-    return board
+    for lRow in lBoard:
+        MergeRowLeft(lRow)
+    return lBoard
 
-def MergeRight(board):
+def MergeRight(lBoard):
 
-    #pre: the board
-    #post: merges every row in the board to the right
+    #pre: the lBoard
+    #post: merges every lRow in the lBoard to the right
     #by flipping it, merging to the left, and flipping it again
     #this is because there is no need to remake an algorithm to
     #specifically merge it to the right
 
-    board = FlipBoard(board)
-    MergeLeft(board)
-    board = FlipBoard(board)
-    return board
+    lBoard = FlipBoard(lBoard)
+    MergeLeft(lBoard)
+    lBoard = FlipBoard(lBoard)
+    return lBoard
 
-def MergeUp(board):
+def MergeUp(lBoard):
 
-    #pre: the board
-    #post: merges every column in the board up
+    #pre: the lBoard
+    #post: merges every column in the lBoard up
     #by flipping it about it's diagonal/transposing it
 
-    board = TransposeBoard(board)
-    MergeLeft(board)
-    board = TransposeBoard(board)
-    return board
+    lBoard = TransposeBoard(lBoard)
+    MergeLeft(lBoard)
+    lBoard = TransposeBoard(lBoard)
+    return lBoard
 
-def MergeDown(board):
+def MergeDown(lBoard):
 
-    #pre: the board
-    #post: merges every column in the board down
+    #pre: the lBoard
+    #post: merges every column in the lBoard down
     #by flipping it about its y axis AND transposing it
 
-    board = TransposeBoard(board)
-    board = FlipBoard(board)
-    MergeLeft(board)
-    board = FlipBoard(board)
-    board = TransposeBoard(board)
-    return board
+    lBoard = TransposeBoard(lBoard)
+    lBoard = FlipBoard(lBoard)
+    MergeLeft(lBoard)
+    lBoard = FlipBoard(lBoard)
+    lBoard = TransposeBoard(lBoard)
+    return lBoard
 
 def PrintTitle():
 
@@ -130,15 +130,15 @@ def PrintTitle():
 |___|___| |_|___|
 """ + Fore.WHITE)
 
-def DetectWin(board):
+def DetectWin(lBoard):
 
-    #pre: the board
-    #post: detects whether there is a cell with 2048 inside, and prints
+    #pre: the lBoard
+    #post: detects whether there is a iCell with 2048 inside, and prints
     #"You Win!" in big letters and ends the game if there is
 
-    for row in board:
-        for num in row:
-            if num == 2048:
+    for lRow in lBoard:
+        for iNum in lRow:
+            if iNum == 2048:
                 print(Fore.GREEN + """
                               __ 
  __ __            _ _ _ _    |  |
@@ -148,32 +148,32 @@ def DetectWin(board):
 """ + Fore.WHITE)
                 exit()
                 
-def DetectLoss(board):
+def DetectLoss(lBoard):
 
-    #pre: the board
-    #post: detects if the elements in the board and the elements adjacent to them are similar or not
-    #if there are no similar elements adjacent to each other, column or row, the game ends and the
+    #pre: the lBoard
+    #post: detects if the elements in the lBoard and the elements adjacent to them are similar or not
+    #if there are no similar elements adjacent to each other, column or lRow, the game ends and the
     #player loses
 
-    possibleMerges = 0
+    iPossibleMerges = 0
 
-    for row in board:
-        for num in range(3):
-            if row[num] == row[num + 1]:
-                possibleMerges += 1
+    for lRow in lBoard:
+        for iNum in range(3):
+            if lRow[iNum] == lRow[iNum + 1]:
+                iPossibleMerges += 1
     
-    tBoardReference = TransposeBoard(board)
+    lBoardReference = TransposeBoard(lBoard)
 
-    for row in tBoardReference:
-        for num in range(3):
-            if row[num] == row[num + 1]:
-                possibleMerges += 1
+    for lRow in lBoardReference:
+        for iNum in range(3):
+            if lRow[iNum] == lRow[iNum + 1]:
+                iPossibleMerges += 1
 
-    for row in board:
-        if 0 in row:
+    for lRow in lBoard:
+        if 0 in lRow:
             return
     
-    if possibleMerges == 0:
+    if iPossibleMerges == 0:
         print(Fore.RED + """
                                     __ 
  __ __            __               |  |
@@ -184,15 +184,15 @@ def DetectLoss(board):
         exit()
 
 
-def PrintBoard(board):
+def PrintBoard(lBoard):
 
-    #pre: the board
-    #post: prints the board onto the terminal in a fancy way
+    #pre: the lBoard
+    #post: prints the lBoard onto the terminal in a fancy way
 
-    for row in board:
+    for lRow in lBoard:
         print('+------' * 4 + '+')
-        for cell in row:
-            print(f'| {cell if cell != 0 else "":4}', end=' ') #fit the number in the cell regardless of space
+        for iCell in lRow:
+            print(f'| {iCell if iCell != 0 else "":4}', end=' ') #fit the number in the cell regardless of space
         print('|')
     print('+------' * 4 + '+')
 
@@ -206,87 +206,87 @@ def Introduction():
 """
 Welcome to 2048!
 The goal of the game is to add similar numbers together, starting from 2, until you reach 2048.
-However, if no new moves can be made, you lose.
+However, if no new dMoves can be made, you lose.
 """ + Fore.LIGHTYELLOW_EX + 
 """
-If you would like a simple AI to play, input "ai" (not case sensitive) as a move when the game asks you to enter a movement.
+If you would like a simple AI to play, input "ai" (not case sensitive) as a sMove when the game asks you to enter a sMovement.
 """
 + Fore.LIGHTGREEN_EX + 
 """
 Good luck!
 """ + Fore.WHITE)
     
-    playGame = input('Would you like to play? (y/n): ')
+    sPlayGame = input('Would you like to play? (y/n): ')
 
-    if playGame == 'y':
+    if sPlayGame == 'y':
         os.system('cls')
         PrintTitle()
-        MainGameLoop(board)
-    elif playGame == 'n':
+        MainGameLoop(lBoard)
+    elif sPlayGame == 'n':
         print('Okay, goodbye.')
         exit()
     else:
         os.system('cls')
         Introduction()
 
-def BestMove(board):
+def BestMove(lBoard):
 
-    #pre: looks at the board
-    #post: determines the move that gives the most empty tiles on the board
+    #pre: looks at the lBoard
+    #post: determines the move that gives the most empty tiles on the lBoard
 
-    moves = {
-        'a': MergeLeft([row[:] for row in board]),
-        'd': MergeRight([row[:] for row in board]),
-        'w': MergeUp([row[:] for row in board]),
-        's': MergeDown([row[:] for row in board])
+    dMoves = {
+        'a': MergeLeft([lRow[:] for lRow in lBoard]),
+        'd': MergeRight([lRow[:] for lRow in lBoard]),
+        'w': MergeUp([lRow[:] for lRow in lBoard]),
+        's': MergeDown([lRow[:] for lRow in lBoard])
     }
 
-    bestMove = None
-    maxEmpty = -1
+    sBestMove = None
+    iMaxEmpty = -1
 
-    for move, new_board in moves.items(): #.items() puts the key-value pairs in the moves dictionary in tuples in a list
-        empty_cells = sum(row.count(0) for row in new_board)
-        if new_board != board and empty_cells > maxEmpty:
-            maxEmpty = empty_cells
-            bestMove = move
+    for sMove, lNewBoard in dMoves.items(): #.items() puts the key-value pairs in the dMoves dictionary in tuples in a list
+        iEmptyCells = sum(lRow.count(0) for lRow in lNewBoard)
+        if lNewBoard != lBoard and iEmptyCells > iMaxEmpty:
+            iMaxEmpty = iEmptyCells
+            sBestMove = sMove
 
-    return bestMove if bestMove else 'a' #if theres no best move then go left
+    return sBestMove if sBestMove else 'a' #if theres no best sMove then go left
 
-def MainGameLoop(board, AIMode = False):
+def MainGameLoop(lBoard, bAIMode = False):
 
-    #pre: the board
-    #post: moves the tiles on the board based on user input
+    #pre: the lBoard
+    #post: dMoves the tiles on the lBoard based on user input
 
-    AddRandomTwo(board)
+    AddRandomTwo(lBoard)
     while True:
-        PrintBoard(board)
-        DetectLoss(board)
-        DetectWin(board)
+        PrintBoard(lBoard)
+        DetectLoss(lBoard)
+        DetectWin(lBoard)
 
-        oldBoard = [row[:] for row in board]
+        lOldBoard = [lRow[:] for lRow in lBoard]
 
-        if AIMode:
-            movement = BestMove(board)
+        if bAIMode:
+            sMovement = BestMove(lBoard)
             time.sleep(0.2) #sleep so that the screen doesnt flash too much
-            print(f'AI chose: {movement.upper()}')
+            print(f'AI chose: {sMovement.upper()}')
         else:
-            movement = input("Enter a movement (WASD): ").lower()
-            if movement == 'ai':
-                AIMode = True
+            sMovement = input("Enter a sMovement (WASD): ").lower()
+            if sMovement == 'ai':
+                bAIMode = True
                 continue
     
-        if movement == 'a':
-            board = MergeLeft(board)
-        elif movement == 'd':
-            board = MergeRight(board)
-        elif movement == 'w':
-            board = MergeUp(board)
-        elif movement == 's':
-            board = MergeDown(board)
+        if sMovement == 'a':
+            lBoard = MergeLeft(lBoard)
+        elif sMovement == 'd':
+            lBoard = MergeRight(lBoard)
+        elif sMovement == 'w':
+            lBoard = MergeUp(lBoard)
+        elif sMovement == 's':
+            lBoard = MergeDown(lBoard)
         os.system('cls')
         PrintTitle()
 
-        if board != oldBoard:
-            AddRandomTwo(board)
+        if lBoard != lOldBoard:
+            AddRandomTwo(lBoard)
 
 Introduction()
