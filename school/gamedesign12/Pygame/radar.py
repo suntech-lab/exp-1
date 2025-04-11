@@ -8,6 +8,7 @@ import math
 import pygame
 import sys
 import random
+import time
 
 class BlackRects():
     def __init__(self, sSurface, tBlackPos, tColour, iWidth, iHeight, iNumber):
@@ -39,6 +40,10 @@ if __name__ == "__main__":
     iScreenWidth = 600
     iScreenHeight = 600
 
+    #initialize black squares
+    iBlackWidth = 20
+    iBlackHeight = 20
+
     #initialize the font
     pygame.font.init()
     font = pygame.font.SysFont(None, 20)
@@ -50,19 +55,19 @@ if __name__ == "__main__":
 
     #set up the colours
     BLACK = (0, 0, 0)
-    RED = (255, 0, 0)
     WHITE = (255, 255, 255)
+    RED = (255, 0, 0)
 
     #set up the circle motion
-    iRadius = 300
+    iRadius = 500
     angle = 0
-    fSpeed = 0.02
+    fSpeed = 0.05
 
     #set up the blue rectangles
     lBlackRects = []
     for i in range(10):
-        tBlackPos = (random.randint(0, iScreenWidth - 50), random.randint(0, iScreenWidth - 50))
-        lBlackRects.append(BlackRects(sScreen, tBlackPos, BLACK, 50, 50, i + 1))
+        tBlackPos = (random.randint(0, iScreenWidth - iBlackWidth), random.randint(0, iScreenWidth - iBlackHeight))
+        lBlackRects.append(BlackRects(sScreen, tBlackPos, BLACK, iBlackWidth, iBlackHeight, i + 1))
 
     #set up the exit
     while True:
@@ -88,9 +93,9 @@ if __name__ == "__main__":
         for rect in lBlackRects:
             lineCollision = rect.bRect.clipline((iScreenWidth/2, iScreenHeight/2), (x, y))
             if lineCollision:
-                rect.fPlaceRect(sScreen, RED, 50, 50, rect.iNumber)
+                rect.fPlaceRect(sScreen, RED, iBlackWidth, iBlackHeight, rect.iNumber)
             else:
-                rect.fPlaceRect(sScreen, BLACK, 50, 50, rect.iNumber)
+                rect.fPlaceRect(sScreen, BLACK, iBlackWidth, iBlackHeight, rect.iNumber)
 
         #draw the rectangles and update the display
         pygame.display.flip()
