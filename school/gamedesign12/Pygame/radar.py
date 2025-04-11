@@ -4,6 +4,7 @@ Eric Liu
 03/04/2025
 '''
 
+import math
 import pygame
 import sys
 import random
@@ -35,13 +36,16 @@ if __name__ == "__main__":
     #initialize pygame
     pygame.init()
 
+    iScreenWidth = 600
+    iScreenHeight = 600
+
     #initialize the font
     pygame.font.init()
     font = pygame.font.SysFont(None, 20)
 
     #set up the clock and screen
     cClock = pygame.time.Clock()
-    sScreen = pygame.display.set_mode((800, 600))
+    sScreen = pygame.display.set_mode((iScreenWidth, iScreenHeight))
     pygame.display.set_caption("Collision Test")
 
     #set up the colours
@@ -49,10 +53,15 @@ if __name__ == "__main__":
     RED = (255, 0, 0)
     WHITE = (255, 255, 255)
 
+    #set up the circle motion
+    iRadius = 300
+    angle = 0
+    fSpeed = 0.02
+
     #set up the blue rectangles
     lBlackRects = []
     for i in range(10):
-        tBlackPos = (random.randint(0, 750), random.randint(0, 550))
+        tBlackPos = (random.randint(0, iScreenWidth - 50), random.randint(0, iScreenWidth - 50))
         lBlackRects.append(BlackRects(sScreen, tBlackPos, BLACK, 50, 50, i + 1))
 
     #set up the exit
@@ -65,12 +74,19 @@ if __name__ == "__main__":
         #fill the bg
         sScreen.fill((0, 0, 0))
 
+        #update angle
+        angle += fSpeed
+
+        #calculate new position
+        x = iScreenWidth/2 + iRadius * math.cos(angle)
+        y = iScreenHeight/2 + iRadius * math.sin(angle)
+
         #draw the line from the center of the screen to the mouse cursor
-        pygame.draw.line(sScreen, WHITE, (400, 300), pygame.mouse.get_pos(), 2)
+        pygame.draw.line(sScreen, WHITE, (iScreenWidth/2, iScreenHeight/2), (x, y), 2)
 
         #detect collisions with mouse cursor location
         for rect in lBlackRects:
-            lineCollision = rect.bRect.clipline((400, 300), pygame.mouse.get_pos())
+            lineCollision = rect.bRect.clipline((iScreenWidth/2, iScreenHeight/2), (x, y))
             if lineCollision:
                 rect.fPlaceRect(sScreen, RED, 50, 50, rect.iNumber)
             else:
