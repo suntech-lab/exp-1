@@ -15,7 +15,7 @@ class Rect():
         self.iWidth = iWidth
         self.bUp = bUp
         self.bRight = bRight
-        self.tSize = (50, 50)
+        self.tSize = (100, 100)
 
     def draw(self):
         #pre: needs the sSurface to draw on
@@ -40,13 +40,13 @@ class Rect():
         if y <= 0:
             self.bUp = False
             self.tColor = (lSquareColors[random.randint(0, 2)])
-        elif y >= iScreenHeight - 50:
+        elif y >= iScreenHeight - 100:
             self.bUp = True
             self.tColor = (lSquareColors[random.randint(0, 2)])
         if x <= 0:
             self.bRight = True
             self.tColor = (lSquareColors[random.randint(0, 2)])
-        elif x >= iScreenWidth - 50:
+        elif x >= iScreenWidth - 100:
             self.bRight = False
             self.tColor = (lSquareColors[random.randint(0, 2)])
 
@@ -76,9 +76,9 @@ if __name__ == "__main__":
     sScreen = pygame.display.set_mode((iScreenWidth, iScreenHeight))
     bRunning = True
 
-    rSquare1 = Rect(sScreen, tGreen, (100, 200), 5, False, True)
-    rSquare2 = Rect(sScreen, tBlue, (200, 300), 5, True, False)
-    rSquare3 = Rect(sScreen, tWhite, (300, 400), 5, False, True)
+    rSquare1 = Rect(sScreen, tGreen, (100, 100), 10, False, True)
+    rSquare2 = Rect(sScreen, tBlue, (100, 300), 10, True, False)
+    rSquare3 = Rect(sScreen, tWhite, (300, 400), 10, False, True)
 
     cClock = pygame.time.Clock()
 
