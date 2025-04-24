@@ -32,21 +32,19 @@ import os
 import time
 
 class VideoPlayer:
-    def __init__(self, file_path, screen_width, screen_height):
-        self.cap = cv2.VideoCapture(file_path)
+    def __init__(self, filePath, screenWidth, screenHeight):
+        self.cap = cv2.VideoCapture(filePath)
         if not self.cap.isOpened():
-            print(f"Error: Could not open video file {file_path}")
+            print(f"Error: Could not open video file {filePath}")
             self.valid = False
             return
         
         self.valid = True
         self.playing = False
-        self.screen_width = screen_width
-        self.screen_height = screen_height
-        self.fade_alpha = 0
-        self.fade_speed = 100  # Adjust for faster/slower fade
-        self.fade_surface = pygame.Surface((screen_width, screen_height))
-
+        self.screenWidth = screenWidth
+        self.screenHeight = screenHeight
+        self.fadeAlpha = 128  # Set transparency level (128 = 50% transparent)
+        self.fadeSurface = pygame.Surface((screenWidth, screenHeight))
         
     def play(self):
         #pre: needs to know if the video's good to go, and if it is, it plays the video
@@ -54,7 +52,7 @@ class VideoPlayer:
 
         if self.valid:
             self.playing = True
-            self.fade_alpha = 0  # Start fully transparent
+            self.fadeAlpha = 50
             self.cap.set(cv2.CAP_PROP_POS_FRAMES, 0)  # Rewind to start
         
     def update(self, screen):
@@ -63,29 +61,27 @@ class VideoPlayer:
 
         if not self.valid or not self.playing:
             return False
-            
+
         ret, frame = self.cap.read()
         if not ret:
             self.playing = False
             return False
-            
+
         # Convert and resize video frame
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        frame = cv2.resize(frame, (self.screen_width, self.screen_height))
+        frame = cv2.resize(frame, (self.screenWidth, self.screenHeight))
         frame = np.rot90(frame)
-        
-        # Convert to pygame surface and display
-        video_surface = pygame.surfarray.make_surface(frame)
 
-        if self.fade_alpha < 255:
-            self.fade_alpha = min(255, self.fade_alpha + self.fade_speed)
-            self.fade_surface.fill((0, 0, 0))
-            self.fade_surface.blit(video_surface, (0, 0))
-            self.fade_surface.set_alpha(self.fade_alpha)
-            screen.blit(self.fade_surface, (0, 0))
-        else:
-            screen.blit(video_surface, (0, 0))
-            time.sleep(0.026)
+        # Convert to pygame surface and display
+        videoSurface = pygame.surfarray.make_surface(frame)
+
+        self.fadeSurface.fill((0, 0, 0))
+        self.fadeSurface.blit(videoSurface, (0, 0))
+        self.fadeSurface.set_alpha(self.fadeAlpha)  # Set transparency level (0 = fully transparent, 255 = fully opaque)
+
+        # Blit the fade surface onto the screen
+        screen.blit(self.fadeSurface, (0, 0))
+        time.sleep(0.026)
         return True
 
 class Player():
@@ -256,25 +252,25 @@ class BlackRects():
             rRect2.bRect.y = rRect2.tBlackPos[1]
 
 class Button:
-    def __init__(self, x, y, width, height, text, color, hover_color):
-        self.rect = pygame.Rect(x, y, width, height)
+    def __init__(self, xPos, yPos, width, height, text, colour, hoverColour):
+        self.rect = pygame.Rect(xPos, yPos, width, height)
         self.text = text
-        self.color = color
-        self.hover_color = hover_color
-        self.is_hovered = False
+        self.colour = colour
+        self.hoverColour = hoverColour
+        self.isHovered = False
         
     def draw(self, surface):
-        color = self.hover_color if self.is_hovered else self.color
-        pygame.draw.rect(surface, color, self.rect)
+        colour = self.hoverColour if self.isHovered else self.colour
+        pygame.draw.rect(surface, colour, self.rect)
         pygame.draw.rect(surface, WHITE, self.rect, 2)  # Border
         
-        text_surf = font.render(self.text, True, WHITE)
-        text_rect = text_surf.get_rect(center=self.rect.center)
-        surface.blit(text_surf, text_rect)
+        textSurf = font.render(self.text, True, WHITE)
+        textRect = textSurf.get_rect(center=self.rect.center)
+        surface.blit(textSurf, textRect)
         
     def check_hover(self, pos):
-        self.is_hovered = self.rect.collidepoint(pos)
-        return self.is_hovered
+        self.isHovered = self.rect.collidepoint(pos)
+        return self.isHovered
         
     def is_clicked(self, pos, event):
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
@@ -298,9 +294,10 @@ if __name__ == "__main__":
     BLACK = (0, 0, 0)
     WHITE = (255, 255, 255)
     RED = (255, 0, 0)
-    MENU_BLUE = (0, 100, 200)
-    BUTTON_GREEN = (0, 180, 0)
-    HOVER_GREEN = (0, 220, 0)
+    DARKRED = (200, 0, 0)
+    TITLECOLOUR = (153, 0, 76)
+    BUTTONGREEN = (0, 180, 0)
+    HOVERGREEN = (0, 220, 0)
 
     iRadarRadius = int(math.sqrt((iScreenWidth/2)**2 + (iScreenHeight/2)**2))
     iRadarStartAngle = 0
@@ -325,9 +322,9 @@ if __name__ == "__main__":
 
     pygame.mixer.music.load(os.path.join(sDirectory, 'locust.mp3'))
 
-    video_player = VideoPlayer((os.path.join(sDirectory, "locust.mp4")), iScreenWidth, iScreenHeight)  # Make sure file is in same directory
-    if not video_player.valid:
-        print("Warning: Video player initialization failed - collisions won't play video.")
+    videoPlayer = VideoPlayer((os.path.join(sDirectory, "locust.mp4")), iScreenWidth, iScreenHeight)  # Make sure file is in same directory
+    if not videoPlayer.valid:
+        print("video player initialization fail")
     
     #set up player
     cPlayer = Player(sScreen, WHITE, iPlayerWidth, iPlayerHeight)
@@ -336,7 +333,7 @@ if __name__ == "__main__":
     lBlackRects = []
     for i in range(10):
         tBlackPos = (random.randint(0, iScreenWidth - iBlackWidth), random.randint(0, iScreenHeight - iBlackHeight))
-        while tBlackPos[0] < (iScreenWidth/2 - iPlayerWidth*2) and tBlackPos[0] > (iScreenWidth/2 + iPlayerWidth*2) and tBlackPos[1] < (iScreenHeight/2 - iPlayerHeight*2) and tBlackPos[1] > (iScreenHeight/2 + iPlayerHeight*2):
+        while tBlackPos[0] < (iScreenWidth/2 - iPlayerWidth*5) and tBlackPos[0] > (iScreenWidth/2 + iPlayerWidth*5) and tBlackPos[1] < (iScreenHeight/2 - iPlayerHeight*2) and tBlackPos[1] > (iScreenHeight/2 + iPlayerHeight*2):
             tBlackPos = (random.randint(0, iScreenWidth - iBlackWidth), random.randint(0, iScreenHeight - iBlackHeight))
         lBlackRects.append(BlackRects(sScreen, tBlackPos, BLACK, iBlackWidth, iBlackHeight, i + 1))
 
@@ -345,11 +342,11 @@ if __name__ == "__main__":
     PLAYING = 1
     GAME_OVER = 2
 
-    game_state = MENU
+    gameState = MENU
 
     #buttons
-    play_button = Button(iScreenWidth//2 - 100, iScreenHeight//2 - 25, 200, 50, "PLAY", BUTTON_GREEN, HOVER_GREEN)
-    quit_button = Button(iScreenWidth//2 - 100, iScreenHeight//2 + 50, 200, 50, "QUIT", RED, (200, 0, 0))
+    playButton = Button(iScreenWidth//2 - 100, iScreenHeight//2 - 25, 200, 50, "PLAY", BUTTONGREEN, HOVERGREEN)
+    quitButton = Button(iScreenWidth//2 - 100, iScreenHeight//2 + 50, 200, 50, "QUIT", RED, DARKRED)
     
     while True:
         #find mouse
@@ -364,32 +361,32 @@ if __name__ == "__main__":
                 pygame.quit()
                 sys.exit()
 
-            if game_state == MENU:
-                if play_button.is_clicked(mouse_pos, event):
-                    game_state = PLAYING
+            if gameState == MENU:
+                if playButton.is_clicked(mouse_pos, event):
+                    gameState = PLAYING
                     cPlayer.tPos = ((iScreenWidth/2) - iPlayerWidth/2, (iScreenHeight/2) - iPlayerHeight/2)
                     pygame.mixer.music.stop()
                     
-                if quit_button.is_clicked(mouse_pos, event):
+                if quitButton.is_clicked(mouse_pos, event):
                     pygame.quit()
                     sys.exit()
 
         #fill the bg
         sScreen.fill(BLACK)
 
-        if game_state == MENU:
+        if gameState == MENU:
             # Draw title
-            title_text = pygame.font.SysFont(None, 80).render("THE LOCUSTS", True, MENU_BLUE)
+            title_text = pygame.font.SysFont(None, 80).render("THE LOCUSTS", True, TITLECOLOUR)
             title_rect = title_text.get_rect(center=(iScreenWidth//2, iScreenHeight//4))
             sScreen.blit(title_text, title_rect)
             
             # Update and draw buttons
-            play_button.check_hover(mouse_pos)
-            quit_button.check_hover(mouse_pos)
-            play_button.draw(sScreen)
-            quit_button.draw(sScreen)
+            playButton.check_hover(mouse_pos)
+            quitButton.check_hover(mouse_pos)
+            playButton.draw(sScreen)
+            quitButton.draw(sScreen)
         
-        elif game_state == PLAYING:
+        elif gameState == PLAYING:
             # Gameplay logic
             for rect in lBlackRects:    
                 rect.fPlaceRect(sScreen, BLACK, iBlackWidth, iBlackHeight, rect.iNumber, iCurrentTime)
@@ -438,9 +435,9 @@ if __name__ == "__main__":
 
                     pygame.display.flip()
                     time.sleep(3)
-                    video_player.play()
+                    videoPlayer.play()
                     pygame.mixer.music.play(loops=-1, start=0.0)
-                    game_state = GAME_OVER
+                    gameState = GAME_OVER
 
             #player movement
             cPlayer.fHandleInput()
@@ -472,9 +469,9 @@ if __name__ == "__main__":
 
                 iBlackRectTransparency = 255 - int(255 * (age / iHistoryDuration))
 
-        elif game_state == GAME_OVER:
-            if not video_player.update(sScreen):
-                game_state = MENU
+        elif gameState == GAME_OVER:
+            if not videoPlayer.update(sScreen):
+                gameState = MENU
         
         pygame.display.flip()
         cClock.tick(fps)
