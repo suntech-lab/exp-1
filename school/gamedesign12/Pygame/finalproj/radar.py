@@ -276,6 +276,23 @@ class Button:
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             return self.rect.collidepoint(pos)
         return False
+    
+class Obstacle():
+    def __init__(self, sSurface, tColour, iWidth, iHeight, tPos):
+        self.sSurface = sSurface
+        self.tColour = tColour
+        self.iWidth = iWidth
+        self.iHeight = iHeight
+        self.tPos = tPos
+        self.bRect = pygame.Rect(tPos[0], tPos[1], iWidth, iHeight)
+
+    def fPlaceObstacle(self, sSurface, tColour, iWidth, iHeight):
+        #pre: needs the position of the obstacle
+        #post: draws the obstacle on the sSurface
+        self.bRect.x = self.tPos[0]
+        self.bRect.y = self.tPos[1]
+
+        pygame.draw.rect(sSurface, tColour, (self.tPos[0], self.tPos[1], iWidth, iHeight))
 
 if __name__ == "__main__":
     #initialize pygame
@@ -305,6 +322,11 @@ if __name__ == "__main__":
     lRadarHistory = []
     iHistoryDuration = 2000
 
+    SAFEZONEX = iPlayerWidth * 5
+    SAFEZONEY = iPlayerHeight * 5
+    playerCenterX = iScreenWidth / 2
+    playerCenterY = iScreenHeight / 2
+
     pygame.font.init()
     fPlayerFont = pygame.font.SysFont(None, 20)
     fLoseTextFont = pygame.font.SysFont(None, 50)
@@ -315,7 +337,7 @@ if __name__ == "__main__":
     #set up the clock and screen
     cClock = pygame.time.Clock()
     sScreen = pygame.display.set_mode((iScreenWidth, iScreenHeight))
-    pygame.display.set_caption("Collision Test")
+    pygame.display.set_caption("game")
 
     #media prep (directory, sound, video, font)
     sDirectory = os.path.dirname(os.path.abspath(__file__))
@@ -329,13 +351,26 @@ if __name__ == "__main__":
     #set up player
     cPlayer = Player(sScreen, WHITE, iPlayerWidth, iPlayerHeight)
 
-    #set up the blue rectangles
+    #set up the black rectangles
     lBlackRects = []
     for i in range(10):
-        tBlackPos = (random.randint(0, iScreenWidth - iBlackWidth), random.randint(0, iScreenHeight - iBlackHeight))
-        while tBlackPos[0] < (iScreenWidth/2 - iPlayerWidth*5) and tBlackPos[0] > (iScreenWidth/2 + iPlayerWidth*5) and tBlackPos[1] < (iScreenHeight/2 - iPlayerHeight*2) and tBlackPos[1] > (iScreenHeight/2 + iPlayerHeight*2):
-            tBlackPos = (random.randint(0, iScreenWidth - iBlackWidth), random.randint(0, iScreenHeight - iBlackHeight))
+        while True:
+            tBlackPos = (random.randint(0, iScreenWidth - iBlackWidth), 
+                        random.randint(0, iScreenHeight - iBlackHeight))
+            # Check if position is outside safe zone
+            if not (abs(tBlackPos[0] - playerCenterX) < SAFEZONEX) and (abs(tBlackPos[1] - playerCenterY) < SAFEZONEY):
+                break
         lBlackRects.append(BlackRects(sScreen, tBlackPos, BLACK, iBlackWidth, iBlackHeight, i + 1))
+
+    #set up obstacles
+    lObstacles = []
+    for i in range(20):
+        while True:
+            tPos = (random.randint(0, iScreenWidth - iBlackWidth), random.randint(0, iScreenHeight - iBlackHeight))
+            # Check if position is outside safe zone
+            if not (abs(tPos[0] - playerCenterX) < SAFEZONEX) and (abs(tPos[1] - playerCenterY) < SAFEZONEY):
+                break
+        lObstacles.append(Obstacle(sScreen, BLACK, iBlackWidth, iBlackHeight, tPos))
 
     #game states
     MENU = 0
@@ -399,6 +434,10 @@ if __name__ == "__main__":
             #place black rects
             for rect in lBlackRects:    
                 rect.fPlaceRect(sScreen, BLACK, iBlackWidth, iBlackHeight, rect.iNumber, iCurrentTime)
+
+            #place obstacles
+            for rect in lObstacles:
+                rect.fPlaceObstacle(sScreen, WHITE, iBlackWidth, iBlackHeight)
 
             #place player
             cPlayer.fPlacePlayer(sScreen, WHITE, iPlayerWidth, iPlayerHeight)
