@@ -125,7 +125,16 @@ class Player():
         self.bRect.x = x
         self.bRect.y = y
 
-    def fCheckCollision(self, rRect):
+        for obstacle in lObstacles:
+            if self.bRect.colliderect(obstacle.bRect):
+                # Collision detected, move back to previous position
+                x -= self.fVelX
+                y -= self.fVelY
+                self.tPos = (x, y)
+                self.bRect.x = x
+                self.bRect.y = y
+
+    def fCheckCollisionRect(self, rRect):
         #pre: needs the position and size of the rectangle
         #post: returns a rectangle object
         if self.bRect.colliderect(rRect.bRect):
@@ -155,8 +164,8 @@ class BlackRects():
         self.iWidth = iWidth
         self.iHeight = iHeight
         self.iNumber = iNumber
-        self.fVelX = random.uniform(-1.5, 1.5)
-        self.fVelY = random.uniform(-1.5, 1.5)
+        self.fVelX = random.uniform(-3, 3)
+        self.fVelY = random.uniform(-3, 3)
         self.bRect = pygame.Rect(tBlackPos[0], tBlackPos[1], iWidth, iHeight)
         self.bLastDetected = 0
         self.bDetectionDuration = 1000
@@ -183,7 +192,7 @@ class BlackRects():
         fNumberText = fPlayerFont.render(str(iNumber), True, WHITE)
         rTextRect = fNumberText.get_rect(center=(self.tBlackPos[0] + iWidth/2, self.tBlackPos[1] + iHeight/2))
 
-        #sSurface.blit(fNumberText, rTextRect)
+        sSurface.blit(fNumberText, rTextRect)
 
     def fGetRect(self):
         #pre: needs the position and tSize of the rectangle
@@ -204,7 +213,7 @@ class BlackRects():
 
         self.tBlackPos = (x, y)
 
-    def fCheckCollision(rRect1, rRect2):
+    def fCheckCollisionRect(rRect1, rRect2):
         #pre: needs two square objects
         #post: checks if the two squares are touching each other, and if they are, it makes them bounce off each other
         if rRect1.fGetRect().colliderect(rRect2.fGetRect()):
@@ -250,6 +259,37 @@ class BlackRects():
             rRect1.bRect.y = rRect1.tBlackPos[1]
             rRect2.bRect.x = rRect2.tBlackPos[0]
             rRect2.bRect.y = rRect2.tBlackPos[1]
+    
+    def fCheckCollisionObstacle(self, rObstacle):
+        if self.bRect.colliderect(rObstacle.bRect):
+        # Calculate overlap amounts
+            overlap_x = min(self.bRect.right - rObstacle.bRect.left, 
+                        rObstacle.bRect.right - self.bRect.left)
+            overlap_y = min(self.bRect.bottom - rObstacle.bRect.top,
+                        rObstacle.bRect.bottom - self.bRect.top)
+
+            # Determine primary collision axis (which overlap is smaller)
+            if abs(overlap_x) < abs(overlap_y):
+                # Horizontal collision - reverse X velocity
+                self.fVelX *= -1
+                # Move the rectangle out of collision
+                if self.bRect.centerx < rObstacle.bRect.centerx:
+                    self.tBlackPos = (self.tBlackPos[0] - overlap_x - 5, self.tBlackPos[1])
+                else:
+                    self.tBlackPos = (self.tBlackPos[0] + overlap_x + 5, self.tBlackPos[1])
+                
+            else:
+                # Vertical collision - reverse Y velocity
+                self.fVelY *= -1
+                # Move the rectangle out of collision
+                if self.bRect.centery < rObstacle.bRect.centery:
+                    self.tBlackPos = (self.tBlackPos[0], self.tBlackPos[1] - overlap_y - 5)
+                else:
+                    self.tBlackPos = (self.tBlackPos[0], self.tBlackPos[1] + overlap_y + 5)
+
+            # Update rectangle position
+            self.bRect.x = self.tBlackPos[0]
+            self.bRect.y = self.tBlackPos[1]
 
 class Button:
     def __init__(self, xPos, yPos, width, height, text, colour, hoverColour):
@@ -293,6 +333,11 @@ class Obstacle():
         self.bRect.y = self.tPos[1]
 
         pygame.draw.rect(sSurface, tColour, (self.tPos[0], self.tPos[1], iWidth, iHeight))
+    
+    def fGetRect(self):
+        #pre: needs the position and tSize of the rectangle
+        #post: returns a rectangle object
+        return pygame.Rect(self.tPos[0], self.tPos[1], self.iWidth, self.iHeight)
 
 if __name__ == "__main__":
     #initialize pygame
@@ -305,6 +350,8 @@ if __name__ == "__main__":
 
     iBlackWidth = 30
     iBlackHeight = 30
+    iObstacleWidth = 50
+    iObstacleHeight = 50
     iPlayerWidth = 20
     iPlayerHeight = 20
 
@@ -322,8 +369,8 @@ if __name__ == "__main__":
     lRadarHistory = []
     iHistoryDuration = 2000
 
-    SAFEZONEX = iPlayerWidth * 5
-    SAFEZONEY = iPlayerHeight * 5
+    SAFEZONEX = iPlayerWidth * 7
+    SAFEZONEY = iPlayerHeight * 7
     playerCenterX = iScreenWidth / 2
     playerCenterY = iScreenHeight / 2
 
@@ -355,22 +402,22 @@ if __name__ == "__main__":
     lBlackRects = []
     for i in range(10):
         while True:
-            tBlackPos = (random.randint(0, iScreenWidth - iBlackWidth), 
-                        random.randint(0, iScreenHeight - iBlackHeight))
+            tBlackPos = (random.randint(0, iScreenWidth - iBlackWidth), random.randint(0, iScreenHeight - iBlackHeight))
             # Check if position is outside safe zone
-            if not (abs(tBlackPos[0] - playerCenterX) < SAFEZONEX) and (abs(tBlackPos[1] - playerCenterY) < SAFEZONEY):
+            if not ((abs(tBlackPos[0] - playerCenterX) < SAFEZONEX) and (abs(tBlackPos[1] - playerCenterY) < SAFEZONEY)):
                 break
         lBlackRects.append(BlackRects(sScreen, tBlackPos, BLACK, iBlackWidth, iBlackHeight, i + 1))
 
     #set up obstacles
     lObstacles = []
-    for i in range(20):
+    for i in range(40):
         while True:
-            tPos = (random.randint(0, iScreenWidth - iBlackWidth), random.randint(0, iScreenHeight - iBlackHeight))
+            tPos = (random.randint(0, (iScreenWidth / iObstacleWidth) - 1)*iObstacleWidth, random.randint(0, (iScreenHeight / iObstacleHeight) - 1)*iObstacleHeight)
             # Check if position is outside safe zone
-            if not (abs(tPos[0] - playerCenterX) < SAFEZONEX) and (abs(tPos[1] - playerCenterY) < SAFEZONEY):
+            if not ((abs(tPos[0] - playerCenterX) < SAFEZONEX) and (abs(tPos[1] - playerCenterY) < SAFEZONEY)):
+                print('asdkjahds')
                 break
-        lObstacles.append(Obstacle(sScreen, BLACK, iBlackWidth, iBlackHeight, tPos))
+        lObstacles.append(Obstacle(sScreen, BLACK, iObstacleWidth, iObstacleHeight, tPos))
 
     #game states
     MENU = 0
@@ -437,7 +484,7 @@ if __name__ == "__main__":
 
             #place obstacles
             for rect in lObstacles:
-                rect.fPlaceObstacle(sScreen, WHITE, iBlackWidth, iBlackHeight)
+                rect.fPlaceObstacle(sScreen, WHITE, iObstacleWidth, iObstacleHeight)
 
             #place player
             cPlayer.fPlacePlayer(sScreen, WHITE, iPlayerWidth, iPlayerHeight)
@@ -455,11 +502,11 @@ if __name__ == "__main__":
 
             #check for collisions between black rectangles
             for rRect1, rRect2 in itertools.combinations(lBlackRects, 2):
-                BlackRects.fCheckCollision(rRect1, rRect2)
+                BlackRects.fCheckCollisionRect(rRect1, rRect2)
 
             #check for collisions between player and black rectangles
             for rRect in lBlackRects:
-                if cPlayer.fCheckCollision(rRect):
+                if cPlayer.fCheckCollisionRect(rRect):
                     sScreen.fill(BLACK)
 
                     #lose screen text
@@ -485,6 +532,8 @@ if __name__ == "__main__":
             #black rect movement
             for rect in lBlackRects:
                 rect.fMove(iScreenWidth, iScreenHeight)
+                for obstacle in lObstacles:
+                    rect.fCheckCollisionObstacle(obstacle)
 
             #detect and execute collisions with radar and black rects
             for rect in lBlackRects:

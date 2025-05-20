@@ -1,1 +1,285 @@
-gAAAAABno55Wlye4Gldy72jJq7MOq5TKcbw25GDJ7HqpNfNngZb51lbdnUpuOmrkxOt2IxHrkKjmXj1hGqkNKVuybBE3jFH_AO2GH_4lfHjR1aiUwNqRbciAD5JLwy7hir8aKzah3OAq_IZ_Vmaj8Ij1SpscPsqQ4W31gPvI50gf9P9bcfpiADJvBQBry9jU4ZGkV6knOxASTO3d_eTbqQXHibG1VmbXm3I3snzRfLvPF2IPQL3wRN1yKuIPUzw-FGLAwckc9UMUsImONzCHveFg-vTUahI2tjD8i5YvtBkbO84w3TYYTnhTfKvTJhT633HcrsfraGDfHZ3t7q4rj4cobJfUWuSdwfem6wwCkRcFJsecSW97iUGmwo0L-ZunnVdFrLu-uc8zY3B8zorq5ei-D1ZPH4j5Y6145oOdPAKQcrvFWcbR0emqxQjwGwEyR_Xix6CFWLWVeCsZI525PGzpaDeGKZtZHDfnuxj1g56e-H6Na6JzadoSXj3PMSggxj1dW54z14gINEejUHVAc7p33TZFaG2wb7vh6AvGWBuXOW0Sqr1RJ7NWgRcsnk9Ls0iQkH0Rk5XGx7P95syKxpBc4AKt4Y5UsKGkvicdox9mbmJThAyMdAPAc4dExQOifhkDZqdo_gPAt4dCHGhq4LXMpf06_kxoCJFj4oX-FtDSepdxUJchS8jnjuMcqdfeQptnk4jqUH-2y-Q0XbIxCQ7Yen6VbAkWg_opok7pNG7-wZgC9jScdD7BhiHAaZY3bz3n0u7z87Mc9Jwxzpxc8ItNFmTkvgCaoTybbK7FdIPaMiOv9APA2q16zi6MkvNrbFlxRGJj9P-_4UwcnzbPVbHbkOiK-eSgnpmDY5OGl7nLi9A72RE52xfD3dFC3ih4h-T0caKxOccHUPThU1M1HAtYrRa06_JrO28D5pUq-Yc8xLaas303jxvPZjT94rLppWuyQNTxnlLx4HUzrfvrKzZOFcafJcM7HZIFTDxXxJlj49zwvVw_rFAK9LREXXEeyFb8Qp1DrzXasZnvuswZOqUyCyQuvbvW0nTRZ2T5YYXZxmp7PoiCChuxGlo94ym0b2NC-k9KbVtY_5z23ehvSQILI3EtYob7YejM4c1tc-NP1Jfsk5EcOXlt6s19etu1UKZSVkQ5ZuVRF4AxyKv4QANOlhQJtda4LnNiwSw9LR12jWDt_xqN54JWUOTcKVcHWiTK4elNkotoDElXWby13wQnigS7sH6h2OsYqSrBHa5xsiawP7j7rLTcg8dBQQGKzG6tHNbqxVbqTv7Y6NeiIQ3U1CiD0Yp_Lv7NwktSMuw_cN3vC6ujikdiyS-a2Uqpn5Wv1nuvfM6AYbIMi1kzTY-DOEeub1qgFb6V04QpiLuue7tYUsRGjCe_cP3I5pmbLpRo4ic7CUwb5_uvS6bbUO3FF63Zrfd9TwWquoiQq-m5fLGnUSFxNQBUGK5h_QRajUIHXvR_ka2E6ngl5uNWe8eEdjKGEde-OlxPPrirSG8wYrdCwomofgK-PsB4a5JuwkCp0uDESpnD217_W6lfBIu-VT4cF-PuYGr39mupF8zJxHXIcnDMKAPDdN_zTIZVIGAjZ8HkKwKT57ftR2KX9LYfuSu4MeAp4K2Y-9G4aWfvucQ4zAfT_ocIuNvhVVPCRgehvV8F_MkoaNgzA5gyqZc1xIofQQAsGzVaWRTS6KjeLTHA-HBJ4wMttt2Dy1M0jLRdR9dmN7OKlt6-ZioZPkSzVA0sp-ilD_2KRc_M5HToA9la0pQ3N57DaTHlu0FfNRo8pUNoeLeMvf8gSyyUB9dvej1SWfHKEGQ4UcQOdwxE7IcdItMMILMNUlAXLyK6mdCT4OVojuLwN7H70jqJmD-H7QY7eP5_tl2EopU2MFYItYJW0ObLPfjjaQbKhdOcrLaqHjIV8U3JEEiKuy6dLgbb0nsPu2osuVOQRJpw59-k6loHKpDwKp2LbXfUdq4nsxp43IrtcAuo7cefTckc9unhLO7pUDhTr3j3KB8A0N7zK0795W089TZCP2CdDyMMlZvj3ps2nsvXV-cGdbaGKyh2EiDRxdLTS5pLiBMKHgtLQ2d3kJMInFewS_lihWA1PdGRJu_BQNuJBHa1lipbAtvQgKSMseC5hDOSQgIanFeZgwEGpNn0g6E9NCM-mYgaWGUVF1V7RqhhkfJLKyem8k6RR3TrcrGFMfGwafQ5uhF1WXKHivB7JLuWqi8otYVPBFLVy-TneAhxspn4ksqsclP06GzLfSJU9ZN9uy0o3c4YlLPDr9wTTH8UEJ8FFnLBj7RSKTV-dFAt2pMnnoD0jeCv0MjoAau1CjvjJW1xopDZy6C4ZshvRepmedHIgtIQL6Zcra1ZdWNDTinqfcyIMJvvr0wclp74MTszd2QYqp02o4MyBDBDvTpEKygS1lGgF3QkuhqzCRpvDwR7ytF2wc7VfHOTJMUlmCJNWSW1wz9OPHc1aUBxvL7K6VfdAAVG8BuneSmzQS_GVeg_bhI1kILZaW_sGoT0dc7tbExcnNYMtZcI9rn6AAoEzZdAVLiG3ODx1Uz8n0zWYJhmKRXj-kwnAhRZHOLaQmZxGJH22WPhbVAGXWbB5ooY6B9StznVIguG3XhnJEGQIdFFAhFFnXs5-CEW6sAy2tAV29q43zS77n91Lh3Id4RYty7LU8wEmrc9-j3PpcLajG1-wX3VELvcvRHaJjt4p_1z84snZ7igYnI8FImHreD_aprBdgParmGyFFBziQF2
+CAUGHT UP
+
+vinland saga
+sakamoto days
+that time i got reincarnated as a slime
+sousou no frieren
+spy x family
+fly me to the moon
+blue box
+vagabond
+saving the doomed idols with my touch
+orv
+tgswiiwagaa
+apothecary diaries
+witch hat atelier
+
+FINISHED
+
+call of the night
+the climber
+jujutsu kaisen
+
+READING
+
+to your eternity 45
+girls' last tour 2
+
+WATCHING
+
+AOT S3 EP18
+
+==================================================================================================================================================================================
+
+Step 1: Identify a Situation Where You Felt Helpless
+Choose an event where you felt powerless, resigned, or stuck. Examples:
+
+    "I didn’t try because I assumed I’d fail."
+
+    "I blamed external factors entirely."
+
+    "I avoided taking action because it felt pointless."
+
+Step 2: Break It Down with a Focus on Agency
+For each part of the event, ask two versions of the question:
+
+    Objective: What happened?
+
+    Empowering Reframe: Where could I have had influence, even if small?
+
+        Question	|Learned Helplessness Lens	                |Empowering Reframe
+        Who	        |"They had all the power."	                |"Who else was involved? Did I have any support or alternatives?"
+        What	    |"Nothing worked; it was hopeless."	        |"What specific actions did I try? What’s one tiny step I didn’t consider?"
+        When	    |"This always happens to me."	            |"Was there a moment when I did have a choice, even if small?"
+        Where	    |"The environment controlled everything."	|"Were there aspects of the setting I could influence (e.g., leaving, asking for help)?"
+        Why	        |"Because I’m just unlucky/bad at this."	|"What external and internal factors were at play? Did my beliefs limit me?"
+        How	        |"I froze/gave up."	                        |"How could I respond differently next time, even slightly?"
+
+Step 3: Challenge Cognitive Distortions
+Learned helplessness thrives on overgeneralizing, personalizing, and assuming permanence. Ask:
+
+    Evidence: Is it truly hopeless, or does it just feel that way?
+
+    Example: "I failed once" ≠ "I always fail."
+
+    Alternatives: What’s one counter-example where I did have influence?
+
+    Experimentation: What’s a tiny action I can take now to test my assumptions?
+
+Step 4: Design Small Wins
+Learned helplessness weakens when you prove to yourself that your actions matter. Try:
+
+    - Micro-actions: Choose one small step you can control (e.g., researching options, sending one email).
+    - Reframe "failure": "Even if it doesn’t work, I’m practicing agency."
+    - Track agency: Keep a log of times you made choices, no matter how small.
+
+    Example: Overcoming "I’m Bad at My Job"
+    Event: Received critical feedback and felt defeated.
+
+    Learned Helplessness: "I’ll never improve. My boss hates me."
+
+    Introspection + Reframe:
+
+        Who: Boss gave feedback → Could I ask for clarification or support?
+        What: I messed up one task → What’s one skill I can practice?
+        Why: I assumed it’s about me → Maybe the boss was stressed too.
+        How: I shut down → Next time, I’ll ask for one actionable tip.
+
+    Key Mindshift
+    Learned helplessness is a habit of thought, not reality. By dissecting events and focusing on agency, you rewire your brain to see:
+
+        Temporary → "This is a challenge, not my identity."
+
+        Specific → "This one thing went wrong, not everything."
+
+        Changeable → "I can take a tiny step forward."
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Step 1: Set the Scene
+Describe the event briefly:
+
+What happened?
+How did you feel during/after? (e.g., helpless, frustrated, resigned)
+(Example: "My coworker took credit for my idea in a meeting. I felt angry but didn’t speak up because ‘it wouldn’t change anything.’")
+
+Your turn: for context, i'm in highschool. the room that me and my friends usually use to eat lunch was closed for lunch, so i decided to go into a different classroom thinking that my friends would follow. however, i did not consider my friend's ex, who was in that class and that my friend(nickname: alex) didn't want to see. alex sent my other friend(nickname: josh) to tell me off. josh quoted alex, saying "you're a dumbass" and i still didn't realise. i was like "what?" and then alex came in and dragged josh out of the class before waiting at the doorframe. alex looked at me with a joking "are you serious" face, which i saw in my peripheral vision, although i did not make eye contact with him nor look at him. we walked to the room next to it, and we took a couple seconds to find our seats. i kept up the no-eye-contact until alex pointed it out. he said "bro's not making eye contact". i admittedly did not respond and continued not making eye contact. a few seconds later, alex had enough and called me out for it, sternly saying, "listen, i am not the object of your anger" which was the only thing i could remember. we've talked about this before, so i felt an immense amount of guilt and shame after realising what i'd done. my victim complex played a part in making me think that alex was out to get me, even though logically, i knew that was not the case. i kept to myself for a while after that because i was tearing up and did not want them to notice (they probably did). and then i apologized later. but that moment was really scary, because i did not want alex to cut me off. he consistently reminds me that if i do not communicate to his standards or hold secret animosity towards him, he will cut me off. which makes sense, but his standards of communication and emotional control is in another plane, and i find that i have to put in a huge amount of effort to keep it up.
+
+Step 2: Break It Down
+We’ll go through each question. Copy-paste this template and fill in your answers, or just reply freely:
+
+Who:
+    Who was involved?
+    alex, josh, alex' ex
+    Learned helplessness thought: "They had all the power because…"
+    Empowering reframe: "Where did I actually have a choice? (e.g., speak up, document my idea next time)"
+
+What:
+    What happened (objectively)?
+    i did not consider alex' ex being in that room, and my friend reminded me that he is not the object of my anger
+    Learned helplessness thought: "Nothing I did would matter because…"
+    Empowering reframe: "What’s one small action I could have taken?"
+
+When/Where:
+    Was timing or environment a factor?
+    i was in school, and my other friends were sitting next to us, so i felt really embarrassed too
+    Learned helplessness thought: "This always happens when…"
+    Empowering reframe: "Could I change the timing/setting next time?"
+
+Why:
+    Why did I feel powerless?
+    i could not talk back to him, because i knew it would be from my emotions and not my logic, but i also felt such bad emotions that holding it in felt awful
+    Learned helplessness thought: "Because I’m just [negative self-label]."
+    Empowering reframe: "Is that 100% true? What’s one counter-example?"
+
+How:
+    How did I respond?
+    i responded by bottling up what was in my mind until either it was completely bottled up, left in my subconscious mind, or i actually got over it
+    Learned helplessness thought: "I had no other options."
+    Empowering reframe: "What’s one tiny way I could respond differently next time?"
+
+Step 3: Design Your "Agency Experiment"
+Finally, let’s plan a small, low-stakes action to prove to yourself that your choices matter. Examples:
+"Next time, I’ll say one sentence to assert myself."
+"I’ll test if preparing in advance changes the outcome."
+"I’ll ask for help instead of assuming no one cares."
+
+Your turn: What’s one micro-action you’ll try?
+ill make eye contact the next time alex confronts me
+
+Example (Full Walkthrough)
+Event: "I didn’t apply for a promotion because ‘I’d never get it.’"
+
+Who:
+
+Me, my boss, coworkers.
+
+Learned helplessness: "They’d never pick me."
+
+Reframe: "I could ask what skills are needed and work on one."
+
+What:
+
+Didn’t submit an application.
+
+Learned helplessness: "It’s pointless."
+
+Reframe: "I could’ve applied just to practice interviewing."
+
+When/Where:
+
+Apps were open for a month.
+
+Learned helplessness: "I always delay until it’s too late."
+
+Reframe: "Next time, I’ll set a 5-minute reminder to start the form."
+
+Why:
+
+Past rejections made me assume this one’s fixed.
+
+Learned helplessness: "I’m not promotion material."
+
+Reframe: "Last year I improved [X skill]. That’s progress."
+
+How:
+
+Avoided thinking about it.
+
+Learned helplessness: "No options."
+
+Reframe: "I can ask for feedback to improve."
+
+Agency Experiment: "I’ll research one skill needed for the role and practice it this month."
+
+Now your turn! Share your event, and we’ll work through it step by step. Remember:
+
+No judgment—this is about noticing patterns, not blaming yourself.
+
+Tiny steps count. Even recognizing "I had a sliver of control" weakens helplessness.
+
+(Or, if you’d prefer, I can share another example first!)
+
+=============================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+people i know well enough to put here
+
+anna motrzr mimi~
+gets over things quickly
+jokingly bashful
+take most of what hes saying unseriously
+actually very nice, just doesnt seem like it
+threatens to lick me
+communicate
+hates when i dont reply well enough or dont take into consideration what he says
+no longer has a saviour complex
+hates mischaracterisation
+has no obligation to do anything
+===========
+
+listens to speed and tone of voice for emotions and current actions
+
+you are emotionally dependent on him
+he thinks that being emotionally dependent on one person is irresponsible
+
+ryan Rayn Rayn
+is annoying for attention
+very insecure (increases annoyance)
+cant let go of friendships/relationships
+very easy to read
+could be a good person
+cant make friends easily
+chance that he broke up with lindsey
+bad at reading social cues
+puts others down (aspect of insecurity)
+is respectful when demanded of
+===========
+you dont like him but you also feel bad for him
+he doesnt know he is very readable
+
+SISTER!!!!!!
+very good music taste
+super funny
+remembers a lot of memes
+sings and talks while sleeping
+very smart
+ask about career and school things
+good driver (very easily agitated while driving)
+loves reading books
+studying psych and biology or something (smart people stuff)
+nice
+===========
+had an exremely depressive state in highschool
+probably contemplated suicide or sh
