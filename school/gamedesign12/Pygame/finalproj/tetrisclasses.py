@@ -37,7 +37,7 @@ YELLOW      = (155, 155,   0)
 LIGHTYELLOW = (175, 175,  20)
 
 #set colours
-BOARDERCOLOUR = LIGHTBLUE
+BORDERCOLOUR = LIGHTBLUE
 BGCOLOUR = GRAY
 TEXTCOLOUR = WHITE
 TEXTSHADOWCOLOUR = GRAY
@@ -307,6 +307,7 @@ class CTetrisGame:
 
     def rotate(self):
         #pre: game info
+        #post: rotates the piece (selects next rotation) and kicks it if it is in an invalid position
         iOldRotation = self.oFallingPiece.iRotation
         iOldX = self.oFallingPiece.iX
         self.oFallingPiece.iRotation = (self.oFallingPiece.iRotation + 1) % len(PIECES[self.oFallingPiece.sShape]) #rotates the piece
@@ -330,25 +331,42 @@ class CTetrisGame:
                         self.oFallingPiece.iRotation = iOldRotation
 
 
-
-    def rotateCCW(self):
+    def rotateCCW(self): #same thing, except chooses the rotation before
+        #pre: game info
+        #post: rotates the piece (selects next rotation) and kicks it if it is in an invalid position
         iOldRotation = self.oFallingPiece.iRotation
-        self.oFallingPiece.iRotation = (self.oFallingPiece.iRotation - 1) % len(PIECES[self.oFallingPiece.sShape])
-        if not self.oBoard.isValidPosition(self.oFallingPiece):
-            self.oFallingPiece.iX -= 1
+        iOldX = self.oFallingPiece.iX
+        self.oFallingPiece.iRotation = (self.oFallingPiece.iRotation - 1) % len(PIECES[self.oFallingPiece.sShape]) #rotates the piece
+        
+        if self.oFallingPiece.sShape == 'I':
+            # Try a sequence of wall kicks for the I piece
+            for offset in [0, -1, 1, -2, 2, -3, 3]:
+                self.oFallingPiece.iX = iOldX + offset
+                if self.oBoard.isValidPosition(self.oFallingPiece):
+                    return
+            # If none work, revert
+            self.oFallingPiece.iX = iOldX
+            self.oFallingPiece.iRotation = iOldRotation
+        else:
             if not self.oBoard.isValidPosition(self.oFallingPiece):
-                self.oFallingPiece.iX += 2
+                self.oFallingPiece.iX -= 1 #try moving it if the rotation is invalid
                 if not self.oBoard.isValidPosition(self.oFallingPiece):
-                    self.oFallingPiece.iX -= 1
-                    self.oFallingPiece.iRotation = iOldRotation
+                    self.oFallingPiece.iX += 2 #if the move is invalid, move it the other way
+                    if not self.oBoard.isValidPosition(self.oFallingPiece):
+                        self.oFallingPiece.iX -= 1
+                        self.oFallingPiece.iRotation = iOldRotation
 
     def getGhostPiece(self):
+        #pre: game info
+        #post: returns a ghost piece that is the same shape and colour as the falling piece, but at the bottom of the board
         oGhost = self.oFallingPiece.copy()
         while self.oBoard.isValidPosition(oGhost, iAdjY=1):
             oGhost.iY += 1
         return oGhost
 
 def main():
+    #pre: nothing
+    #post: sets up and runs the game
     pygame.init()
     global FPSCLOCK, DISPLAYSURF, BASICFONT, BIGFONT
     FPSCLOCK = pygame.time.Clock()
@@ -362,6 +380,8 @@ def main():
         showTextScreen('Game Over')
 
 def showTextScreen(text):
+    #pre: text to display
+    #post: displays the text on the screen and waits for a key press
     titleSurf, titleRect = makeTextObjs(text, BIGFONT, TEXTCOLOUR)
     titleRect.center = (int(WINDOWWIDTH / 2), int(WINDOWHEIGHT / 2))
     DISPLAYSURF.blit(titleSurf, titleRect)
@@ -376,10 +396,14 @@ def showTextScreen(text):
         FPSCLOCK.tick()
 
 def makeTextObjs(text, font, colour):
+    #pre: text, font, and colour
+    #post: returns a surface and a rect for the text
     surf = font.render(text, True, colour)
     return surf, surf.get_rect()
 
 def checkForKeyPress():
+    #pre: nothing
+    #post: returns the key that was pressed, or None if no key was pressed
     checkForQuit()
     for event in pygame.event.get([KEYDOWN, KEYUP]):
         if event.type == KEYDOWN:
@@ -388,6 +412,8 @@ def checkForKeyPress():
     return None
 
 def checkForQuit():
+    #pre: nothing
+    #post: checks for quit events and exits the game if necessary
     for event in pygame.event.get(QUIT):
         pygame.quit()
         sys.exit()
@@ -398,15 +424,19 @@ def checkForQuit():
         pygame.event.post(event)
 
 def convertToPixelCoords(iBoxX, iBoxY):
+    #pre: iBoxX and iBoxY are the coordinates of the box
+    #post: returns the pixel coordinates of the box
     return (XMARGIN + (iBoxX * BOXSIZE)), (TOPMARGIN + (iBoxY * BOXSIZE))
 
 def drawBox(iBoxX, iBoxY, iColour, pixelX=None, pixelY=None, ghost=False):
+    #pre: iBoxX and iBoxY are the coordinates of the box, the colour of the box, pixel coordinates of the box (optional), whether the box is a ghost piece
+    #post: draws the box on the screen
     if iColour == BLANK:
         return
     if pixelX is None and pixelY is None:
         pixelX, pixelY = convertToPixelCoords(iBoxX, iBoxY)
     if ghost:
-        surf = pygame.Surface((BOXSIZE - 1, BOXSIZE - 1), pygame.SRCALPHA)
+        surf = pygame.Surface((BOXSIZE - 1, BOXSIZE - 1), pygame.SRCALPHA) #alpha for fade
         surf.fill((*COLOURS[iColour], 80))
         DISPLAYSURF.blit(surf, (pixelX + 1, pixelY + 1))
     else:
@@ -414,14 +444,17 @@ def drawBox(iBoxX, iBoxY, iColour, pixelX=None, pixelY=None, ghost=False):
         pygame.draw.rect(DISPLAYSURF, LIGHTCOLOURS[iColour], (pixelX + 1, pixelY + 1, BOXSIZE - 4, BOXSIZE - 4))
 
 def drawBoard(oBoard):
-    pygame.draw.rect(DISPLAYSURF, BOARDERCOLOUR, (XMARGIN - 3, TOPMARGIN - 7, (BOARDWIDTH * BOXSIZE) + 8, (BOARDHEIGHT * BOXSIZE) + 8), 5)
-    pygame.draw.rect(DISPLAYSURF, BGCOLOUR, (XMARGIN, TOPMARGIN, BOXSIZE * BOARDWIDTH, BOXSIZE * BOARDHEIGHT))
+    #pre: the board object
+    #post: draws the board on the screen
+    pygame.draw.rect(DISPLAYSURF, BORDERCOLOUR, (XMARGIN - 3, TOPMARGIN - 7, (BOARDWIDTH * BOXSIZE) + 8, (BOARDHEIGHT * BOXSIZE) + 12), 5)
     for iX in range(BOARDWIDTH):
         for iY in range(BOARDHEIGHT):
             drawBox(iX, iY, oBoard.lGrid[iX][iY])
 
 def drawStatus(iScore, iLevel):
-    scoreSurf = BASICFONT.render('Score: %s' % iScore, True, TEXTCOLOUR)
+    #pre: the score and level
+    #post: draws them on the screen
+    scoreSurf = BASICFONT.render('Score: %s' % iScore, True, TEXTCOLOUR) #%s is a placeholder for the string representation of the score
     scoreRect = scoreSurf.get_rect()
     scoreRect.topleft = (WINDOWWIDTH - 150, 20)
     DISPLAYSURF.blit(scoreSurf, scoreRect)

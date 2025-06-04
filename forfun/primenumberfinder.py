@@ -1,7 +1,7 @@
 import math
 
 def prime_number_generator():
-    prime_number = 3
+    prime_number = 10000000000000000
     while True:
         isprime = True
         for x in range(2, int(math.sqrt(prime_number) + 1)):
@@ -9,7 +9,7 @@ def prime_number_generator():
                 isprime = False
                 break 
         if isprime:
-            print(prime_number)
+            prime_number = prime_number + 1
         prime_number += 1
 
 prime_number_generator()
