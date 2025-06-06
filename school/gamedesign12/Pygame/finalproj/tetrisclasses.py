@@ -8,7 +8,7 @@ WINDOWHEIGHT = 480
 BOXSIZE = 20
 BOARDWIDTH = 10
 BOARDHEIGHT = 20
-BLANK = '.'
+EMPTY = '.'
 
 
 #time in seconds * seconds to nanoseconds
@@ -164,7 +164,7 @@ class CBoard:
     def __init__(self):
         self.iWidth = BOARDWIDTH
         self.iHeight = BOARDHEIGHT
-        self.lGrid = [[BLANK] * self.iHeight for _ in range(self.iWidth)] #its easier to move the pieces from index to index instead of list to list (therefore, 10 lists of 20 elements)
+        self.lGrid = [[EMPTY] * self.iHeight for _ in range(self.iWidth)] #its easier to move the parts of the pieces through a single list instead of across multiple lists
 
     def isOnBoard(self, iX, iY):
         #pre: iX and iY are the coordinates of the piece
@@ -178,29 +178,29 @@ class CBoard:
             for iYTemplate in range(TEMPLATEHEIGHT):
                 bIsAboveBoard = iYTemplate + oPiece.iY + iAdjY < 0
 
-                if bIsAboveBoard or PIECES[oPiece.sShape][oPiece.iRotation][iYTemplate][iXTemplate] == BLANK:
+                if bIsAboveBoard or PIECES[oPiece.sShape][oPiece.iRotation][iYTemplate][iXTemplate] == EMPTY:
                     continue #skip empty spaces in the template
 
-                if not self.isOnBoard(iXTemplate + oPiece.iX + iAdjX, iYTemplate + oPiece.iY + iAdjY):
+                if not self.isOnBoard((iXTemplate + oPiece.iX + iAdjX), (iYTemplate + oPiece.iY + iAdjY)): #brackets inside the argument arent needed here but there for clarity (iX and iY)
                     return False #out of bounds
 
-                if self.lGrid[iXTemplate + oPiece.iX + iAdjX][iYTemplate + oPiece.iY + iAdjY] != BLANK:
+                if self.lGrid[iXTemplate + oPiece.iX + iAdjX][iYTemplate + oPiece.iY + iAdjY] != EMPTY: #checks if the block in the grid is empty/EMPTY
                     return False #collides with another piece
         return True
 
     def addPiece(self, oPiece):
         #pre: needs info on the piece
-        #post: for each cell in the template, check if its not blank, then add the cells to the grid
+        #post: for each cell in the template, check if its not EMPTY, then add the cells to the grid
         for iXTemplate in range(TEMPLATEWIDTH):
             for iYTemplate in range(TEMPLATEHEIGHT):
-                if PIECES[oPiece.sShape][oPiece.iRotation][iYTemplate][iXTemplate] != BLANK:
+                if PIECES[oPiece.sShape][oPiece.iRotation][iYTemplate][iXTemplate] != EMPTY:
                     self.lGrid[iXTemplate + oPiece.iX][iYTemplate + oPiece.iY] = oPiece.iColour
 
     def isCompleteLine(self, iY):
         #pre: needs the y coordinate of the line
         #post: returns true if the line is complete
         for iX in range(self.iWidth):
-            if self.lGrid[iX][iY] == BLANK:
+            if self.lGrid[iX][iY] == EMPTY:
                 return False
         return True
 
@@ -217,7 +217,7 @@ class CBoard:
                         self.lGrid[iX][iPullDownY] = self.lGrid[iX][iPullDownY-1] #pull row above (iPullDownY-1) down
 
                 for iX in range(self.iWidth):
-                    self.lGrid[iX][0] = BLANK
+                    self.lGrid[iX][0] = EMPTY
                 iLinesRemoved += 1 #clear top row
 
             else:
@@ -226,8 +226,8 @@ class CBoard:
 
     def getBlankBoard(self):
         #pre: needs the board info
-        #post: makes a blank board
-        self.lGrid = [[BLANK] * self.iHeight for _ in range(self.iWidth)]
+        #post: makes a EMPTY board
+        self.lGrid = [[EMPTY] * self.iHeight for _ in range(self.iWidth)]
 
 class CTetrisGame:
     def __init__(self):
@@ -247,6 +247,9 @@ class CTetrisGame:
         self.oNextPiece = self.getNewPiece()
         self.hardDropping = False
         self.softDropFreq = 0.3 * 1000000000  # Default soft drop interval (nanoseconds)
+
+    def runGame(self):
+        return _runGame(self) #added here cause the function is HUGE
 
     def getNewPiece(self):
         #pre: needs info on the game
@@ -431,7 +434,7 @@ def convertToPixelCoords(iBoxX, iBoxY):
 def drawBox(iBoxX, iBoxY, iColour, pixelX=None, pixelY=None, ghost=False):
     #pre: iBoxX and iBoxY are the coordinates of the box, the colour of the box, pixel coordinates of the box (optional), whether the box is a ghost piece
     #post: draws the box on the screen
-    if iColour == BLANK:
+    if iColour == EMPTY:
         return
     if pixelX is None and pixelY is None:
         pixelX, pixelY = convertToPixelCoords(iBoxX, iBoxY)
@@ -464,12 +467,14 @@ def drawStatus(iScore, iLevel):
     DISPLAYSURF.blit(levelSurf, levelRect)
 
 def drawPiece(oPiece, pixelX=None, pixelY=None, ghost=False):
+    #pre: the piece object, whether the piece is a ghost piece
+    #post: draws the piece on the screen
     shapeToDraw = PIECES[oPiece.sShape][oPiece.iRotation]
     if pixelX is None and pixelY is None:
         pixelX, pixelY = convertToPixelCoords(oPiece.iX, oPiece.iY)
     for iX in range(TEMPLATEWIDTH):
         for iY in range(TEMPLATEHEIGHT):
-            if shapeToDraw[iY][iX] != BLANK:
+            if shapeToDraw[iY][iX] != EMPTY:
                 iColour = oPiece.iColour
                 if ghost:
                     drawBox(None, None, iColour, pixelX + (iX * BOXSIZE), pixelY + (iY * BOXSIZE), ghost=True)
@@ -477,16 +482,17 @@ def drawPiece(oPiece, pixelX=None, pixelY=None, ghost=False):
                     drawBox(None, None, iColour, pixelX + (iX * BOXSIZE), pixelY + (iY * BOXSIZE))
 
 def drawNextPiece(oPiece):
+    #pre: the next piece object
+    #post: draws the "next piece" on the screen (next piece is in quotes because it is not actually next, it is the piece that will spawn after the current one)
     nextSurf = BASICFONT.render('Next:', True, TEXTCOLOUR)
     nextRect = nextSurf.get_rect()
     nextRect.topleft = (WINDOWWIDTH - 120, 80)
     DISPLAYSURF.blit(nextSurf, nextRect)
     drawPiece(oPiece, pixelX=WINDOWWIDTH-120, pixelY=100)
 
-# Add runGame to CTetrisGame
-setattr(CTetrisGame, 'runGame', lambda self: _runGame(self))
-
 def _runGame(self):
+    #pre: literally everything
+    #post: runs the game loop
     while True:
         if self.oFallingPiece == None:
             self.oFallingPiece = self.oNextPiece
