@@ -511,9 +511,9 @@ def _runGame(self):
                 if (event.key == K_p):
                     DISPLAYSURF.fill(BGCOLOUR)
                     showTextScreen('Paused')
-                    self.fLastFallTime = time.time_ns()
-                    self.fLastMoveDownTime = time.time_ns()
-                    self.fLastMoveSidewaysTime = time.time_ns()
+                    self.fLastFallTime = time.time_ns() #reset movement timer
+                    self.fLastMoveDownTime = time.time_ns() #reset movement timer
+                    self.fLastMoveSidewaysTime = time.time_ns() #reset movement timer
 
                 elif (event.key == K_LEFT or event.key == K_a):
                     self.bMovingLeft = False
@@ -528,13 +528,13 @@ def _runGame(self):
                     self.oFallingPiece.iX -= 1
                     self.bMovingLeft = True
                     self.bMovingRight = False
-                    self.fLastMoveSidewaysTime = time.time_ns()
+                    self.fLastMoveSidewaysTime = time.time_ns() #reset movement timer
 
                 elif (event.key == K_RIGHT or event.key == K_d) and self.oBoard.isValidPosition(self.oFallingPiece, iAdjX=1):
                     self.oFallingPiece.iX += 1
                     self.bMovingRight = True
                     self.bMovingLeft = False
-                    self.fLastMoveSidewaysTime = time.time_ns()
+                    self.fLastMoveSidewaysTime = time.time_ns() #reset movement timer
 
                 elif (event.key == K_UP or event.key == K_w):
                     self.rotate()
@@ -547,38 +547,42 @@ def _runGame(self):
                     self.softDropFreq = 0.06 * 1000000000  # Fast soft drop speed
 
                 elif event.key == K_SPACE:
-                    self.bMovingDown = False
-                    self.bMovingLeft = False
-                    self.bMovingRight = False
-                    self.fLockDelay = 0
-                    for i in range(1, BOARDHEIGHT):
-                        if not self.oBoard.isValidPosition(self.oFallingPiece, iAdjY=i):
-                            break
-                    self.oFallingPiece.iY += i - 1
+                    if self.oFallingPiece is not None: #make sure the player doesn't lock a nonexistent piece
+                        self.bMovingDown = False
+                        self.bMovingLeft = False
+                        self.bMovingRight = False
+                        self.fLockDelay = 0
+                        for i in range(1, BOARDHEIGHT):
+                            if not self.oBoard.isValidPosition(self.oFallingPiece, iAdjY=i):
+                                break
+                        self.oFallingPiece.iY += i - 1 #move the piece to the bottom
+                        self.lockPiece() #force it to lock here. if locked naturally, it will take some time
+                        continue
 
         if (self.bMovingLeft or self.bMovingRight) and time.time_ns() - self.fLastMoveSidewaysTime > MOVESIDEWAYSFREQ:
             if self.bMovingLeft and self.oBoard.isValidPosition(self.oFallingPiece, iAdjX=-1):
-                self.oFallingPiece.iX -= 1
+                self.oFallingPiece.iX -= 1 #move left continuously
             elif self.bMovingRight and self.oBoard.isValidPosition(self.oFallingPiece, iAdjX=1):
-                self.oFallingPiece.iX += 1
-            self.fLastMoveSidewaysTime = time.time_ns()
+                self.oFallingPiece.iX += 1 #move right continuously
+            self.fLastMoveSidewaysTime = time.time_ns() #reset movement timer
 
         if self.bMovingDown and time.time_ns() - self.fLastMoveDownTime > self.softDropFreq and self.oBoard.isValidPosition(self.oFallingPiece, iAdjY=1):
-            self.oFallingPiece.iY += 1
-            self.fLastMoveDownTime = time.time_ns()
+            self.oFallingPiece.iY += 1 #soft drop faster
+            self.fLastMoveDownTime = time.time_ns() #reset movement timer
 
         if not self.hardDropping:
             if time.time_ns() - self.fLastFallTime > MOVEDOWNFREQ:
                 if not self.oBoard.isValidPosition(self.oFallingPiece, iAdjY=1):
-                    if self.fLockStartTime is None:
-                        self.fLockStartTime = time.time_ns()
+                    if self.fLockStartTime is None: #if the piece is not moving down, start the lock timer
+                        self.fLockStartTime = time.time_ns() #start it
                     elif time.time_ns() - self.fLockStartTime >= self.fLockDelay:
-                        self.lockPiece()
+                        self.lockPiece() #lock it
                         self.fLockStartTime = None
                 else:
-                    self.oFallingPiece.iY += 1
-                    self.fLastFallTime = time.time_ns()
+                    self.oFallingPiece.iY += 1 #otherwise, move it down naturally
+                    self.fLastFallTime = time.time_ns() #reset movement timer
 
+        #drawing and displaying stuff
         DISPLAYSURF.fill(BGCOLOUR)
         drawBoard(self.oBoard)
         drawStatus(self.iScore, self.iLevel)
