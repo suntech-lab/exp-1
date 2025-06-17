@@ -172,8 +172,12 @@ class CBoard:
         return iX >= 0 and iX < self.iWidth and iY < self.iHeight
 
     def isValidPosition(self, oPiece, iAdjX=0, iAdjY=0):
+        if oPiece is None:
+            return False
         #pre: needs info on the piece
         #post: returns true if the piece is in a valid position (board, other pieces)
+        if oPiece.iY is None:
+            oPiece.iY = 0 #if the piece is None, set it to 0 so it doesn't crash
         for iXTemplate in range(TEMPLATEWIDTH):
             for iYTemplate in range(TEMPLATEHEIGHT):
                 bIsAboveBoard = iYTemplate + oPiece.iY + iAdjY < 0
@@ -371,6 +375,7 @@ def main():
     #pre: nothing
     #post: sets up and runs the game
     pygame.init()
+    pygame.mixer.init()
     global FPSCLOCK, DISPLAYSURF, BASICFONT, BIGFONT
     FPSCLOCK = pygame.time.Clock()
     DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
@@ -394,6 +399,7 @@ def showTextScreen(text):
     pressKeySurf, pressKeyRect = makeTextObjs('Press any key to start. During the game, press p to pause.', BASICFONT, TEXTCOLOUR)
     pressKeyRect.center = (int(WINDOWWIDTH / 2), int(WINDOWHEIGHT / 2) + 100)
     DISPLAYSURF.blit(pressKeySurf, pressKeyRect)
+    TETRISTHEME = pygame.mixer.Sound('tetris_theme.mp3')
     while checkForKeyPress() == None:
         pygame.display.update()
         FPSCLOCK.tick()
