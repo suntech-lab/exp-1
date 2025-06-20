@@ -1,7 +1,18 @@
+'''
+GameDesign 12 - Pygame Final Project
+Tetris
+Eric Liu
+20/06/2025
+bug:
+if a block is slammed instantly after restart, there is a chance that the block does not fully reach the bottom
+(^^i tried using ai to fix but it couldnt find the problem)
+'''
+
 import random, time, pygame, sys
 from pygame.locals import *
+pygame.mixer.init()
 
-# --- Constants ---
+#important constants
 FPS = 60
 WINDOWWIDTH = 640
 WINDOWHEIGHT = 480
@@ -10,6 +21,15 @@ BOARDWIDTH = 10
 BOARDHEIGHT = 20
 EMPTY = '.'
 
+#sounds
+TETRISTHEME = pygame.mixer.Sound('C:\\Users\\ericl\\Documents\\lab\\school\\gamedesign12\\Pygame\\finalproj\\Tetris.mp3')
+TETRISTHEME.set_volume(0.5)
+LOCKPIECESOUND = pygame.mixer.Sound('C:\\Users\\ericl\\Documents\\lab\\school\\gamedesign12\\Pygame\\finalproj\\TetrisSlam.mp3')
+LOCKPIECESOUND.set_volume(0.5)
+PAUSEMUSIC = pygame.mixer.Sound('C:\\Users\\ericl\\Documents\\lab\\school\\gamedesign12\\Pygame\\finalproj\\PauseMusic.mp3')
+PAUSEMUSIC.set_volume(0.5)
+LOSESOUND = pygame.mixer.Sound('C:\\Users\\ericl\\Documents\\lab\\school\\gamedesign12\\Pygame\\finalproj\\LoseEffect.mp3')
+LOSESOUND.set_volume(0.5)
 
 #time in seconds * seconds to nanoseconds
 #nanoseconds is used for more accurate timing
@@ -26,19 +46,19 @@ TOPMARGIN = WINDOWHEIGHT - (BOARDHEIGHT * BOXSIZE) - 5
 #neat colours
 WHITE       = (255, 255, 255)
 GRAY        = (185, 185, 185)
-BLACK       = (  0,   0,   0)
-RED         = (155,   0,   0)
-LIGHTRED    = (175,  20,  20)
-GREEN       = (  0, 155,   0)
-LIGHTGREEN  = ( 20, 175,  20)
-BLUE        = (  0,   0, 155)
-LIGHTBLUE   = ( 20,  20, 175)
-YELLOW      = (155, 155,   0)
-LIGHTYELLOW = (175, 175,  20)
+BLACK       = ( 10,  10,  10)
+RED         = (135,   0,   0)
+LIGHTRED    = (175,  40,  40)
+GREEN       = (  0, 135,   0)
+LIGHTGREEN  = ( 40, 175,  40)
+BLUE        = ( 40,  40, 135)
+LIGHTBLUE   = ( 80,  80, 175)
+YELLOW      = (135, 135,   0)
+LIGHTYELLOW = (175, 175,  40)
 
 #set colours
-BORDERCOLOUR = LIGHTBLUE
-BGCOLOUR = GRAY
+BORDERCOLOUR = (  70,  70, 175)
+BGCOLOUR = BLACK
 TEXTCOLOUR = WHITE
 TEXTSHADOWCOLOUR = GRAY
 COLOURS      = (BLUE, GREEN, RED, YELLOW)
@@ -235,6 +255,24 @@ class CBoard:
 
 class CTetrisGame:
     def __init__(self):
+            self.oBoard = CBoard()
+            self.iScore = 0
+            self.iLevel = 1
+            self.fFallFreq = MOVEDOWNFREQ
+            self.fLockDelay = 0.5 * 1000000000
+            self.fLockStartTime = None
+            self.fLastMoveDownTime = time.time_ns()
+            self.fLastMoveSidewaysTime = time.time_ns()
+            self.fLastFallTime = time.time_ns()
+            self.bMovingDown = False
+            self.bMovingLeft = False
+            self.bMovingRight = False
+            self.oFallingPiece = self.getNewPiece()
+            self.oNextPiece = self.getNewPiece()
+            self.hardDropping = False
+            self.softDropFreq = 0.3 * 1000000000  # Default soft drop interval (nanoseconds)
+    
+    def resetGame(self):
         self.oBoard = CBoard()
         self.iScore = 0
         self.iLevel = 1
@@ -275,10 +313,8 @@ class CTetrisGame:
         #pre: needs info on the game
         #post: SLAMS IT DOWN
         self.hardDropping = True
-        for i in range(1, BOARDHEIGHT):
-            if not self.oBoard.isValidPosition(self.oFallingPiece, iAdjY=i):
-                break
-        self.oFallingPiece.iY += i - 1
+        while self.oBoard.isValidPosition(self.oFallingPiece, iAdjY=1):
+            self.oFallingPiece.iY += 1
         self.lockPiece()
 
     def lockPiece(self):
@@ -289,6 +325,7 @@ class CTetrisGame:
         self.calculateLevelAndFallFreq()
         self.fLockStartTime = None
         self.oFallingPiece = None
+        LOCKPIECESOUND.play() #play the sound
         return True
 
     def moveLeft(self):
@@ -337,7 +374,6 @@ class CTetrisGame:
                         self.oFallingPiece.iX -= 1
                         self.oFallingPiece.iRotation = iOldRotation
 
-
     def rotateCCW(self): #same thing, except chooses the rotation before
         #pre: game info
         #post: rotates the piece (selects next rotation) and kicks it if it is in an invalid position
@@ -379,15 +415,15 @@ def main():
     global FPSCLOCK, DISPLAYSURF, BASICFONT, BIGFONT
     FPSCLOCK = pygame.time.Clock()
     DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
-    BASICFONT = pygame.font.Font('freesansbold.ttf', 18)
+    BASICFONT = pygame.font.Font('freesansbold.ttf', 13)
     BIGFONT = pygame.font.Font('freesansbold.ttf', 100)
     pygame.display.set_caption('Tetris (OOP)')
-    showTextScreen('Tetris')
+    showStartScreen('Tetris')
     while True:
         CTetrisGame().runGame()
-        showTextScreen('Game Over')
+        showStartScreen('Game Over')
 
-def showTextScreen(text):
+def showStartScreen(text):
     #pre: text to display
     #post: displays the text on the screen and waits for a key press
     titleSurf, titleRect = makeTextObjs(text, BIGFONT, TEXTCOLOUR)
@@ -396,10 +432,9 @@ def showTextScreen(text):
     titleSurf, titleRect = makeTextObjs(text, BIGFONT, TEXTSHADOWCOLOUR)
     titleRect.center = (int(WINDOWWIDTH / 2) - 3, int(WINDOWHEIGHT / 2) - 3)
     DISPLAYSURF.blit(titleSurf, titleRect)
-    pressKeySurf, pressKeyRect = makeTextObjs('Press any key to start. During the game, press p to pause.', BASICFONT, TEXTCOLOUR)
+    pressKeySurf, pressKeyRect = makeTextObjs('Press any key to start. Press ESC to quit. During the game, press p to pause.', BASICFONT, TEXTCOLOUR)
     pressKeyRect.center = (int(WINDOWWIDTH / 2), int(WINDOWHEIGHT / 2) + 100)
     DISPLAYSURF.blit(pressKeySurf, pressKeyRect)
-    TETRISTHEME = pygame.mixer.Sound('tetris_theme.mp3')
     while checkForKeyPress() == None:
         pygame.display.update()
         FPSCLOCK.tick()
@@ -499,7 +534,9 @@ def drawNextPiece(oPiece):
 def _runGame(self):
     #pre: literally everything
     #post: runs the game loop
+    TETRISTHEME.play(-1)
     while True:
+        LOSESOUND.stop() #stop the lose sound if it is playing
         if self.oFallingPiece == None:
             self.oFallingPiece = self.oNextPiece
             self.oNextPiece = self.getNewPiece()
@@ -507,19 +544,24 @@ def _runGame(self):
             self.fLockDelay = 0.5 * 1000000000
             if not self.oBoard.isValidPosition(self.oFallingPiece):
                 self.oFallingPiece.iY += 1
-                showTextScreen('Game Over')
-                pygame.quit()
-                sys.exit()
+                TETRISTHEME.stop()
+                LOSESOUND.play()
+                showStartScreen('Game Over')
+                return
         checkForQuit()
         for event in pygame.event.get():
             if event.type == KEYUP:
 
                 if (event.key == K_p):
+                    PAUSEMUSIC.play(-1)
+                    TETRISTHEME.stop()
                     DISPLAYSURF.fill(BGCOLOUR)
-                    showTextScreen('Paused')
+                    showStartScreen('Paused')
                     self.fLastFallTime = time.time_ns() #reset movement timer
                     self.fLastMoveDownTime = time.time_ns() #reset movement timer
                     self.fLastMoveSidewaysTime = time.time_ns() #reset movement timer
+                    TETRISTHEME.play(-1) #resume the music
+                    PAUSEMUSIC.stop() #stop the pause music
 
                 elif (event.key == K_LEFT or event.key == K_a):
                     self.bMovingLeft = False
